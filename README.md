@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌟 **DotMD**
 
-## Getting Started
+DotMD est une application web minimaliste et puissante permettant de **créer**, **éditer** et **gérer** des fichiers README écrits en Markdown. Contrairement à d'autres outils similaires, DotMD se distingue par sa profonde intégration avec GitHub, son éditeur en temps réel et sa conception centrée sur la simplicité d'utilisation, tout en offrant des fonctionnalités avancées pour les développeurs.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 **Fonctionnalités principales**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🔐 **1. Gestion des utilisateurs**
+- Authentification sécurisée via **GitHub (OAuth)**.
+- Gestion des sessions et protection des données utilisateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🔗 **2. Interaction avec GitHub**
+- Affichage des repositories de l'utilisateur directement depuis GitHub.
+- Récupération et affichage des fichiers README existants.
+- Création et modification des README avec **sauvegarde automatique**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### ✍️ **3. Éditeur Markdown intégré**
+- **Aperçu en temps réel** des fichiers README.
+- Interface moderne et intuitive pour l'édition.
+- Support complet des fonctionnalités Markdown :
+    - Titres
+    - Tableaux
+    - Liens
+    - Images
 
-## Learn More
+#### 🖼️ Exemple visuel de l'éditeur
 
-To learn more about Next.js, take a look at the following resources:
+![Exemple de l'éditeur Markdown](https://via.placeholder.com/800x400.png?text=Exemple+Editeur+DotMD)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*Un aperçu moderne et fonctionnel, conçu pour les développeurs.*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ **Architecture technique**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🎨 **Frontend**
+- **Framework** : [Next.js](https://nextjs.org/) (React).
+- **Langage** : TypeScript pour une meilleure sécurité et maintenabilité.
+- **Style** : Tailwind CSS pour un design réactif et moderne.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🌐 **Backend**
+- **API Routes** : Gestion des endpoints via les API routes intégrées de Next.js.
+- **Base de données** : PostgreSQL avec Prisma comme ORM.
+- **SDK GitHub** : Utilisation de [Octokit](https://github.com/octokit/rest.js) pour interagir avec l'API GitHub.
+
+### 💾 **Base de données**
+- Gestion des utilisateurs et des brouillons de README.
+- Hébergement local en développement (PostgreSQL) et sur un VPS en production.
+
+---
+
+## 🪂 **Déploiement**
+
+### 💻 **Environnement de développement**
+
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/votre-utilisateur/dotmd.git
+   cd dotmd
+   ```
+2. Installez les dépendances :
+   ```bash
+   npm run install
+   ```
+3. Configurez les variables d'environnement :
+    - Renommez `.env.example` en `.env` et remplissez les valeurs nécessaires (**GitHub OAuth**, **base de données**, etc.).
+
+4. Lancez l'application :
+   ```bash
+   npm run dev
+   ```
+
+### 🌍 **Environnement de production**
+
+1. Préparez votre serveur (**VPS**) :
+    - Installez PostgreSQL et configurez-le pour la production.
+    - Configurez un proxy **Nginx** pour sécuriser votre application.
+
+2. Configurez et déployez votre application :
+    - Mettez à jour les variables d'environnement pour la production.
+    - Démarrez l'application avec PM2 :
+      ```bash
+      pm2 start npm -- start
+      ```
+
+---
+
+## 🏁 **Conclusion**
+
+DotMD est votre allié idéal pour gérer efficacement vos README en Markdown. Grâce à son interface intuitive et son intégration fluide avec GitHub, elle simplifie les tâches complexes liées à la documentation des projets.
+
+Prêt à donner un coup de boost à vos projets ? **Essayez DotMD dès maintenant et transformez la façon dont vous créez vos README !**
+
+---
+
+# 🎉 **ENJOY !**
