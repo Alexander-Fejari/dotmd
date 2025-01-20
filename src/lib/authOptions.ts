@@ -21,5 +21,22 @@ export const authOptions: NextAuthOptions = {
             session.accessToken = token.accessToken as string;
             return session;
         },
+        async redirect({ url, baseUrl }) {
+            console.log("Redirect callback:", { url, baseUrl });
+
+
+            // Si `url` est interne (relatif), redirige vers celui-ci
+            if (url.startsWith("/")) {
+                return `${baseUrl}${url}`;
+            }
+
+            // Si `url` est externe, redirige uniquement si c'est autorisé
+            if (url.startsWith(baseUrl)) {
+                return url;
+            }
+
+            // Par défaut, redirige vers la page d'accueil
+            return `${baseUrl}/dashboard`;
+        },
     },
 }
