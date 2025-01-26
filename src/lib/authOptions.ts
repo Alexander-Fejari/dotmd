@@ -1,7 +1,10 @@
 import {NextAuthOptions} from "next-auth";
 import GithubProvider from "next-auth/providers/github"
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import prisma from "@/lib/prisma";
 
 export const authOptions: NextAuthOptions = {
+    adapter: PrismaAdapter(prisma),
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID as string,
@@ -11,14 +14,15 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         async jwt({ token, account }) {
             // Attache le accessToken de GitHub au JWT
+            console.log("JWT callback", { token, account });
             if (account) {
                 token.accessToken = account.access_token;
             }
             return token;
         },
-        async session({ session, token }) {
-            // Attache le accessToken de GitHub à la session utilisateur
-            session.accessToken = token.accessToken as string;
+        async session({ session, user }) {
+            console.log("Session callback", { session, user });
+            session.user.id = user.id;
             return session;
         },
         async redirect({ url, baseUrl }) {
