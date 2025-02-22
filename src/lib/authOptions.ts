@@ -1,46 +1,73 @@
-import {NextAuthOptions} from "next-auth";
-import GithubProvider from "next-auth/providers/github"
+import type { NextAuthOptions } from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 
+/**
+ * Configuration NextAuth pour DotMD
+ */
 export const authOptions: NextAuthOptions = {
+    // Adapter Prisma pour connecter NextAuth à la base de données PostgreSQL
     adapter: PrismaAdapter(prisma),
+
+    // Providers d'authentification (GitHub)
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID as string,
-            clientSecret: process.env.GITHUB_CLIENT_SECRET as string
-        })
+            clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+        }),
     ],
+
+    // Callbacks pour manipuler les tokens et les sessions
     callbacks: {
-        async jwt({ token, account }) {
-            // Attache le accessToken de GitHub au JWT
-            console.log("JWT callback", { token, account });
-            if (account) {
-                token.accessToken = account.access_token;
+        /**
+         * Callback JWT : appelé lors de la création et mise à jour des JWT
+         */
+        async jwt({ token, account, user }) {
+            if (account && user) {
+                token.accessToken = account.access_token as string | undefined;
+                token.refreshToken = account.refresh_token as string | undefined;
+                token.expiresAt = account.expires_at as number | undefined;
+                token.userId = user.id;
             }
             return token;
         },
+
+        /**
+         * Callback Session : appelé lors de la création de la session utilisateur
+         */
         async session({ session, user }) {
-            console.log("Session callback", { session, user });
-            session.user.id = user.id;
+            try {
+                const account = await prisma.account.findFirst({
+                    where: {
+                        userId: user.id,
+                        provider: 'github',
+                    }
+                });
+
+                if (account?.access_token) {
+                    session.accessToken = account.access_token;
+                    session.refreshToken = account.refresh_token as string | undefined;
+                    session.expires = account.expires_at as number | undefined;
+                }
+            } catch (error) {
+                console.error("❌ Erreur lors de la récupération de l'access_token :", error);
+            }
+
             return session;
         },
-        async redirect({ url, baseUrl }) {
-            console.log("Redirect callback:", { url, baseUrl });
+    },
 
-
-            // Si `url` est interne (relatif), redirige vers celui-ci
-            if (url.startsWith("/")) {
-                return `${baseUrl}${url}`;
-            }
-
-            // Si `url` est externe, redirige uniquement si c'est autorisé
-            if (url.startsWith(baseUrl)) {
-                return url;
-            }
-
-            // Par défaut, redirige vers la page d'accueil
-            return `${baseUrl}/dashboard`;
+    // Events pour suivre les actions comme signIn, signOut et les sessions
+    events: {
+        async signIn({ user }) {
+            console.log("🔵 Utilisateur connecté :", user);
+        },
+        async signOut({ session }) {
+            console.log("🟠 Utilisateur déconnecté :", session);
+        },
+        async session({ session }) {
+            console.log("🟢 Mise à jour de la session :", session);
         },
     },
-}
+};

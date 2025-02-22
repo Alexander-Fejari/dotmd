@@ -6,7 +6,8 @@ export const config = {
 };
 
 export function middleware(req: NextRequest) {
-    const token = req.cookies.get("next-auth.session-token") || req.cookies.get("__Secure-next-auth.session-token");
+    const isProduction = process.env.NODE_ENV === "production";
+    const token = req.cookies.get(isProduction ? "__Secure-next-auth.session-token" : "next-auth.session-token");
 
     if (!token) {
         const url = req.nextUrl.clone();
