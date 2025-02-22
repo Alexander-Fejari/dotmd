@@ -22,13 +22,21 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         /**
          * Callback JWT : appelé lors de la création et mise à jour des JWT
+         * Vérifie si le token est expiré et prépare le terrain pour le rafraîchir si besoin
          */
         async jwt({ token, account, user }) {
+            const now = Math.floor(Date.now() / 1000); // Temps en seconde
+            // Lors de la première connexion, on stocke les tokens GitHub et leur expiration
             if (account && user) {
                 token.accessToken = account.access_token as string | undefined;
                 token.refreshToken = account.refresh_token as string | undefined;
                 token.expiresAt = account.expires_at as number | undefined;
                 token.userId = user.id;
+            }
+            // Vérifie si le token est expiré
+            if (typeof token.expiresAt === 'number' && now >= token.expiresAt) {
+                console.warn("⚠️ Access token expiré :", token.accessToken);
+                token.accessToken = undefined; // On marquera le token comme expiré
             }
             return token;
         },
