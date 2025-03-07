@@ -1,4 +1,4 @@
-import { DefaultSession } from "next-auth";
+import {DefaultSession} from "next-auth";
 
 declare module "next-auth" {
     interface Session extends DefaultSession {
@@ -12,16 +12,19 @@ declare module "next-auth" {
         accessToken?: string;
         refreshToken?: string;
         expires?: number;
+        githubLogin?: string;
     }
 
     interface User {
         id: string;
         role?: string;
+        login: string;
     }
 
     interface JWT {
         accessToken?: string;
         refreshToken?: string;
         expiresAt?: number;
+        githubLogin?: string;
     }
 }
