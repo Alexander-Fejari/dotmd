@@ -1,26 +1,69 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/authOptions";
 import { getOctokit } from "@/lib/octokit";
+import { GithubRepository } from "@/types/github";
 
-export async function GET(req: NextRequest) {
-    const { searchParams } = new URL(req.url);
-    const token = searchParams.get("token");
+/**
+ * GET /api/github/getRepositories
+ * Récupère les dépôts GitHub dont l'utilisateur est propriétaire avec leurs README.md si disponibles.
+ * Affiche aussi les repos sans README pour permettre leur création.
+ */
+export async function GET() {
+    const session = await getServerSession(authOptions);
 
-    if (!token) {
-        return NextResponse.json({ error: "Token is missing" }, { status: 400 });
+    // Vérifie si la session est valide et si l'accessToken est disponible
+    if (!session || !session.accessToken) {
+        console.warn("⚠️ Tentative d'accès non autorisé");
+        return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
     }
 
-    const octokit = getOctokit(token);
+    const octokit = getOctokit(session.accessToken);
 
     try {
-        const { data: repos } = await octokit.repos.listForAuthenticatedUser({
-            per_page: 35, // Permet de récupérer plus de repos si nécessaire
-        });
+        // Récupère les dépôts GitHub de l'utilisateur connecté
+        const { data: repositories } = await octokit.repos.listForAuthenticatedUser();
 
-        return NextResponse.json(repos);
-    } catch (error: unknown) {
-        if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 500 });
-        }
-        return NextResponse.json({ error: "An unknown error occurred" }, { status: 500 });
+        // Filtre uniquement les dépôts où l'utilisateur est propriétaire
+        const ownedRepos = repositories.filter(
+            (repo: GithubRepository) => repo.owner.login === session.githubLogin
+        );
+
+        // Pour chaque repo, tente de récupérer le README si disponible
+        const reposWithReadme = await Promise.all(
+            ownedRepos.map(async (repo: GithubRepository) => {
+                try {
+                    // Récupère le README.md du dépôt
+                    const { data: readmeData } = await octokit.repos.getReadme({
+                        owner: repo.owner.login,
+                        repo: repo.name,
+                    });
+
+                    // Décodage du contenu Base64 en texte lisible
+                    const decodedReadme = Buffer.from(readmeData.content, "base64").toString("utf-8");
+
+                    return {
+                        owner: repo.owner.login,
+                        name: repo.name,
+                        description: repo.description || "Pas de description",
+                        readme: decodedReadme,
+                    };
+                } catch {
+                    console.warn(`❌ Pas de README pour ${repo.name}`);
+                    // Retourne le repo avec un README null pour pouvoir en ajouter plus tard
+                    return {
+                        owner: repo.owner.login,
+                        name: repo.name,
+                        description: repo.description || "Pas de description",
+                        readme: null,
+                    };
+                }
+            })
+        );
+
+        return NextResponse.json(reposWithReadme);
+    } catch (error) {
+        console.error("❌ Erreur lors de la récupération des dépôts :", error);
+        return NextResponse.json({ error: "Erreur interne" }, { status: 500 });
     }
 }
