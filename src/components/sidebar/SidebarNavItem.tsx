@@ -1,7 +1,7 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
-import {AppRoutes} from "@/types/routes";
+import type { AppRoutes } from "@/types/routes"
 
 interface SidebarNavItemProps {
     href: AppRoutes
@@ -20,14 +20,11 @@ const SidebarNavItem: React.FC<SidebarNavItemProps> = ({ href, children, isActiv
                     isActive
                         ? "bg-green-600/30 text-white font-semibold"
                         : "text-gray-300 hover:bg-green-600/30 hover:text-white",
-                    className
+                    className,
                 )}
             >
                 {React.Children.map(children, (child, index) => (
-                    <span key={index} className={cn(
-                        "flex items-center",
-                        index > 0 ? "ml-2" : ""
-                    )}>
+                    <span key={index} className={cn("flex items-center", index > 0 ? "ml-2" : "")}>
             {child}
           </span>
                 ))}
@@ -37,3 +34,4 @@ const SidebarNavItem: React.FC<SidebarNavItemProps> = ({ href, children, isActiv
 }
 
 export default SidebarNavItem
+

@@ -16,9 +16,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
     }
 
     return (
-        <section className="flex">
+        <section className="w-full flex h-screen overflow-y-hidden">
             <Sidebar />
-            <section className="w-full p-4">
+            <section className="w-full p-6 overflow-y-auto">
                 {children}
             </section>
         </section>
