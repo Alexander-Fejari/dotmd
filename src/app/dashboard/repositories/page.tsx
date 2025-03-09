@@ -51,7 +51,7 @@ export default function RepositoriesPage() {
                         <h2 className="text-xl font-semibold">{repo.name}</h2>
                         <p>{repo.description || "Pas de description"}</p>
                         {repo.readme ? (
-                            <pre className="p-4 rounded-lg ">{repo.readme}</pre>
+                            <pre className="p-4 rounded-lg whitespace-pre-wrap ">{repo.readme}</pre>
                         ) : (
                             <button
                                 className="bg-blue-500 text-white px-4 py-2 rounded-lg"

@@ -1,5 +1,5 @@
-import React from 'react'
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
+import type React from "react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 interface SidebarUserProfileProps {
     name: string
@@ -7,11 +7,11 @@ interface SidebarUserProfileProps {
     avatarUrl: string
 }
 
-const SidebarUserProfile: React.FC<SidebarUserProfileProps> = ({name, email, avatarUrl}) => {
+const SidebarUserProfile: React.FC<SidebarUserProfileProps> = ({ name, email, avatarUrl }) => {
     return (
         <a href="#" className="flex items-center gap-2 p-4 hover:bg-gray-900">
             <Avatar>
-                <AvatarImage src={avatarUrl} alt={name}/>
+                <AvatarImage src={avatarUrl} alt={name} />
                 <AvatarFallback>{name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div>
