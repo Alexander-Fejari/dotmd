@@ -1,26 +1,19 @@
 import React from "react";
-import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/authOptions";
 import Sidebar from "@/components/sidebar/Sidebar";
+import SessionGuard from "@/components/SessionGuard";
 
-// ✅ Ajoute "async" ici pour pouvoir utiliser await
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-    const session = await getServerSession(authOptions);
-
-    // 🚫 Si pas de session ou token expiré → redirection vers la page de login
-    if (!session || !session.accessToken) {
-        const callbackUrl = encodeURIComponent("/dashboard");
-        console.warn("🚫 Session invalide ou token expiré, redirection vers /login");
-        redirect(`/api/auth/signin?callbackUrl=${callbackUrl}`);
-    }
-
+/**
+ * Layout du dashboard, garde la session à l'œil grâce à SessionGuard.
+ */
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
-        <section className="w-full flex h-screen overflow-y-hidden">
-            <Sidebar />
-            <section className="w-full p-6 overflow-y-auto">
-                {children}
+        <SessionGuard>
+            <section className="flex h-screen overflow-hidden">
+                <Sidebar />
+                <section className="w-full p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent scrollbar-thumb-rounded-full">
+                    {children}
+                </section>
             </section>
-        </section>
+        </SessionGuard>
     );
 }

@@ -71,7 +71,7 @@ const Sidebar: React.FC = () => {
             </div>
 
             {/* Sidebar desktop originale - cachée sur mobile */}
-            <div className="hidden md:flex h-full flex-col justify-between border-e border-primary">
+            <div className="hidden md:flex h-screen flex-col justify-between border-e border-primary">
                 <div className="px-4 py-6">
                     <Logo />
 
