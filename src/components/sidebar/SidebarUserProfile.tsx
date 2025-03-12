@@ -9,7 +9,7 @@ interface SidebarUserProfileProps {
 
 const SidebarUserProfile: React.FC<SidebarUserProfileProps> = ({ name, email, avatarUrl }) => {
     return (
-        <a href="#" className="flex items-center gap-2 p-4 hover:bg-gray-900">
+        <a href="#" className="flex items-center gap-2 p-4 hover:bg-secondary">
             <Avatar>
                 <AvatarImage src={avatarUrl} alt={name} />
                 <AvatarFallback>{name.charAt(0)}</AvatarFallback>

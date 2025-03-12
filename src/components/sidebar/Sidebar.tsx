@@ -28,8 +28,8 @@ const Sidebar: React.FC = () => {
                     className={cn(
                         "p-2 rounded-lg transition-colors",
                         isActive("/dashboard")
-                            ? "bg-green-600/30 text-white"
-                            : "text-gray-300 hover:bg-green-600/30 hover:text-white",
+                            ? "bg-primary/30 text-white"
+                            : "text-gray-300 hover:bg-primary/30 hover:text-white",
                     )}
                 >
                     <Home size={20} />
@@ -40,8 +40,8 @@ const Sidebar: React.FC = () => {
                     className={cn(
                         "p-2 rounded-lg transition-colors",
                         isActive("/dashboard/repositories")
-                            ? "bg-green-600/30 text-white"
-                            : "text-gray-300 hover:bg-green-600/30 hover:text-white",
+                            ? "bg-primary/30 text-white"
+                            : "text-gray-300 hover:bg-primary/30 hover:text-white",
                     )}
                 >
                     <FolderGit2 size={20} />
@@ -52,8 +52,8 @@ const Sidebar: React.FC = () => {
                     className={cn(
                         "p-2 rounded-lg transition-colors",
                         isActive("/dashboard/readmes")
-                            ? "bg-green-600/30 text-white"
-                            : "text-gray-300 hover:bg-green-600/30 hover:text-white",
+                            ? "bg-primary/30 text-white"
+                            : "text-gray-300 hover:bg-primary/30 hover:text-white",
                     )}
                 >
                     <Book size={20} />
@@ -63,7 +63,7 @@ const Sidebar: React.FC = () => {
                     href="/account/settings"
                     className={cn(
                         "p-2 rounded-lg transition-colors",
-                        isAccountActive ? "bg-green-600/30 text-white" : "text-gray-300 hover:bg-green-600/30 hover:text-white",
+                        isAccountActive ? "bg-primary/30 text-white" : "text-gray-300 hover:bg-primary/30 hover:text-white",
                     )}
                 >
                     <User size={20} />
@@ -97,8 +97,8 @@ const Sidebar: React.FC = () => {
                                     className={cn(
                                         "flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                                         isAccountActive || isOpen
-                                            ? "bg-green-600/30 text-white font-semibold"
-                                            : "text-gray-300 hover:bg-green-600/30 hover:text-white",
+                                            ? "bg-primary/30 text-white font-semibold"
+                                            : "text-gray-300 hover:bg-primary/30 hover:text-white",
                                     )}
                                 >
                   <span className="flex items-center">
