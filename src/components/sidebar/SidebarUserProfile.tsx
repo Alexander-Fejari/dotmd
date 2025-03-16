@@ -1,28 +1,42 @@
-import type React from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+'use client';
+
+import React from 'react';
+import {signOut} from 'next-auth/react';
+import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar';
+import {Button} from '@/components/ui/button';
+import Loader from '@/components/Loader';
 
 interface SidebarUserProfileProps {
-    name: string
-    email: string
-    avatarUrl: string
+    name: string;
+    avatarUrl: string;
 }
 
-const SidebarUserProfile: React.FC<SidebarUserProfileProps> = ({ name, email, avatarUrl }) => {
+const SidebarUserProfile: React.FC<SidebarUserProfileProps> = ({name, avatarUrl}) => {
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+    const handleSignOut = async () => {
+        setIsLoading(true);
+        await signOut({callbackUrl: '/'});
+        setIsLoading(false);
+    };
+
     return (
-        <a href="#" className="flex items-center gap-2 p-4 hover:bg-secondary">
+        <div className="flex items-center justify-between gap-2 py-4 px-6 border-t border-primary md:gap-4">
             <Avatar>
-                <AvatarImage src={avatarUrl} alt={name} />
+                <AvatarImage src={avatarUrl} alt={name}/>
                 <AvatarFallback>{name.charAt(0)}</AvatarFallback>
             </Avatar>
-            <div>
-                <p className="text-xs text-white">
-                    <strong className="block font-medium">{name}</strong>
-                    <span>{email}</span>
-                </p>
-            </div>
-        </a>
-    )
-}
+            <Button
+                variant="outline"
+                size="sm"
+                onClick={handleSignOut}
+                disabled={isLoading}
+                className="text-primary hover:bg-primary/20"
+            >
+                {isLoading ? <Loader fullScreen={false}/> : 'Se déconnecter'}
+            </Button>
+        </div>
+    );
+};
 
-export default SidebarUserProfile
-
+export default SidebarUserProfile;
