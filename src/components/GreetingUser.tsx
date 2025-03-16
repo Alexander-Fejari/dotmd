@@ -46,7 +46,7 @@ export default function GreetingUser() {
                     disabled={isLoading}
                     className="w-full max-w-[200px] rounded-full"
                 >
-                    {isLoading ? <Loader fullScreen={false} /> : 'Se connecter avec GitHub'}
+                    {isLoading ? <Loader fullScreen={false} /> : 'Se connecter'}
                 </Button>
             </div>
         );

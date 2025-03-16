@@ -1,7 +1,7 @@
 'use client'
 
 
-export default function DashboardPage() {
+export default function AccountPage() {
 
     return (
         <div>
