@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
     return (
         <>
             {/* Barre de navigation mobile - ICÔNES UNIQUEMENT - CENTRÉE */}
-            <div
+            <section
                 className="fixed bottom-4 left-1/2 transform -translate-x-1/2 flex justify-between items-center p-2  backdrop-blur-md rounded-xl border border-primary shadow-lg md:hidden w-auto min-w-[200px] max-w-[280px]">
                 <Link
                     href="/"
@@ -59,10 +59,10 @@ const Sidebar: React.FC = () => {
                 >
                     <User size={20}/>
                 </Link>
-            </div>
+            </section>
 
             {/* Sidebar desktop originale - cachée sur mobile */}
-            <div className="hidden md:flex h-screen flex-col justify-between border-e border-primary">
+            <section className="hidden md:flex h-screen flex-col justify-between border-e border-primary">
                 <div className="px-4 py-6">
                     <Logo classname={'px-3'}/>
 
@@ -89,7 +89,7 @@ const Sidebar: React.FC = () => {
                                 >
                                     <span className="flex items-center">
                                         <User size={20}/>
-                                        <span className="ml-4">Compte</span>
+                                        <span className="ml-4 font-thin">Compte</span>
                                     </span>
                                     <ChevronDown
                                         size={16}
@@ -109,13 +109,13 @@ const Sidebar: React.FC = () => {
                     </ul>
                 </div>
 
-                <div className="sticky inset-x-0 bottom-0 border-t border-primary">
+                <section>
                     <SidebarUserProfile
                         name={session?.user?.name ?? "undefined"}
                         avatarUrl={session?.user?.image ?? "undefined"}
                     />
-                </div>
-            </div>
+                </section>
+            </section>
         </>
     )
 }

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from "next/link";
+import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import Loader from '@/components/Loader';
@@ -29,6 +29,7 @@ export default function GreetingUser() {
         setIsLoading(false);
     };
 
+    // État : Chargement
     if (status === 'loading') {
         return (
             <div className="flex justify-center items-center py-4">
@@ -37,7 +38,8 @@ export default function GreetingUser() {
         );
     }
 
-    if (!session) {
+    // État : Non authentifié ou session expirée
+    if (status === 'unauthenticated' || !session) {
         return (
             <div className="flex justify-center py-4 px-2">
                 <Button
@@ -52,10 +54,11 @@ export default function GreetingUser() {
         );
     }
 
+    // État : Authentifié
     const { name, image } = session.user || {};
 
     return (
-        <div className="flex items-center justify-between w-full py-3 px-3 ">
+        <div className="flex items-center justify-between w-full py-3 px-3">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button
@@ -80,7 +83,7 @@ export default function GreetingUser() {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-[calc(100%-1.5rem)] mx-3">
-                    <DropdownMenuItem asChild className={"hover:bg-primary/90"}>
+                    <DropdownMenuItem asChild className="hover:bg-primary/90">
                         <Link href="/dashboard" className="w-full text-sm py-2">
                             Dashboard
                         </Link>
