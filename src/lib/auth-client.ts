@@ -23,3 +23,28 @@ export const signInWithGitHub = async (callbackURL = "/dashboard") => {
         return { success: false, error: (error as Error).message };
     }
 };
+export const signInWithDiscord = async (callbackURL = "/dashboard") => {
+    try {
+        const data = await authClient.signIn.social({
+            provider: "discord",
+            callbackURL,
+        });
+        return { success: true, data };
+    } catch (error) {
+        console.error("Erreur lors de la connexion Discord:", error);
+        return { success: false, error: (error as Error).message };
+    }
+};
+
+export const signInWithGoogle = async (callbackURL = "/dashboard") => {
+    try {
+        const data = await authClient.signIn.social({
+            provider: "google",
+            callbackURL,
+        });
+        return { success: true, data };
+    } catch (error) {
+        console.error("Erreur lors de la connexion Google:", error);
+        return { success: false, error: (error as Error).message };
+    }
+};

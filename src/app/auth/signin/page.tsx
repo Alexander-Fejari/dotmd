@@ -6,7 +6,7 @@ import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {useState} from "react";
 import {Loader2} from "lucide-react";
-import {signIn, signInWithGitHub} from "@/lib/auth-client";
+import {signIn, signInWithDiscord, signInWithGitHub, signInWithGoogle} from "@/lib/auth-client";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 
@@ -112,22 +112,7 @@ export default function SignIn() {
                                 "w-full gap-2"
                             )}
                             disabled={loading}
-                            onClick={async () => {
-                                await signIn.social(
-                                    {
-                                        provider: "google",
-                                        callbackURL: "/dashboard"
-                                    },
-                                    {
-                                        onRequest: () => {
-                                            setLoading(true);
-                                        },
-                                        onResponse: () => {
-                                            setLoading(false);
-                                        },
-                                    },
-                                );
-                            }}
+                            onClick={() => handleSocialSignIn(signInWithGoogle)}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="0.98em" height="1em" viewBox="0 0 256 262">
                                 <path fill="#4285F4"
@@ -166,22 +151,7 @@ export default function SignIn() {
                                 "w-full gap-2"
                             )}
                             disabled={loading}
-                            onClick={async () => {
-                                await signIn.social(
-                                    {
-                                        provider: "discord",
-                                        callbackURL: "/dashboard"
-                                    },
-                                    {
-                                        onRequest: () => {
-                                            setLoading(true);
-                                        },
-                                        onResponse: () => {
-                                            setLoading(false);
-                                        },
-                                    },
-                                );
-                            }}
+                            onClick={() => handleSocialSignIn(signInWithDiscord)}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
