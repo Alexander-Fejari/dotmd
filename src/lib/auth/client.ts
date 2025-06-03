@@ -9,6 +9,7 @@ export const { signIn, signOut, signUp, useSession, resetPassword } = authClient
 const supportedProviders = ["github", "google", "discord"] as const;
 type Provider = (typeof supportedProviders)[number];
 
+// SignIn with social providers
 export const signInWithSocial = async (
   provider: Provider,
   callbackURL = "/dashboard"
@@ -28,6 +29,7 @@ export const signInWithSocial = async (
   }
 };
 
+// Link Github account to dotmd account
 export const linkGitHubAccount = async (callbackURL = "/dashboard") => {
   try {
     const data = await authClient.signIn.social({
