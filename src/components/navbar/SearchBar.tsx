@@ -45,14 +45,14 @@ export function SearchBar() {
                 aria-label="Ouvrir la recherche"
             >
                 <Search className="mr-2 h-4 w-4" aria-hidden="true" />
-                <span>Rechercher repositories, README...</span>
-                <kbd className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+                <span>Rechercher</span>
+                <kbd className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden h-5 select-none items-center justify-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
                     <span className="text-xs">⌘</span>K
                 </kbd>
             </Button>
 
             <CommandDialog open={open} onOpenChange={setOpen} aria-label="Dialogue de recherche">
-                <CommandInput placeholder="Rechercher des repositories ou README..." />
+                <CommandInput />
                 <CommandList>
                     <CommandEmpty>Aucun résultat trouvé.</CommandEmpty>
                     <CommandGroup heading="Repositories">
