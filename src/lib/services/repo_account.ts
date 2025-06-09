@@ -1,4 +1,3 @@
-// src/lib/services/account.ts
 import { PrismaClient } from "@/app/generated/prisma";
 import { auth } from "@/lib/auth/server";
 
@@ -35,7 +34,7 @@ export async function linkGitHubAccount(req: Request) {
   }
 
   try {
-    const account = await prisma.account.create({
+    const account = await prisma.repoAccount.create({
       data: {
         id: crypto.randomUUID(),
         accountId,
