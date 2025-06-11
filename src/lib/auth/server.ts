@@ -1,11 +1,9 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { PrismaClient } from "@/app/generated/prisma";
+import prisma from "@/lib/utils/prisma";
 import { nextCookies } from "better-auth/next-js";
 import Brevo from "@getbrevo/brevo";
-import { send } from "process";
 
-const prisma = new PrismaClient();
 const transactionalEmailsApi = new Brevo.TransactionalEmailsApi();
 transactionalEmailsApi.setApiKey(Brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY!);
 
@@ -40,9 +38,10 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     sendVerificationEmail: async ({ email, token, user }) => {
+      console.log("Sending verification email to:", email);
       const verificationUrl = `${process.env.BETTER_AUTH_URL}/verify-email?token=${token}`;
       const sendSmtpEmail= new Brevo.SendSmtpEmail();
-      sendSmtpEmail.sender = { name: "DotMD", email: process.env.EMAIL_FROM! };
+      sendSmtpEmail.sender = { name: process.env.EMAIL_FROM_NAME!, email: process.env.EMAIL_FROM! };
       sendSmtpEmail.to = [{ email }];
       sendSmtpEmail.subject = "email address verification";
       sendSmtpEmail.htmlContent = `
@@ -53,12 +52,13 @@ export const auth = betterAuth({
       `;
       
       await transactionalEmailsApi.sendTransacEmail(sendSmtpEmail);
+      console.log("Verification email sent to:", email);
     },
 
     sendPasswordResetEmail: async ({ email, token }) => {
       const resetUrl = `${process.env.BETTER_AUTH_URL}/reset-password?token=${token}`;
       const sendSmtpEmail = new Brevo.SendSmtpEmail();
-      sendSmtpEmail.sender = { name: "DotMD", email: process.env.EMAIL_FROM! };
+      sendSmtpEmail.sender = { name: process.env.EMAIL_FROM_NAME!, email: process.env.EMAIL_FROM! };
       sendSmtpEmail.to = [{ email }];
       sendSmtpEmail.subject = "Password Reset Request";
       sendSmtpEmail.htmlContent = `
