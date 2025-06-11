@@ -3,71 +3,94 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { PrismaClient } from "@/app/generated/prisma";
 import { nextCookies } from "better-auth/next-js";
 import Brevo from "@getbrevo/brevo";
+import { send } from "process";
 
 const prisma = new PrismaClient();
 const transactionalEmailsApi = new Brevo.TransactionalEmailsApi();
 transactionalEmailsApi.setApiKey(Brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY!);
 
-// Tableau des Social Providers
-const socialProvidersConfig = [
-  {
-    name: "github",
-    clientId: process.env.GITHUB_CLIENT_ID!,
+const socialProviders = {
+  github: { 
+    clientId: process.env.GITHUB_CLIENT_ID!, 
     clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-  },
-  {
-    name: "google",
-    clientId: process.env.GOOGLE_CLIENT_ID!,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-  },
-  {
-    name: "discord",
-    clientId: process.env.DISCORD_CLIENT_ID!,
-    clientSecret: process.env.DISCORD_CLIENT_SECRET!,
-  },
-];
-
-const socialProviders = socialProvidersConfig.reduce(
-  (acc, provider) => ({
-    ...acc,
-    [provider.name]: {
-      clientId: provider.clientId,
-      clientSecret: provider.clientSecret,
-    },
-  }),
-  {} as Record<string, { clientId: string; clientSecret: string }>
-);
+    onSuccess: async ({ user, account, context }) => {
+      await prisma.repoAccount.create({
+        data: {
+          accountId: account.id,
+          providerId: "github",
+          userId: user.id,
+          accessToken: account.accessToken || null,
+          refreshToken: account.refreshToken || null,
+          accessTokenExpiresAt: account.accessTokenExpiresAt || null,
+          refreshTokenExpiresAt: account.refreshTokenExpiresAt || null,
+          scope: account.scope || null,
+        },
+      });
+    }},
+  google: { clientId: process.env.GOOGLE_CLIENT_ID!, clientSecret: process.env.GOOGLE_CLIENT_SECRET! },
+  discord: { clientId: process.env.DISCORD_CLIENT_ID!, clientSecret: process.env.DISCORD_CLIENT_SECRET! },
+};
 
 export const auth = betterAuth({
-  database: prismaAdapter(prisma, {
-    provider: "postgresql",
+  database: prismaAdapter(prisma, { 
+    provider: "postgresql" 
   }),
+  secret: process.env.BETTER_AUTH_SECRET!,
+  baseURL: process.env.BETTER_AUTH_URL!,
   emailAndPassword: {
     enabled: true,
+    sendVerificationEmail: async ({ email, token, user }) => {
+      const verificationUrl = `${process.env.BETTER_AUTH_URL}/verify-email?token=${token}`;
+      const sendSmtpEmail= new Brevo.SendSmtpEmail();
+      sendSmtpEmail.sender = { name: "DotMD", email: process.env.EMAIL_FROM! };
+      sendSmtpEmail.to = [{ email }];
+      sendSmtpEmail.subject = "email address verification";
+      sendSmtpEmail.htmlContent = `
+        <p>Hello ${user.name || "User"},</p>
+        <p>Click on the link below to confirm your email address :</p>
+        <a href="${verificationUrl}">${verificationUrl}</a>
+        <p>This link expires in 24 hours.</p>
+      `;
+      
+      await transactionalEmailsApi.sendTransacEmail(sendSmtpEmail);
+    },
+
+    sendPasswordResetEmail: async ({ email, token }) => {
+      const resetUrl = `${process.env.BETTER_AUTH_URL}/reset-password?token=${token}`;
+      const sendSmtpEmail = new Brevo.SendSmtpEmail();
+      sendSmtpEmail.sender = { name: "DotMD", email: process.env.EMAIL_FROM! };
+      sendSmtpEmail.to = [{ email }];
+      sendSmtpEmail.subject = "Password Reset Request";
+      sendSmtpEmail.htmlContent = `
+        <p>Hello,</p>
+        <p>Click on the link below to reset your password:</p>
+        <a href="${resetUrl}">${resetUrl}</a>
+        <p>This link expires in 1 hour.</p>
+      `;
+
+      await transactionalEmailsApi.sendTransacEmail(sendSmtpEmail);
+    },
     emailVerification: {
-      enabled: true,
+      sendOnsignUp: true,
     },
-    // Envoyer l'email de réinitialisation de mot de passe
-    async sendResetPassword(data) {
-      const sendSmtpEmail = new Brevo.SendSmtpEmail();
-      sendSmtpEmail.sender = { name: "Ton SaaS", email: "no-reply@ton-domaine.com" }; // Modifier pour email de ton SaaS
-      sendSmtpEmail.to = [{ email: data.user.email }];
-      sendSmtpEmail.subject = "Réinitialisation de mot de passe";
-      sendSmtpEmail.htmlContent = `<p>Cliquez <a href="${data.url}">ici</a> pour réinitialiser votre mot de passe. Valide 24h.</p>`;
-
-      await transactionalEmailsApi.sendTransacEmail(sendSmtpEmail);
+    passwordRules: {
+      minLength: 5, // Change to more after tests
+      requireLowercase: true,
+      requireUppercase: true,
+      requireNumbers: true,
+      //requireSpecialCharacters: true, // Uncomment after tests
     },
-    // Envoyer l'email de vérification
-    async sendVerificationEmail(data) {
-      const sendSmtpEmail = new Brevo.SendSmtpEmail();
-      sendSmtpEmail.sender = { name: "Ton SaaS", email: "no-reply@ton-domaine.com" }; // Modifier pour email de ton SaaS
-      sendSmtpEmail.to = [{ email: data.email }];
-      sendSmtpEmail.subject = "Vérification de votre adresse email";
-      sendSmtpEmail.htmlContent = `<p>Merci de vous être inscrit ! Cliquez <a href="${data.url}">ici</a> pour vérifier votre adresse email. Ce lien est valide pendant 24h.</p>`;
-
-      await transactionalEmailsApi.sendTransacEmail(sendSmtpEmail);
-    },
+    errorMessages: {
+      invalidCredentials: "Incorrect email and/or password.",
+      emailAlreadyInUse: "This email is already registered.",
+      passwordTooWeak: "Password is too weak. It must be at least 5 characters long and contain at least one uppercase letter, one lowercase letter, and one number.",
+    }
   },
   socialProviders,
+  session: {
+    expiresIn: 14 * 24 * 60 * 60, // 14 days
+    refreshToken: true,
+    refreshTokenExpiresIn: 30 * 24 * 60 * 60, // 30 days
+  },
   plugins: [nextCookies()],
 });

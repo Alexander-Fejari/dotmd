@@ -8,16 +8,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ------- 4 "mandatory" tables better-auth -------
+
 model User {
-  id            String        @id @default(uuid())
-  name          String
-  email         String        @unique
-  emailVerified Boolean       @default(false)
+  id            String         @id @default(uuid())
+  name          String?
+  email         String         @unique
+  emailVerified Boolean        @default(false)
   image         String?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  sessions      Session[]     @relation("UserSessions")
-  repoAccounts  repoAccount[] @relation("UserRepoAccounts")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  sessions      Session[]      @relation("UserSessions")
+  accounts      Account[]      @relation("UserAccounts")
+  verifications Verification[] @relation("UserVerifications")
+  repoAccounts  repoAccount[]  @relation("UserRepoAccounts")
 
   @@map("user")
 }
@@ -40,9 +44,43 @@ model Session {
   @@map("session")
 }
 
+model Account {
+  id                    String    @id @default(uuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation("UserAccounts", fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("account")
+}
+
+model Verification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation("UserVerifications", fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  expiresAt DateTime
+  type      String // Ex. "email_verification", "password_reset"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("verification")
+}
+
+// ------- linked repositories account(s) -------
+
 model repoAccount {
   id                    String    @id @default(uuid())
-  accountId             String // Ex. ID GitHub/GitLab
+  accountId             String
   providerId            String // Ex. "github", "gitlab"
   userId                String
   user                  User      @relation("UserRepoAccounts", fields: [userId], references: [id], onDelete: Cascade)
@@ -51,7 +89,7 @@ model repoAccount {
   idToken               String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
-  scope                 String? // Ex. "repo"
+  scope                 String?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
