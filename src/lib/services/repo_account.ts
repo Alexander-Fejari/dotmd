@@ -1,7 +1,5 @@
-import { PrismaClient } from "@/app/generated/prisma";
+import prisma from "@/lib/utils/prisma";
 import { auth } from "@/lib/auth/server";
-
-const prisma = new PrismaClient();
 
 // Liste les comptes GitHub liés à un utilisateur.
 export async function listGitHubAccounts(req: Request) {
