@@ -129,20 +129,20 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
-  expiresAt: 'expiresAt',
+  userId: 'userId',
   token: 'token',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
+  expiresAt: 'expiresAt',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
-  userId: 'userId'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   accountId: 'accountId',
   providerId: 'providerId',
-  userId: 'userId',
   accessToken: 'accessToken',
   refreshToken: 'refreshToken',
   idToken: 'idToken',
@@ -159,6 +159,21 @@ exports.Prisma.VerificationScalarFieldEnum = {
   identifier: 'identifier',
   value: 'value',
   expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RepoAccountScalarFieldEnum = {
+  id: 'id',
+  accountId: 'accountId',
+  providerId: 'providerId',
+  userId: 'userId',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  idToken: 'idToken',
+  accessTokenExpiresAt: 'accessTokenExpiresAt',
+  refreshTokenExpiresAt: 'refreshTokenExpiresAt',
+  scope: 'scope',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -183,7 +198,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  repoAccount: 'repoAccount'
 };
 
 /**

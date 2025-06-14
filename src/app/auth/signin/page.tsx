@@ -6,9 +6,9 @@ import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {useState} from "react";
 import {Loader2} from "lucide-react";
-import {signIn, signInWithDiscord, signInWithGitHub, signInWithGoogle} from "@/lib/auth-client";
+import {signIn, signInWithSocial} from "@/lib/auth/client";
 import Link from "next/link";
-import {cn} from "@/lib/utils";
+import {cn} from "@/lib/utils/utils";
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
@@ -16,15 +16,15 @@ export default function SignIn() {
     const [loading, setLoading] = useState(false);
 
 
-    const handleSocialSignIn = async (signInFn: (callbackURL: string) => Promise<any>) => {
+    const handleSocialSignIn = async (provider: "github" | "google" | "discord") => {
         setLoading(true);
         try {
-            const result = await signInFn("/dashboard");
+            const result = await signInWithSocial(provider, "/dashboard");
             if (!result.success) {
                 console.error(result.error);
             }
         } catch (error) {
-            console.error("Erreur:", error);
+            console.error(`Erreur lors de la connexion avec ${provider}:`, error);
         } finally {
             setLoading(false);
         }
@@ -71,7 +71,7 @@ export default function SignIn() {
                             id="password"
                             type="password"
                             placeholder="Mot de passe"
-                            value={"Mot de passe"}
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
@@ -112,7 +112,7 @@ export default function SignIn() {
                                 "w-full gap-2"
                             )}
                             disabled={loading}
-                            onClick={() => handleSocialSignIn(signInWithGoogle)}
+                            onClick={() => handleSocialSignIn("google")}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="0.98em" height="1em" viewBox="0 0 256 262">
                                 <path fill="#4285F4"
@@ -130,7 +130,7 @@ export default function SignIn() {
                             variant="outline"
                             className={cn("w-full gap-2")}
                             disabled={loading}
-                            onClick={() => handleSocialSignIn(signInWithGitHub)}
+                            onClick={() => handleSocialSignIn("github")}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +151,7 @@ export default function SignIn() {
                                 "w-full gap-2"
                             )}
                             disabled={loading}
-                            onClick={() => handleSocialSignIn(signInWithDiscord)}
+                            onClick={() => handleSocialSignIn("discord")}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
