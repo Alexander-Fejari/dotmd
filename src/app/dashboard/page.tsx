@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSession, authClient } from "@/lib/auth/client";
+import { useSession, signOut } from "@/lib/auth/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
@@ -57,7 +57,7 @@ export default function Dashboard() {
                     <Button
                         onClick={async () => {
                             try {
-                                await authClient.signOut();
+                                await signOut();
                                 clearAuthData();
                                 router.push("/");
                             } catch (error) {
