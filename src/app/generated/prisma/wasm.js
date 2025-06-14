@@ -130,23 +130,19 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  expiresAt: 'expiresAt',
   token: 'token',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
+  expiresAt: 'expiresAt',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
-  accessToken: 'accessToken',
-  accessTokenExpiresAt: 'accessTokenExpiresAt',
-  refreshToken: 'refreshToken',
-  refreshTokenExpiresAt: 'refreshTokenExpiresAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   accountId: 'accountId',
   providerId: 'providerId',
-  userId: 'userId',
   accessToken: 'accessToken',
   refreshToken: 'refreshToken',
   idToken: 'idToken',
@@ -160,7 +156,8 @@ exports.Prisma.AccountScalarFieldEnum = {
 
 exports.Prisma.VerificationScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
+  identifier: 'identifier',
+  value: 'value',
   expiresAt: 'expiresAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

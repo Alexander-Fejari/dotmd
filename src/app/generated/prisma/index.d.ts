@@ -1228,63 +1228,6 @@ export namespace Prisma {
    */
 
 
-  /**
-   * Count Type UserCountOutputType
-   */
-
-  export type UserCountOutputType = {
-    sessions: number
-    accounts: number
-    verifications: number
-    repoAccounts: number
-  }
-
-  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
-    accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-    verifications?: boolean | UserCountOutputTypeCountVerificationsArgs
-    repoAccounts?: boolean | UserCountOutputTypeCountRepoAccountsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserCountOutputType
-     */
-    select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SessionWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AccountWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountVerificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VerificationWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountRepoAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: repoAccountWhereInput
-  }
-
 
   /**
    * Models
@@ -1437,7 +1380,7 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
-    name: string | null
+    name: string
     email: string
     emailVerified: boolean
     image: string | null
@@ -1470,11 +1413,6 @@ export namespace Prisma {
     image?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
-    accounts?: boolean | User$accountsArgs<ExtArgs>
-    verifications?: boolean | User$verificationsArgs<ExtArgs>
-    repoAccounts?: boolean | User$repoAccountsArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1508,27 +1446,13 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
-  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
-    accounts?: boolean | User$accountsArgs<ExtArgs>
-    verifications?: boolean | User$verificationsArgs<ExtArgs>
-    repoAccounts?: boolean | User$repoAccountsArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {
-      sessions: Prisma.$SessionPayload<ExtArgs>[]
-      accounts: Prisma.$AccountPayload<ExtArgs>[]
-      verifications: Prisma.$VerificationPayload<ExtArgs>[]
-      repoAccounts: Prisma.$repoAccountPayload<ExtArgs>[]
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string | null
+      name: string
       email: string
       emailVerified: boolean
       image: string | null
@@ -1928,10 +1852,6 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    verifications<T extends User$verificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$verificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    repoAccounts<T extends User$repoAccountsArgs<ExtArgs> = {}>(args?: Subset<T, User$repoAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1985,10 +1905,6 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -2007,10 +1923,6 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -2028,10 +1940,6 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -2081,10 +1989,6 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -2133,10 +2037,6 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -2179,10 +2079,6 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -2231,10 +2127,6 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -2302,10 +2194,6 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -2332,10 +2220,6 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -2356,102 +2240,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.sessions
-   */
-  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Session
-     */
-    select?: SessionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Session
-     */
-    omit?: SessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
-    where?: SessionWhereInput
-    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
-    cursor?: SessionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
-  }
-
-  /**
-   * User.accounts
-   */
-  export type User$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Account
-     */
-    select?: AccountSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Account
-     */
-    omit?: AccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
-    where?: AccountWhereInput
-    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
-    cursor?: AccountWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
-  }
-
-  /**
-   * User.verifications
-   */
-  export type User$verificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Verification
-     */
-    select?: VerificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Verification
-     */
-    omit?: VerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
-    where?: VerificationWhereInput
-    orderBy?: VerificationOrderByWithRelationInput | VerificationOrderByWithRelationInput[]
-    cursor?: VerificationWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VerificationScalarFieldEnum | VerificationScalarFieldEnum[]
-  }
-
-  /**
-   * User.repoAccounts
-   */
-  export type User$repoAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the repoAccount
-     */
-    select?: repoAccountSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the repoAccount
-     */
-    omit?: repoAccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
-    where?: repoAccountWhereInput
-    orderBy?: repoAccountOrderByWithRelationInput | repoAccountOrderByWithRelationInput[]
-    cursor?: repoAccountWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: RepoAccountScalarFieldEnum | RepoAccountScalarFieldEnum[]
-  }
-
-  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2463,10 +2251,6 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -2483,46 +2267,34 @@ export namespace Prisma {
   export type SessionMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    expiresAt: Date | null
     token: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    expiresAt: Date | null
     ipAddress: string | null
     userAgent: string | null
-    accessToken: string | null
-    accessTokenExpiresAt: Date | null
-    refreshToken: string | null
-    refreshTokenExpiresAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SessionMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    expiresAt: Date | null
     token: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    expiresAt: Date | null
     ipAddress: string | null
     userAgent: string | null
-    accessToken: string | null
-    accessTokenExpiresAt: Date | null
-    refreshToken: string | null
-    refreshTokenExpiresAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SessionCountAggregateOutputType = {
     id: number
     userId: number
-    expiresAt: number
     token: number
-    createdAt: number
-    updatedAt: number
+    expiresAt: number
     ipAddress: number
     userAgent: number
-    accessToken: number
-    accessTokenExpiresAt: number
-    refreshToken: number
-    refreshTokenExpiresAt: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -2530,46 +2302,34 @@ export namespace Prisma {
   export type SessionMinAggregateInputType = {
     id?: true
     userId?: true
-    expiresAt?: true
     token?: true
-    createdAt?: true
-    updatedAt?: true
+    expiresAt?: true
     ipAddress?: true
     userAgent?: true
-    accessToken?: true
-    accessTokenExpiresAt?: true
-    refreshToken?: true
-    refreshTokenExpiresAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SessionMaxAggregateInputType = {
     id?: true
     userId?: true
-    expiresAt?: true
     token?: true
-    createdAt?: true
-    updatedAt?: true
+    expiresAt?: true
     ipAddress?: true
     userAgent?: true
-    accessToken?: true
-    accessTokenExpiresAt?: true
-    refreshToken?: true
-    refreshTokenExpiresAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SessionCountAggregateInputType = {
     id?: true
     userId?: true
-    expiresAt?: true
     token?: true
-    createdAt?: true
-    updatedAt?: true
+    expiresAt?: true
     ipAddress?: true
     userAgent?: true
-    accessToken?: true
-    accessTokenExpiresAt?: true
-    refreshToken?: true
-    refreshTokenExpiresAt?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -2648,16 +2408,12 @@ export namespace Prisma {
   export type SessionGroupByOutputType = {
     id: string
     userId: string
+    token: string
     expiresAt: Date
-    token: string | null
-    createdAt: Date
-    updatedAt: Date
     ipAddress: string | null
     userAgent: string | null
-    accessToken: string | null
-    accessTokenExpiresAt: Date | null
-    refreshToken: string | null
-    refreshTokenExpiresAt: Date | null
+    createdAt: Date
+    updatedAt: Date
     _count: SessionCountAggregateOutputType | null
     _min: SessionMinAggregateOutputType | null
     _max: SessionMaxAggregateOutputType | null
@@ -2680,95 +2436,61 @@ export namespace Prisma {
   export type SessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    expiresAt?: boolean
     token?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    expiresAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
-    accessToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshToken?: boolean
-    refreshTokenExpiresAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    expiresAt?: boolean
     token?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    expiresAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
-    accessToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshToken?: boolean
-    refreshTokenExpiresAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    expiresAt?: boolean
     token?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    expiresAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
-    accessToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshToken?: boolean
-    refreshTokenExpiresAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectScalar = {
     id?: boolean
     userId?: boolean
-    expiresAt?: boolean
     token?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    expiresAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
-    accessToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshToken?: boolean
-    refreshTokenExpiresAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "expiresAt" | "token" | "createdAt" | "updatedAt" | "ipAddress" | "userAgent" | "accessToken" | "accessTokenExpiresAt" | "refreshToken" | "refreshTokenExpiresAt", ExtArgs["result"]["session"]>
-  export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type SessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type SessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "token" | "expiresAt" | "ipAddress" | "userAgent" | "createdAt" | "updatedAt", ExtArgs["result"]["session"]>
 
   export type $SessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Session"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      token: string
       expiresAt: Date
-      token: string | null
-      createdAt: Date
-      updatedAt: Date
       ipAddress: string | null
       userAgent: string | null
-      accessToken: string | null
-      accessTokenExpiresAt: Date | null
-      refreshToken: string | null
-      refreshTokenExpiresAt: Date | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["session"]>
     composites: {}
   }
@@ -3163,7 +2885,6 @@ export namespace Prisma {
    */
   export interface Prisma__SessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3195,16 +2916,12 @@ export namespace Prisma {
   interface SessionFieldRefs {
     readonly id: FieldRef<"Session", 'String'>
     readonly userId: FieldRef<"Session", 'String'>
-    readonly expiresAt: FieldRef<"Session", 'DateTime'>
     readonly token: FieldRef<"Session", 'String'>
-    readonly createdAt: FieldRef<"Session", 'DateTime'>
-    readonly updatedAt: FieldRef<"Session", 'DateTime'>
+    readonly expiresAt: FieldRef<"Session", 'DateTime'>
     readonly ipAddress: FieldRef<"Session", 'String'>
     readonly userAgent: FieldRef<"Session", 'String'>
-    readonly accessToken: FieldRef<"Session", 'String'>
-    readonly accessTokenExpiresAt: FieldRef<"Session", 'DateTime'>
-    readonly refreshToken: FieldRef<"Session", 'String'>
-    readonly refreshTokenExpiresAt: FieldRef<"Session", 'DateTime'>
+    readonly createdAt: FieldRef<"Session", 'DateTime'>
+    readonly updatedAt: FieldRef<"Session", 'DateTime'>
   }
     
 
@@ -3221,10 +2938,6 @@ export namespace Prisma {
      * Omit specific fields from the Session
      */
     omit?: SessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
     /**
      * Filter, which Session to fetch.
      */
@@ -3244,10 +2957,6 @@ export namespace Prisma {
      */
     omit?: SessionOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
-    /**
      * Filter, which Session to fetch.
      */
     where: SessionWhereUniqueInput
@@ -3265,10 +2974,6 @@ export namespace Prisma {
      * Omit specific fields from the Session
      */
     omit?: SessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
     /**
      * Filter, which Session to fetch.
      */
@@ -3318,10 +3023,6 @@ export namespace Prisma {
      */
     omit?: SessionOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
-    /**
      * Filter, which Session to fetch.
      */
     where?: SessionWhereInput
@@ -3370,10 +3071,6 @@ export namespace Prisma {
      */
     omit?: SessionOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
-    /**
      * Filter, which Sessions to fetch.
      */
     where?: SessionWhereInput
@@ -3417,10 +3114,6 @@ export namespace Prisma {
      */
     omit?: SessionOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
-    /**
      * The data needed to create a Session.
      */
     data: XOR<SessionCreateInput, SessionUncheckedCreateInput>
@@ -3454,10 +3147,6 @@ export namespace Prisma {
      */
     data: SessionCreateManyInput | SessionCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3472,10 +3161,6 @@ export namespace Prisma {
      * Omit specific fields from the Session
      */
     omit?: SessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
     /**
      * The data needed to update a Session.
      */
@@ -3528,10 +3213,6 @@ export namespace Prisma {
      * Limit how many Sessions to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3546,10 +3227,6 @@ export namespace Prisma {
      * Omit specific fields from the Session
      */
     omit?: SessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
     /**
      * The filter to search for the Session to update in case it exists.
      */
@@ -3576,10 +3253,6 @@ export namespace Prisma {
      * Omit specific fields from the Session
      */
     omit?: SessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
     /**
      * Filter which Session to delete.
      */
@@ -3612,10 +3285,6 @@ export namespace Prisma {
      * Omit specific fields from the Session
      */
     omit?: SessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
   }
 
 
@@ -3631,9 +3300,9 @@ export namespace Prisma {
 
   export type AccountMinAggregateOutputType = {
     id: string | null
+    userId: string | null
     accountId: string | null
     providerId: string | null
-    userId: string | null
     accessToken: string | null
     refreshToken: string | null
     idToken: string | null
@@ -3647,9 +3316,9 @@ export namespace Prisma {
 
   export type AccountMaxAggregateOutputType = {
     id: string | null
+    userId: string | null
     accountId: string | null
     providerId: string | null
-    userId: string | null
     accessToken: string | null
     refreshToken: string | null
     idToken: string | null
@@ -3663,9 +3332,9 @@ export namespace Prisma {
 
   export type AccountCountAggregateOutputType = {
     id: number
+    userId: number
     accountId: number
     providerId: number
-    userId: number
     accessToken: number
     refreshToken: number
     idToken: number
@@ -3681,9 +3350,9 @@ export namespace Prisma {
 
   export type AccountMinAggregateInputType = {
     id?: true
+    userId?: true
     accountId?: true
     providerId?: true
-    userId?: true
     accessToken?: true
     refreshToken?: true
     idToken?: true
@@ -3697,9 +3366,9 @@ export namespace Prisma {
 
   export type AccountMaxAggregateInputType = {
     id?: true
+    userId?: true
     accountId?: true
     providerId?: true
-    userId?: true
     accessToken?: true
     refreshToken?: true
     idToken?: true
@@ -3713,9 +3382,9 @@ export namespace Prisma {
 
   export type AccountCountAggregateInputType = {
     id?: true
+    userId?: true
     accountId?: true
     providerId?: true
-    userId?: true
     accessToken?: true
     refreshToken?: true
     idToken?: true
@@ -3802,9 +3471,9 @@ export namespace Prisma {
 
   export type AccountGroupByOutputType = {
     id: string
+    userId: string
     accountId: string
     providerId: string
-    userId: string
     accessToken: string | null
     refreshToken: string | null
     idToken: string | null
@@ -3835,9 +3504,9 @@ export namespace Prisma {
 
   export type AccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    userId?: boolean
     accountId?: boolean
     providerId?: boolean
-    userId?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     idToken?: boolean
@@ -3847,14 +3516,13 @@ export namespace Prisma {
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
   export type AccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    userId?: boolean
     accountId?: boolean
     providerId?: boolean
-    userId?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     idToken?: boolean
@@ -3864,14 +3532,13 @@ export namespace Prisma {
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
   export type AccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    userId?: boolean
     accountId?: boolean
     providerId?: boolean
-    userId?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     idToken?: boolean
@@ -3881,14 +3548,13 @@ export namespace Prisma {
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
   export type AccountSelectScalar = {
     id?: boolean
+    userId?: boolean
     accountId?: boolean
     providerId?: boolean
-    userId?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     idToken?: boolean
@@ -3900,27 +3566,16 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accountId" | "providerId" | "userId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["account"]>
-  export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type AccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type AccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
+  export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "accountId" | "providerId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["account"]>
 
   export type $AccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Account"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      userId: string
       accountId: string
       providerId: string
-      userId: string
       accessToken: string | null
       refreshToken: string | null
       idToken: string | null
@@ -4324,7 +3979,6 @@ export namespace Prisma {
    */
   export interface Prisma__AccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4355,9 +4009,9 @@ export namespace Prisma {
    */
   interface AccountFieldRefs {
     readonly id: FieldRef<"Account", 'String'>
+    readonly userId: FieldRef<"Account", 'String'>
     readonly accountId: FieldRef<"Account", 'String'>
     readonly providerId: FieldRef<"Account", 'String'>
-    readonly userId: FieldRef<"Account", 'String'>
     readonly accessToken: FieldRef<"Account", 'String'>
     readonly refreshToken: FieldRef<"Account", 'String'>
     readonly idToken: FieldRef<"Account", 'String'>
@@ -4384,10 +4038,6 @@ export namespace Prisma {
      */
     omit?: AccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
-    /**
      * Filter, which Account to fetch.
      */
     where: AccountWhereUniqueInput
@@ -4406,10 +4056,6 @@ export namespace Prisma {
      */
     omit?: AccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
-    /**
      * Filter, which Account to fetch.
      */
     where: AccountWhereUniqueInput
@@ -4427,10 +4073,6 @@ export namespace Prisma {
      * Omit specific fields from the Account
      */
     omit?: AccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
     /**
      * Filter, which Account to fetch.
      */
@@ -4480,10 +4122,6 @@ export namespace Prisma {
      */
     omit?: AccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
-    /**
      * Filter, which Account to fetch.
      */
     where?: AccountWhereInput
@@ -4532,10 +4170,6 @@ export namespace Prisma {
      */
     omit?: AccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
-    /**
      * Filter, which Accounts to fetch.
      */
     where?: AccountWhereInput
@@ -4579,10 +4213,6 @@ export namespace Prisma {
      */
     omit?: AccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
-    /**
      * The data needed to create a Account.
      */
     data: XOR<AccountCreateInput, AccountUncheckedCreateInput>
@@ -4616,10 +4246,6 @@ export namespace Prisma {
      */
     data: AccountCreateManyInput | AccountCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4634,10 +4260,6 @@ export namespace Prisma {
      * Omit specific fields from the Account
      */
     omit?: AccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
     /**
      * The data needed to update a Account.
      */
@@ -4690,10 +4312,6 @@ export namespace Prisma {
      * Limit how many Accounts to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4708,10 +4326,6 @@ export namespace Prisma {
      * Omit specific fields from the Account
      */
     omit?: AccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
     /**
      * The filter to search for the Account to update in case it exists.
      */
@@ -4738,10 +4352,6 @@ export namespace Prisma {
      * Omit specific fields from the Account
      */
     omit?: AccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
     /**
      * Filter which Account to delete.
      */
@@ -4774,10 +4384,6 @@ export namespace Prisma {
      * Omit specific fields from the Account
      */
     omit?: AccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountInclude<ExtArgs> | null
   }
 
 
@@ -4793,7 +4399,8 @@ export namespace Prisma {
 
   export type VerificationMinAggregateOutputType = {
     id: string | null
-    userId: string | null
+    identifier: string | null
+    value: string | null
     expiresAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4801,7 +4408,8 @@ export namespace Prisma {
 
   export type VerificationMaxAggregateOutputType = {
     id: string | null
-    userId: string | null
+    identifier: string | null
+    value: string | null
     expiresAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4809,7 +4417,8 @@ export namespace Prisma {
 
   export type VerificationCountAggregateOutputType = {
     id: number
-    userId: number
+    identifier: number
+    value: number
     expiresAt: number
     createdAt: number
     updatedAt: number
@@ -4819,7 +4428,8 @@ export namespace Prisma {
 
   export type VerificationMinAggregateInputType = {
     id?: true
-    userId?: true
+    identifier?: true
+    value?: true
     expiresAt?: true
     createdAt?: true
     updatedAt?: true
@@ -4827,7 +4437,8 @@ export namespace Prisma {
 
   export type VerificationMaxAggregateInputType = {
     id?: true
-    userId?: true
+    identifier?: true
+    value?: true
     expiresAt?: true
     createdAt?: true
     updatedAt?: true
@@ -4835,7 +4446,8 @@ export namespace Prisma {
 
   export type VerificationCountAggregateInputType = {
     id?: true
-    userId?: true
+    identifier?: true
+    value?: true
     expiresAt?: true
     createdAt?: true
     updatedAt?: true
@@ -4916,7 +4528,8 @@ export namespace Prisma {
 
   export type VerificationGroupByOutputType = {
     id: string
-    userId: string
+    identifier: string
+    value: string
     expiresAt: Date
     createdAt: Date
     updatedAt: Date
@@ -4941,58 +4554,49 @@ export namespace Prisma {
 
   export type VerificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    identifier?: boolean
+    value?: boolean
     expiresAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["verification"]>
 
   export type VerificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    identifier?: boolean
+    value?: boolean
     expiresAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["verification"]>
 
   export type VerificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    identifier?: boolean
+    value?: boolean
     expiresAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["verification"]>
 
   export type VerificationSelectScalar = {
     id?: boolean
-    userId?: boolean
+    identifier?: boolean
+    value?: boolean
     expiresAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type VerificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "expiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["verification"]>
-  export type VerificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type VerificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type VerificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
+  export type VerificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "identifier" | "value" | "expiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["verification"]>
 
   export type $VerificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Verification"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string
+      identifier: string
+      value: string
       expiresAt: Date
       createdAt: Date
       updatedAt: Date
@@ -5390,7 +4994,6 @@ export namespace Prisma {
    */
   export interface Prisma__VerificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5421,7 +5024,8 @@ export namespace Prisma {
    */
   interface VerificationFieldRefs {
     readonly id: FieldRef<"Verification", 'String'>
-    readonly userId: FieldRef<"Verification", 'String'>
+    readonly identifier: FieldRef<"Verification", 'String'>
+    readonly value: FieldRef<"Verification", 'String'>
     readonly expiresAt: FieldRef<"Verification", 'DateTime'>
     readonly createdAt: FieldRef<"Verification", 'DateTime'>
     readonly updatedAt: FieldRef<"Verification", 'DateTime'>
@@ -5442,10 +5046,6 @@ export namespace Prisma {
      */
     omit?: VerificationOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
-    /**
      * Filter, which Verification to fetch.
      */
     where: VerificationWhereUniqueInput
@@ -5464,10 +5064,6 @@ export namespace Prisma {
      */
     omit?: VerificationOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
-    /**
      * Filter, which Verification to fetch.
      */
     where: VerificationWhereUniqueInput
@@ -5485,10 +5081,6 @@ export namespace Prisma {
      * Omit specific fields from the Verification
      */
     omit?: VerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
     /**
      * Filter, which Verification to fetch.
      */
@@ -5538,10 +5130,6 @@ export namespace Prisma {
      */
     omit?: VerificationOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
-    /**
      * Filter, which Verification to fetch.
      */
     where?: VerificationWhereInput
@@ -5590,10 +5178,6 @@ export namespace Prisma {
      */
     omit?: VerificationOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
-    /**
      * Filter, which Verifications to fetch.
      */
     where?: VerificationWhereInput
@@ -5637,10 +5221,6 @@ export namespace Prisma {
      */
     omit?: VerificationOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
-    /**
      * The data needed to create a Verification.
      */
     data: XOR<VerificationCreateInput, VerificationUncheckedCreateInput>
@@ -5674,10 +5254,6 @@ export namespace Prisma {
      */
     data: VerificationCreateManyInput | VerificationCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5692,10 +5268,6 @@ export namespace Prisma {
      * Omit specific fields from the Verification
      */
     omit?: VerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
     /**
      * The data needed to update a Verification.
      */
@@ -5748,10 +5320,6 @@ export namespace Prisma {
      * Limit how many Verifications to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5766,10 +5334,6 @@ export namespace Prisma {
      * Omit specific fields from the Verification
      */
     omit?: VerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
     /**
      * The filter to search for the Verification to update in case it exists.
      */
@@ -5796,10 +5360,6 @@ export namespace Prisma {
      * Omit specific fields from the Verification
      */
     omit?: VerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
     /**
      * Filter which Verification to delete.
      */
@@ -5832,10 +5392,6 @@ export namespace Prisma {
      * Omit specific fields from the Verification
      */
     omit?: VerificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VerificationInclude<ExtArgs> | null
   }
 
 
@@ -6059,7 +5615,6 @@ export namespace Prisma {
     scope?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repoAccount"]>
 
   export type repoAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6075,7 +5630,6 @@ export namespace Prisma {
     scope?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repoAccount"]>
 
   export type repoAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6091,7 +5645,6 @@ export namespace Prisma {
     scope?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repoAccount"]>
 
   export type repoAccountSelectScalar = {
@@ -6110,21 +5663,10 @@ export namespace Prisma {
   }
 
   export type repoAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accountId" | "providerId" | "userId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "createdAt" | "updatedAt", ExtArgs["result"]["repoAccount"]>
-  export type repoAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type repoAccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type repoAccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
 
   export type $repoAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "repoAccount"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       accountId: string
@@ -6532,7 +6074,6 @@ export namespace Prisma {
    */
   export interface Prisma__repoAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6591,10 +6132,6 @@ export namespace Prisma {
      */
     omit?: repoAccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
-    /**
      * Filter, which repoAccount to fetch.
      */
     where: repoAccountWhereUniqueInput
@@ -6613,10 +6150,6 @@ export namespace Prisma {
      */
     omit?: repoAccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
-    /**
      * Filter, which repoAccount to fetch.
      */
     where: repoAccountWhereUniqueInput
@@ -6634,10 +6167,6 @@ export namespace Prisma {
      * Omit specific fields from the repoAccount
      */
     omit?: repoAccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
     /**
      * Filter, which repoAccount to fetch.
      */
@@ -6687,10 +6216,6 @@ export namespace Prisma {
      */
     omit?: repoAccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
-    /**
      * Filter, which repoAccount to fetch.
      */
     where?: repoAccountWhereInput
@@ -6739,10 +6264,6 @@ export namespace Prisma {
      */
     omit?: repoAccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
-    /**
      * Filter, which repoAccounts to fetch.
      */
     where?: repoAccountWhereInput
@@ -6786,10 +6307,6 @@ export namespace Prisma {
      */
     omit?: repoAccountOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
-    /**
      * The data needed to create a repoAccount.
      */
     data: XOR<repoAccountCreateInput, repoAccountUncheckedCreateInput>
@@ -6823,10 +6340,6 @@ export namespace Prisma {
      */
     data: repoAccountCreateManyInput | repoAccountCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -6841,10 +6354,6 @@ export namespace Prisma {
      * Omit specific fields from the repoAccount
      */
     omit?: repoAccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
     /**
      * The data needed to update a repoAccount.
      */
@@ -6897,10 +6406,6 @@ export namespace Prisma {
      * Limit how many repoAccounts to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -6915,10 +6420,6 @@ export namespace Prisma {
      * Omit specific fields from the repoAccount
      */
     omit?: repoAccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
     /**
      * The filter to search for the repoAccount to update in case it exists.
      */
@@ -6945,10 +6446,6 @@ export namespace Prisma {
      * Omit specific fields from the repoAccount
      */
     omit?: repoAccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
     /**
      * Filter which repoAccount to delete.
      */
@@ -6981,10 +6478,6 @@ export namespace Prisma {
      * Omit specific fields from the repoAccount
      */
     omit?: repoAccountOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: repoAccountInclude<ExtArgs> | null
   }
 
 
@@ -7018,16 +6511,12 @@ export namespace Prisma {
   export const SessionScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    expiresAt: 'expiresAt',
     token: 'token',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
+    expiresAt: 'expiresAt',
     ipAddress: 'ipAddress',
     userAgent: 'userAgent',
-    accessToken: 'accessToken',
-    accessTokenExpiresAt: 'accessTokenExpiresAt',
-    refreshToken: 'refreshToken',
-    refreshTokenExpiresAt: 'refreshTokenExpiresAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
@@ -7035,9 +6524,9 @@ export namespace Prisma {
 
   export const AccountScalarFieldEnum: {
     id: 'id',
+    userId: 'userId',
     accountId: 'accountId',
     providerId: 'providerId',
-    userId: 'userId',
     accessToken: 'accessToken',
     refreshToken: 'refreshToken',
     idToken: 'idToken',
@@ -7054,7 +6543,8 @@ export namespace Prisma {
 
   export const VerificationScalarFieldEnum: {
     id: 'id',
-    userId: 'userId',
+    identifier: 'identifier',
+    value: 'value',
     expiresAt: 'expiresAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -7167,30 +6657,22 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
-    name?: StringNullableFilter<"User"> | string | null
+    name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    sessions?: SessionListRelationFilter
-    accounts?: AccountListRelationFilter
-    verifications?: VerificationListRelationFilter
-    repoAccounts?: RepoAccountListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrderInput | SortOrder
+    name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    sessions?: SessionOrderByRelationAggregateInput
-    accounts?: AccountOrderByRelationAggregateInput
-    verifications?: VerificationOrderByRelationAggregateInput
-    repoAccounts?: repoAccountOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7199,20 +6681,16 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    name?: StringNullableFilter<"User"> | string | null
+    name?: StringFilter<"User"> | string
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    sessions?: SessionListRelationFilter
-    accounts?: AccountListRelationFilter
-    verifications?: VerificationListRelationFilter
-    repoAccounts?: RepoAccountListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrderInput | SortOrder
+    name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
@@ -7228,7 +6706,7 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
-    name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     emailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -7242,33 +6720,23 @@ export namespace Prisma {
     NOT?: SessionWhereInput | SessionWhereInput[]
     id?: StringFilter<"Session"> | string
     userId?: StringFilter<"Session"> | string
+    token?: StringFilter<"Session"> | string
     expiresAt?: DateTimeFilter<"Session"> | Date | string
-    token?: StringNullableFilter<"Session"> | string | null
-    createdAt?: DateTimeFilter<"Session"> | Date | string
-    updatedAt?: DateTimeFilter<"Session"> | Date | string
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
-    accessToken?: StringNullableFilter<"Session"> | string | null
-    accessTokenExpiresAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-    refreshToken?: StringNullableFilter<"Session"> | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
   }
 
   export type SessionOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    token?: SortOrder
     expiresAt?: SortOrder
-    token?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
-    accessToken?: SortOrderInput | SortOrder
-    accessTokenExpiresAt?: SortOrderInput | SortOrder
-    refreshToken?: SortOrderInput | SortOrder
-    refreshTokenExpiresAt?: SortOrderInput | SortOrder
-    user?: UserOrderByWithRelationInput
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SessionWhereUniqueInput = Prisma.AtLeast<{
@@ -7279,30 +6747,21 @@ export namespace Prisma {
     NOT?: SessionWhereInput | SessionWhereInput[]
     userId?: StringFilter<"Session"> | string
     expiresAt?: DateTimeFilter<"Session"> | Date | string
-    createdAt?: DateTimeFilter<"Session"> | Date | string
-    updatedAt?: DateTimeFilter<"Session"> | Date | string
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
-    accessToken?: StringNullableFilter<"Session"> | string | null
-    accessTokenExpiresAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-    refreshToken?: StringNullableFilter<"Session"> | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
   }, "id" | "token">
 
   export type SessionOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    token?: SortOrder
     expiresAt?: SortOrder
-    token?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
-    accessToken?: SortOrderInput | SortOrder
-    accessTokenExpiresAt?: SortOrderInput | SortOrder
-    refreshToken?: SortOrderInput | SortOrder
-    refreshTokenExpiresAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: SessionCountOrderByAggregateInput
     _max?: SessionMaxOrderByAggregateInput
     _min?: SessionMinOrderByAggregateInput
@@ -7314,16 +6773,12 @@ export namespace Prisma {
     NOT?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Session"> | string
     userId?: StringWithAggregatesFilter<"Session"> | string
+    token?: StringWithAggregatesFilter<"Session"> | string
     expiresAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
-    token?: StringNullableWithAggregatesFilter<"Session"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
     ipAddress?: StringNullableWithAggregatesFilter<"Session"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"Session"> | string | null
-    accessToken?: StringNullableWithAggregatesFilter<"Session"> | string | null
-    accessTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
-    refreshToken?: StringNullableWithAggregatesFilter<"Session"> | string | null
-    refreshTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
   }
 
   export type AccountWhereInput = {
@@ -7331,9 +6786,9 @@ export namespace Prisma {
     OR?: AccountWhereInput[]
     NOT?: AccountWhereInput | AccountWhereInput[]
     id?: StringFilter<"Account"> | string
+    userId?: StringFilter<"Account"> | string
     accountId?: StringFilter<"Account"> | string
     providerId?: StringFilter<"Account"> | string
-    userId?: StringFilter<"Account"> | string
     accessToken?: StringNullableFilter<"Account"> | string | null
     refreshToken?: StringNullableFilter<"Account"> | string | null
     idToken?: StringNullableFilter<"Account"> | string | null
@@ -7343,14 +6798,13 @@ export namespace Prisma {
     password?: StringNullableFilter<"Account"> | string | null
     createdAt?: DateTimeFilter<"Account"> | Date | string
     updatedAt?: DateTimeFilter<"Account"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type AccountOrderByWithRelationInput = {
     id?: SortOrder
+    userId?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
-    userId?: SortOrder
     accessToken?: SortOrderInput | SortOrder
     refreshToken?: SortOrderInput | SortOrder
     idToken?: SortOrderInput | SortOrder
@@ -7360,7 +6814,6 @@ export namespace Prisma {
     password?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
   }
 
   export type AccountWhereUniqueInput = Prisma.AtLeast<{
@@ -7368,9 +6821,9 @@ export namespace Prisma {
     AND?: AccountWhereInput | AccountWhereInput[]
     OR?: AccountWhereInput[]
     NOT?: AccountWhereInput | AccountWhereInput[]
+    userId?: StringFilter<"Account"> | string
     accountId?: StringFilter<"Account"> | string
     providerId?: StringFilter<"Account"> | string
-    userId?: StringFilter<"Account"> | string
     accessToken?: StringNullableFilter<"Account"> | string | null
     refreshToken?: StringNullableFilter<"Account"> | string | null
     idToken?: StringNullableFilter<"Account"> | string | null
@@ -7380,14 +6833,13 @@ export namespace Prisma {
     password?: StringNullableFilter<"Account"> | string | null
     createdAt?: DateTimeFilter<"Account"> | Date | string
     updatedAt?: DateTimeFilter<"Account"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type AccountOrderByWithAggregationInput = {
     id?: SortOrder
+    userId?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
-    userId?: SortOrder
     accessToken?: SortOrderInput | SortOrder
     refreshToken?: SortOrderInput | SortOrder
     idToken?: SortOrderInput | SortOrder
@@ -7407,9 +6859,9 @@ export namespace Prisma {
     OR?: AccountScalarWhereWithAggregatesInput[]
     NOT?: AccountScalarWhereWithAggregatesInput | AccountScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Account"> | string
+    userId?: StringWithAggregatesFilter<"Account"> | string
     accountId?: StringWithAggregatesFilter<"Account"> | string
     providerId?: StringWithAggregatesFilter<"Account"> | string
-    userId?: StringWithAggregatesFilter<"Account"> | string
     accessToken?: StringNullableWithAggregatesFilter<"Account"> | string | null
     refreshToken?: StringNullableWithAggregatesFilter<"Account"> | string | null
     idToken?: StringNullableWithAggregatesFilter<"Account"> | string | null
@@ -7426,20 +6878,20 @@ export namespace Prisma {
     OR?: VerificationWhereInput[]
     NOT?: VerificationWhereInput | VerificationWhereInput[]
     id?: StringFilter<"Verification"> | string
-    userId?: StringFilter<"Verification"> | string
+    identifier?: StringFilter<"Verification"> | string
+    value?: StringFilter<"Verification"> | string
     expiresAt?: DateTimeFilter<"Verification"> | Date | string
     createdAt?: DateTimeFilter<"Verification"> | Date | string
     updatedAt?: DateTimeFilter<"Verification"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type VerificationOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    identifier?: SortOrder
+    value?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
   }
 
   export type VerificationWhereUniqueInput = Prisma.AtLeast<{
@@ -7447,16 +6899,17 @@ export namespace Prisma {
     AND?: VerificationWhereInput | VerificationWhereInput[]
     OR?: VerificationWhereInput[]
     NOT?: VerificationWhereInput | VerificationWhereInput[]
-    userId?: StringFilter<"Verification"> | string
+    identifier?: StringFilter<"Verification"> | string
+    value?: StringFilter<"Verification"> | string
     expiresAt?: DateTimeFilter<"Verification"> | Date | string
     createdAt?: DateTimeFilter<"Verification"> | Date | string
     updatedAt?: DateTimeFilter<"Verification"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type VerificationOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    identifier?: SortOrder
+    value?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7470,7 +6923,8 @@ export namespace Prisma {
     OR?: VerificationScalarWhereWithAggregatesInput[]
     NOT?: VerificationScalarWhereWithAggregatesInput | VerificationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Verification"> | string
-    userId?: StringWithAggregatesFilter<"Verification"> | string
+    identifier?: StringWithAggregatesFilter<"Verification"> | string
+    value?: StringWithAggregatesFilter<"Verification"> | string
     expiresAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
@@ -7492,7 +6946,6 @@ export namespace Prisma {
     scope?: StringNullableFilter<"repoAccount"> | string | null
     createdAt?: DateTimeFilter<"repoAccount"> | Date | string
     updatedAt?: DateTimeFilter<"repoAccount"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type repoAccountOrderByWithRelationInput = {
@@ -7508,7 +6961,6 @@ export namespace Prisma {
     scope?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
   }
 
   export type repoAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -7527,7 +6979,6 @@ export namespace Prisma {
     scope?: StringNullableFilter<"repoAccount"> | string | null
     createdAt?: DateTimeFilter<"repoAccount"> | Date | string
     updatedAt?: DateTimeFilter<"repoAccount"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type repoAccountOrderByWithAggregationInput = {
@@ -7568,63 +7019,47 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     id?: string
-    name?: string | null
+    name: string
     email: string
     emailVerified: boolean
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    verifications?: VerificationCreateNestedManyWithoutUserInput
-    repoAccounts?: repoAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
-    name?: string | null
+    name: string
     email: string
     emailVerified: boolean
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    repoAccounts?: repoAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    verifications?: VerificationUpdateManyWithoutUserNestedInput
-    repoAccounts?: repoAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    repoAccounts?: repoAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
-    name?: string | null
+    name: string
     email: string
     emailVerified: boolean
     image?: string | null
@@ -7634,7 +7069,7 @@ export namespace Prisma {
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7644,7 +7079,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7654,110 +7089,84 @@ export namespace Prisma {
 
   export type SessionCreateInput = {
     id?: string
+    userId: string
+    token: string
     expiresAt: Date | string
-    token?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
-    accessToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshToken?: string | null
-    refreshTokenExpiresAt?: Date | string | null
-    user: UserCreateNestedOneWithoutSessionsInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUncheckedCreateInput = {
     id?: string
     userId: string
+    token: string
     expiresAt: Date | string
-    token?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
-    accessToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshToken?: string | null
-    refreshTokenExpiresAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateManyInput = {
     id?: string
     userId: string
+    token: string
     expiresAt: Date | string
-    token?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
-    accessToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshToken?: string | null
-    refreshTokenExpiresAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountCreateInput = {
     id?: string
+    userId: string
     accountId: string
     providerId: string
     accessToken?: string | null
@@ -7769,14 +7178,13 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutAccountsInput
   }
 
   export type AccountUncheckedCreateInput = {
     id?: string
+    userId: string
     accountId: string
     providerId: string
-    userId: string
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
@@ -7790,6 +7198,7 @@ export namespace Prisma {
 
   export type AccountUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7801,14 +7210,13 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutAccountsNestedInput
   }
 
   export type AccountUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7822,9 +7230,9 @@ export namespace Prisma {
 
   export type AccountCreateManyInput = {
     id?: string
+    userId: string
     accountId: string
     providerId: string
-    userId: string
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
@@ -7838,6 +7246,7 @@ export namespace Prisma {
 
   export type AccountUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7853,9 +7262,9 @@ export namespace Prisma {
 
   export type AccountUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7869,15 +7278,17 @@ export namespace Prisma {
 
   export type VerificationCreateInput = {
     id?: string
+    identifier: string
+    value: string
     expiresAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutVerificationsInput
   }
 
   export type VerificationUncheckedCreateInput = {
     id?: string
-    userId: string
+    identifier: string
+    value: string
     expiresAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7885,15 +7296,17 @@ export namespace Prisma {
 
   export type VerificationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    identifier?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutVerificationsNestedInput
   }
 
   export type VerificationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    identifier?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7901,7 +7314,8 @@ export namespace Prisma {
 
   export type VerificationCreateManyInput = {
     id?: string
-    userId: string
+    identifier: string
+    value: string
     expiresAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7909,6 +7323,8 @@ export namespace Prisma {
 
   export type VerificationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    identifier?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7916,7 +7332,8 @@ export namespace Prisma {
 
   export type VerificationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    identifier?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7926,6 +7343,7 @@ export namespace Prisma {
     id?: string
     accountId: string
     providerId: string
+    userId: string
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
@@ -7934,7 +7352,6 @@ export namespace Prisma {
     scope?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutRepoAccountsInput
   }
 
   export type repoAccountUncheckedCreateInput = {
@@ -7956,6 +7373,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7964,7 +7382,6 @@ export namespace Prisma {
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutRepoAccountsNestedInput
   }
 
   export type repoAccountUncheckedUpdateInput = {
@@ -8001,6 +7418,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8041,6 +7459,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8056,11 +7479,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -8072,49 +7490,9 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type SessionListRelationFilter = {
-    every?: SessionWhereInput
-    some?: SessionWhereInput
-    none?: SessionWhereInput
-  }
-
-  export type AccountListRelationFilter = {
-    every?: AccountWhereInput
-    some?: AccountWhereInput
-    none?: AccountWhereInput
-  }
-
-  export type VerificationListRelationFilter = {
-    every?: VerificationWhereInput
-    some?: VerificationWhereInput
-    none?: VerificationWhereInput
-  }
-
-  export type RepoAccountListRelationFilter = {
-    every?: repoAccountWhereInput
-    some?: repoAccountWhereInput
-    none?: repoAccountWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type SessionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type AccountOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type VerificationOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type repoAccountOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -8165,6 +7543,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8183,14 +7569,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -8205,6 +7583,39 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type SessionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    token?: SortOrder
+    expiresAt?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SessionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    token?: SortOrder
+    expiresAt?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SessionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    token?: SortOrder
+    expiresAt?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -8216,54 +7627,52 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
-  export type SessionCountOrderByAggregateInput = {
+  export type AccountCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    expiresAt?: SortOrder
-    token?: SortOrder
+    accountId?: SortOrder
+    providerId?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    idToken?: SortOrder
+    accessTokenExpiresAt?: SortOrder
+    refreshTokenExpiresAt?: SortOrder
+    scope?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    ipAddress?: SortOrder
-    userAgent?: SortOrder
-    accessToken?: SortOrder
-    accessTokenExpiresAt?: SortOrder
-    refreshToken?: SortOrder
-    refreshTokenExpiresAt?: SortOrder
   }
 
-  export type SessionMaxOrderByAggregateInput = {
+  export type AccountMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    expiresAt?: SortOrder
-    token?: SortOrder
+    accountId?: SortOrder
+    providerId?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    idToken?: SortOrder
+    accessTokenExpiresAt?: SortOrder
+    refreshTokenExpiresAt?: SortOrder
+    scope?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    ipAddress?: SortOrder
-    userAgent?: SortOrder
-    accessToken?: SortOrder
-    accessTokenExpiresAt?: SortOrder
-    refreshToken?: SortOrder
-    refreshTokenExpiresAt?: SortOrder
   }
 
-  export type SessionMinOrderByAggregateInput = {
+  export type AccountMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    expiresAt?: SortOrder
-    token?: SortOrder
+    accountId?: SortOrder
+    providerId?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    idToken?: SortOrder
+    accessTokenExpiresAt?: SortOrder
+    refreshTokenExpiresAt?: SortOrder
+    scope?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    ipAddress?: SortOrder
-    userAgent?: SortOrder
-    accessToken?: SortOrder
-    accessTokenExpiresAt?: SortOrder
-    refreshToken?: SortOrder
-    refreshTokenExpiresAt?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8280,57 +7689,10 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type AccountCountOrderByAggregateInput = {
-    id?: SortOrder
-    accountId?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
-    accessToken?: SortOrder
-    refreshToken?: SortOrder
-    idToken?: SortOrder
-    accessTokenExpiresAt?: SortOrder
-    refreshTokenExpiresAt?: SortOrder
-    scope?: SortOrder
-    password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type AccountMaxOrderByAggregateInput = {
-    id?: SortOrder
-    accountId?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
-    accessToken?: SortOrder
-    refreshToken?: SortOrder
-    idToken?: SortOrder
-    accessTokenExpiresAt?: SortOrder
-    refreshTokenExpiresAt?: SortOrder
-    scope?: SortOrder
-    password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type AccountMinOrderByAggregateInput = {
-    id?: SortOrder
-    accountId?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
-    accessToken?: SortOrder
-    refreshToken?: SortOrder
-    idToken?: SortOrder
-    accessTokenExpiresAt?: SortOrder
-    refreshTokenExpiresAt?: SortOrder
-    scope?: SortOrder
-    password?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
   export type VerificationCountOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    identifier?: SortOrder
+    value?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8338,7 +7700,8 @@ export namespace Prisma {
 
   export type VerificationMaxOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    identifier?: SortOrder
+    value?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8346,7 +7709,8 @@ export namespace Prisma {
 
   export type VerificationMinOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    identifier?: SortOrder
+    value?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8397,248 +7761,24 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type SessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
-  export type AccountCreateNestedManyWithoutUserInput = {
-    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
-    createMany?: AccountCreateManyUserInputEnvelope
-    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-  }
-
-  export type VerificationCreateNestedManyWithoutUserInput = {
-    create?: XOR<VerificationCreateWithoutUserInput, VerificationUncheckedCreateWithoutUserInput> | VerificationCreateWithoutUserInput[] | VerificationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: VerificationCreateOrConnectWithoutUserInput | VerificationCreateOrConnectWithoutUserInput[]
-    createMany?: VerificationCreateManyUserInputEnvelope
-    connect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-  }
-
-  export type repoAccountCreateNestedManyWithoutUserInput = {
-    create?: XOR<repoAccountCreateWithoutUserInput, repoAccountUncheckedCreateWithoutUserInput> | repoAccountCreateWithoutUserInput[] | repoAccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: repoAccountCreateOrConnectWithoutUserInput | repoAccountCreateOrConnectWithoutUserInput[]
-    createMany?: repoAccountCreateManyUserInputEnvelope
-    connect?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-  }
-
-  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
-  export type AccountUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
-    createMany?: AccountCreateManyUserInputEnvelope
-    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-  }
-
-  export type VerificationUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<VerificationCreateWithoutUserInput, VerificationUncheckedCreateWithoutUserInput> | VerificationCreateWithoutUserInput[] | VerificationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: VerificationCreateOrConnectWithoutUserInput | VerificationCreateOrConnectWithoutUserInput[]
-    createMany?: VerificationCreateManyUserInputEnvelope
-    connect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-  }
-
-  export type repoAccountUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<repoAccountCreateWithoutUserInput, repoAccountUncheckedCreateWithoutUserInput> | repoAccountCreateWithoutUserInput[] | repoAccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: repoAccountCreateOrConnectWithoutUserInput | repoAccountCreateOrConnectWithoutUserInput[]
-    createMany?: repoAccountCreateManyUserInputEnvelope
-    connect?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
 
-  export type SessionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type AccountUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
-    upsert?: AccountUpsertWithWhereUniqueWithoutUserInput | AccountUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AccountCreateManyUserInputEnvelope
-    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    update?: AccountUpdateWithWhereUniqueWithoutUserInput | AccountUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AccountUpdateManyWithWhereWithoutUserInput | AccountUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
-  }
-
-  export type VerificationUpdateManyWithoutUserNestedInput = {
-    create?: XOR<VerificationCreateWithoutUserInput, VerificationUncheckedCreateWithoutUserInput> | VerificationCreateWithoutUserInput[] | VerificationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: VerificationCreateOrConnectWithoutUserInput | VerificationCreateOrConnectWithoutUserInput[]
-    upsert?: VerificationUpsertWithWhereUniqueWithoutUserInput | VerificationUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: VerificationCreateManyUserInputEnvelope
-    set?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-    disconnect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-    delete?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-    connect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-    update?: VerificationUpdateWithWhereUniqueWithoutUserInput | VerificationUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: VerificationUpdateManyWithWhereWithoutUserInput | VerificationUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: VerificationScalarWhereInput | VerificationScalarWhereInput[]
-  }
-
-  export type repoAccountUpdateManyWithoutUserNestedInput = {
-    create?: XOR<repoAccountCreateWithoutUserInput, repoAccountUncheckedCreateWithoutUserInput> | repoAccountCreateWithoutUserInput[] | repoAccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: repoAccountCreateOrConnectWithoutUserInput | repoAccountCreateOrConnectWithoutUserInput[]
-    upsert?: repoAccountUpsertWithWhereUniqueWithoutUserInput | repoAccountUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: repoAccountCreateManyUserInputEnvelope
-    set?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-    disconnect?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-    delete?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-    connect?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-    update?: repoAccountUpdateWithWhereUniqueWithoutUserInput | repoAccountUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: repoAccountUpdateManyWithWhereWithoutUserInput | repoAccountUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: repoAccountScalarWhereInput | repoAccountScalarWhereInput[]
-  }
-
-  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
-    upsert?: AccountUpsertWithWhereUniqueWithoutUserInput | AccountUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AccountCreateManyUserInputEnvelope
-    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-    update?: AccountUpdateWithWhereUniqueWithoutUserInput | AccountUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AccountUpdateManyWithWhereWithoutUserInput | AccountUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
-  }
-
-  export type VerificationUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<VerificationCreateWithoutUserInput, VerificationUncheckedCreateWithoutUserInput> | VerificationCreateWithoutUserInput[] | VerificationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: VerificationCreateOrConnectWithoutUserInput | VerificationCreateOrConnectWithoutUserInput[]
-    upsert?: VerificationUpsertWithWhereUniqueWithoutUserInput | VerificationUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: VerificationCreateManyUserInputEnvelope
-    set?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-    disconnect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-    delete?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-    connect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
-    update?: VerificationUpdateWithWhereUniqueWithoutUserInput | VerificationUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: VerificationUpdateManyWithWhereWithoutUserInput | VerificationUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: VerificationScalarWhereInput | VerificationScalarWhereInput[]
-  }
-
-  export type repoAccountUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<repoAccountCreateWithoutUserInput, repoAccountUncheckedCreateWithoutUserInput> | repoAccountCreateWithoutUserInput[] | repoAccountUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: repoAccountCreateOrConnectWithoutUserInput | repoAccountCreateOrConnectWithoutUserInput[]
-    upsert?: repoAccountUpsertWithWhereUniqueWithoutUserInput | repoAccountUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: repoAccountCreateManyUserInputEnvelope
-    set?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-    disconnect?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-    delete?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-    connect?: repoAccountWhereUniqueInput | repoAccountWhereUniqueInput[]
-    update?: repoAccountUpdateWithWhereUniqueWithoutUserInput | repoAccountUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: repoAccountUpdateManyWithWhereWithoutUserInput | repoAccountUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: repoAccountScalarWhereInput | repoAccountScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutSessionsInput = {
-    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
-  }
-
-  export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
-    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
-    upsert?: UserUpsertWithoutSessionsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
-  }
-
-  export type UserCreateNestedOneWithoutAccountsInput = {
-    create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
-    create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
-    upsert?: UserUpsertWithoutAccountsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
-  }
-
-  export type UserCreateNestedOneWithoutVerificationsInput = {
-    create?: XOR<UserCreateWithoutVerificationsInput, UserUncheckedCreateWithoutVerificationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutVerificationsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutVerificationsNestedInput = {
-    create?: XOR<UserCreateWithoutVerificationsInput, UserUncheckedCreateWithoutVerificationsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutVerificationsInput
-    upsert?: UserUpsertWithoutVerificationsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutVerificationsInput, UserUpdateWithoutVerificationsInput>, UserUncheckedUpdateWithoutVerificationsInput>
-  }
-
-  export type UserCreateNestedOneWithoutRepoAccountsInput = {
-    create?: XOR<UserCreateWithoutRepoAccountsInput, UserUncheckedCreateWithoutRepoAccountsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutRepoAccountsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutRepoAccountsNestedInput = {
-    create?: XOR<UserCreateWithoutRepoAccountsInput, UserUncheckedCreateWithoutRepoAccountsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutRepoAccountsInput
-    upsert?: UserUpsertWithoutRepoAccountsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRepoAccountsInput, UserUpdateWithoutRepoAccountsInput>, UserUncheckedUpdateWithoutRepoAccountsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8655,6 +7795,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8667,11 +7812,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -8713,6 +7853,14 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8739,14 +7887,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8786,748 +7926,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type SessionCreateWithoutUserInput = {
-    id?: string
-    expiresAt: Date | string
-    token?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    ipAddress?: string | null
-    userAgent?: string | null
-    accessToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshToken?: string | null
-    refreshTokenExpiresAt?: Date | string | null
-  }
-
-  export type SessionUncheckedCreateWithoutUserInput = {
-    id?: string
-    expiresAt: Date | string
-    token?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    ipAddress?: string | null
-    userAgent?: string | null
-    accessToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshToken?: string | null
-    refreshTokenExpiresAt?: Date | string | null
-  }
-
-  export type SessionCreateOrConnectWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
-  }
-
-  export type SessionCreateManyUserInputEnvelope = {
-    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AccountCreateWithoutUserInput = {
-    id?: string
-    accountId: string
-    providerId: string
-    accessToken?: string | null
-    refreshToken?: string | null
-    idToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
-    scope?: string | null
-    password?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type AccountUncheckedCreateWithoutUserInput = {
-    id?: string
-    accountId: string
-    providerId: string
-    accessToken?: string | null
-    refreshToken?: string | null
-    idToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
-    scope?: string | null
-    password?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type AccountCreateOrConnectWithoutUserInput = {
-    where: AccountWhereUniqueInput
-    create: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput>
-  }
-
-  export type AccountCreateManyUserInputEnvelope = {
-    data: AccountCreateManyUserInput | AccountCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type VerificationCreateWithoutUserInput = {
-    id?: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type VerificationUncheckedCreateWithoutUserInput = {
-    id?: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type VerificationCreateOrConnectWithoutUserInput = {
-    where: VerificationWhereUniqueInput
-    create: XOR<VerificationCreateWithoutUserInput, VerificationUncheckedCreateWithoutUserInput>
-  }
-
-  export type VerificationCreateManyUserInputEnvelope = {
-    data: VerificationCreateManyUserInput | VerificationCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type repoAccountCreateWithoutUserInput = {
-    id?: string
-    accountId: string
-    providerId: string
-    accessToken?: string | null
-    refreshToken?: string | null
-    idToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
-    scope?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type repoAccountUncheckedCreateWithoutUserInput = {
-    id?: string
-    accountId: string
-    providerId: string
-    accessToken?: string | null
-    refreshToken?: string | null
-    idToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
-    scope?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type repoAccountCreateOrConnectWithoutUserInput = {
-    where: repoAccountWhereUniqueInput
-    create: XOR<repoAccountCreateWithoutUserInput, repoAccountUncheckedCreateWithoutUserInput>
-  }
-
-  export type repoAccountCreateManyUserInputEnvelope = {
-    data: repoAccountCreateManyUserInput | repoAccountCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
-  }
-
-  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
-  }
-
-  export type SessionUpdateManyWithWhereWithoutUserInput = {
-    where: SessionScalarWhereInput
-    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type SessionScalarWhereInput = {
-    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    OR?: SessionScalarWhereInput[]
-    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    id?: StringFilter<"Session"> | string
-    userId?: StringFilter<"Session"> | string
-    expiresAt?: DateTimeFilter<"Session"> | Date | string
-    token?: StringNullableFilter<"Session"> | string | null
-    createdAt?: DateTimeFilter<"Session"> | Date | string
-    updatedAt?: DateTimeFilter<"Session"> | Date | string
-    ipAddress?: StringNullableFilter<"Session"> | string | null
-    userAgent?: StringNullableFilter<"Session"> | string | null
-    accessToken?: StringNullableFilter<"Session"> | string | null
-    accessTokenExpiresAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-    refreshToken?: StringNullableFilter<"Session"> | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-  }
-
-  export type AccountUpsertWithWhereUniqueWithoutUserInput = {
-    where: AccountWhereUniqueInput
-    update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
-    create: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput>
-  }
-
-  export type AccountUpdateWithWhereUniqueWithoutUserInput = {
-    where: AccountWhereUniqueInput
-    data: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
-  }
-
-  export type AccountUpdateManyWithWhereWithoutUserInput = {
-    where: AccountScalarWhereInput
-    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type AccountScalarWhereInput = {
-    AND?: AccountScalarWhereInput | AccountScalarWhereInput[]
-    OR?: AccountScalarWhereInput[]
-    NOT?: AccountScalarWhereInput | AccountScalarWhereInput[]
-    id?: StringFilter<"Account"> | string
-    accountId?: StringFilter<"Account"> | string
-    providerId?: StringFilter<"Account"> | string
-    userId?: StringFilter<"Account"> | string
-    accessToken?: StringNullableFilter<"Account"> | string | null
-    refreshToken?: StringNullableFilter<"Account"> | string | null
-    idToken?: StringNullableFilter<"Account"> | string | null
-    accessTokenExpiresAt?: DateTimeNullableFilter<"Account"> | Date | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"Account"> | Date | string | null
-    scope?: StringNullableFilter<"Account"> | string | null
-    password?: StringNullableFilter<"Account"> | string | null
-    createdAt?: DateTimeFilter<"Account"> | Date | string
-    updatedAt?: DateTimeFilter<"Account"> | Date | string
-  }
-
-  export type VerificationUpsertWithWhereUniqueWithoutUserInput = {
-    where: VerificationWhereUniqueInput
-    update: XOR<VerificationUpdateWithoutUserInput, VerificationUncheckedUpdateWithoutUserInput>
-    create: XOR<VerificationCreateWithoutUserInput, VerificationUncheckedCreateWithoutUserInput>
-  }
-
-  export type VerificationUpdateWithWhereUniqueWithoutUserInput = {
-    where: VerificationWhereUniqueInput
-    data: XOR<VerificationUpdateWithoutUserInput, VerificationUncheckedUpdateWithoutUserInput>
-  }
-
-  export type VerificationUpdateManyWithWhereWithoutUserInput = {
-    where: VerificationScalarWhereInput
-    data: XOR<VerificationUpdateManyMutationInput, VerificationUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type VerificationScalarWhereInput = {
-    AND?: VerificationScalarWhereInput | VerificationScalarWhereInput[]
-    OR?: VerificationScalarWhereInput[]
-    NOT?: VerificationScalarWhereInput | VerificationScalarWhereInput[]
-    id?: StringFilter<"Verification"> | string
-    userId?: StringFilter<"Verification"> | string
-    expiresAt?: DateTimeFilter<"Verification"> | Date | string
-    createdAt?: DateTimeFilter<"Verification"> | Date | string
-    updatedAt?: DateTimeFilter<"Verification"> | Date | string
-  }
-
-  export type repoAccountUpsertWithWhereUniqueWithoutUserInput = {
-    where: repoAccountWhereUniqueInput
-    update: XOR<repoAccountUpdateWithoutUserInput, repoAccountUncheckedUpdateWithoutUserInput>
-    create: XOR<repoAccountCreateWithoutUserInput, repoAccountUncheckedCreateWithoutUserInput>
-  }
-
-  export type repoAccountUpdateWithWhereUniqueWithoutUserInput = {
-    where: repoAccountWhereUniqueInput
-    data: XOR<repoAccountUpdateWithoutUserInput, repoAccountUncheckedUpdateWithoutUserInput>
-  }
-
-  export type repoAccountUpdateManyWithWhereWithoutUserInput = {
-    where: repoAccountScalarWhereInput
-    data: XOR<repoAccountUpdateManyMutationInput, repoAccountUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type repoAccountScalarWhereInput = {
-    AND?: repoAccountScalarWhereInput | repoAccountScalarWhereInput[]
-    OR?: repoAccountScalarWhereInput[]
-    NOT?: repoAccountScalarWhereInput | repoAccountScalarWhereInput[]
-    id?: StringFilter<"repoAccount"> | string
-    accountId?: StringFilter<"repoAccount"> | string
-    providerId?: StringFilter<"repoAccount"> | string
-    userId?: StringFilter<"repoAccount"> | string
-    accessToken?: StringNullableFilter<"repoAccount"> | string | null
-    refreshToken?: StringNullableFilter<"repoAccount"> | string | null
-    idToken?: StringNullableFilter<"repoAccount"> | string | null
-    accessTokenExpiresAt?: DateTimeNullableFilter<"repoAccount"> | Date | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"repoAccount"> | Date | string | null
-    scope?: StringNullableFilter<"repoAccount"> | string | null
-    createdAt?: DateTimeFilter<"repoAccount"> | Date | string
-    updatedAt?: DateTimeFilter<"repoAccount"> | Date | string
-  }
-
-  export type UserCreateWithoutSessionsInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    verifications?: VerificationCreateNestedManyWithoutUserInput
-    repoAccounts?: repoAccountCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutSessionsInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    repoAccounts?: repoAccountUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutSessionsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
-  }
-
-  export type UserUpsertWithoutSessionsInput = {
-    update: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
-    create: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSessionsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
-  }
-
-  export type UserUpdateWithoutSessionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    verifications?: VerificationUpdateManyWithoutUserNestedInput
-    repoAccounts?: repoAccountUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSessionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    repoAccounts?: repoAccountUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutAccountsInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    verifications?: VerificationCreateNestedManyWithoutUserInput
-    repoAccounts?: repoAccountCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutAccountsInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-    repoAccounts?: repoAccountUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutAccountsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
-  }
-
-  export type UserUpsertWithoutAccountsInput = {
-    update: XOR<UserUpdateWithoutAccountsInput, UserUncheckedUpdateWithoutAccountsInput>
-    create: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutAccountsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutAccountsInput, UserUncheckedUpdateWithoutAccountsInput>
-  }
-
-  export type UserUpdateWithoutAccountsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    verifications?: VerificationUpdateManyWithoutUserNestedInput
-    repoAccounts?: repoAccountUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutAccountsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-    repoAccounts?: repoAccountUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutVerificationsInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    repoAccounts?: repoAccountCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutVerificationsInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    repoAccounts?: repoAccountUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutVerificationsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutVerificationsInput, UserUncheckedCreateWithoutVerificationsInput>
-  }
-
-  export type UserUpsertWithoutVerificationsInput = {
-    update: XOR<UserUpdateWithoutVerificationsInput, UserUncheckedUpdateWithoutVerificationsInput>
-    create: XOR<UserCreateWithoutVerificationsInput, UserUncheckedCreateWithoutVerificationsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutVerificationsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutVerificationsInput, UserUncheckedUpdateWithoutVerificationsInput>
-  }
-
-  export type UserUpdateWithoutVerificationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    repoAccounts?: repoAccountUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutVerificationsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    repoAccounts?: repoAccountUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutRepoAccountsInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    verifications?: VerificationCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutRepoAccountsInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    verifications?: VerificationUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutRepoAccountsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutRepoAccountsInput, UserUncheckedCreateWithoutRepoAccountsInput>
-  }
-
-  export type UserUpsertWithoutRepoAccountsInput = {
-    update: XOR<UserUpdateWithoutRepoAccountsInput, UserUncheckedUpdateWithoutRepoAccountsInput>
-    create: XOR<UserCreateWithoutRepoAccountsInput, UserUncheckedCreateWithoutRepoAccountsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutRepoAccountsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutRepoAccountsInput, UserUncheckedUpdateWithoutRepoAccountsInput>
-  }
-
-  export type UserUpdateWithoutRepoAccountsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    verifications?: VerificationUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutRepoAccountsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    verifications?: VerificationUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type SessionCreateManyUserInput = {
-    id?: string
-    expiresAt: Date | string
-    token?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    ipAddress?: string | null
-    userAgent?: string | null
-    accessToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshToken?: string | null
-    refreshTokenExpiresAt?: Date | string | null
-  }
-
-  export type AccountCreateManyUserInput = {
-    id?: string
-    accountId: string
-    providerId: string
-    accessToken?: string | null
-    refreshToken?: string | null
-    idToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
-    scope?: string | null
-    password?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type VerificationCreateManyUserInput = {
-    id?: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type repoAccountCreateManyUserInput = {
-    id?: string
-    accountId: string
-    providerId: string
-    accessToken?: string | null
-    refreshToken?: string | null
-    idToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
-    scope?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SessionUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type SessionUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type SessionUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type AccountUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    idToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AccountUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    idToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AccountUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    idToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type VerificationUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type VerificationUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type VerificationUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type repoAccountUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    idToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type repoAccountUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    idToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type repoAccountUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    idToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
