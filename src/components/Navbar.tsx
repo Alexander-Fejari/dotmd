@@ -1,9 +1,9 @@
 "use client"
 
-import { Logo } from "@/components/commons/Logo"
-import { SearchBar } from "./commons/SearchBar"
-import { NotificationIcon } from "./commons/NotificationIcon"
-import { UserMenu } from "./commons/UserMenu"
+import { Logo } from "@/components/common/Logo"
+import { SearchBar } from "@/components/common/SearchBar"
+import { NotificationIcon } from "@/components/common/NotificationIcon"
+import { UserMenu } from "@/components/common/UserMenu"
 
 export function Navbar() {
     return (
