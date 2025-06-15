@@ -5,10 +5,10 @@ import Link from "next/link"
 import {usePathname} from "next/navigation"
 import {FileText, GitFork, LayoutDashboard, Save} from "lucide-react"
 
-import {Logo} from "@/components/commons/Logo"
-import {SearchBar} from "@/components/commons/SearchBar"
-import {NotificationIcon} from "@/components/commons/NotificationIcon"
-import {UserMenu} from "@/components/commons/UserMenu"
+import {Logo} from "@/components/common/Logo"
+import {SearchBar} from "@/components/common/SearchBar"
+import {NotificationIcon} from "@/components/common/NotificationIcon"
+import {UserMenu} from "@/components/common/UserMenu"
 import {
     Sidebar as SidebarComponent,
     SidebarContent,
