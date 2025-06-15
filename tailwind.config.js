@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -50,5 +50,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
     },
-  }
-}
+  },
+};
+
+export default config;
