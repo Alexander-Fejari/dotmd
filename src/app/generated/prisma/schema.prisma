@@ -4,20 +4,22 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // ------- 4 "mandatory" tables better-auth -------
 
 model User {
-  id            String   @id @default(uuid())
+  id            String    @id @default(uuid())
   name          String
-  email         String   @unique
+  email         String    @unique
   emailVerified Boolean
   image         String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  UserData      UserData?
 
   @@map("user")
 }
@@ -35,6 +37,7 @@ model Session {
   @@map("session")
 }
 
+// PAS TOUCHE
 model Account {
   id                    String    @id @default(uuid())
   userId                String
@@ -53,6 +56,7 @@ model Account {
   @@map("account")
 }
 
+// PAS TOUCHE
 model Verification {
   id         String   @id @default(uuid())
   identifier String
@@ -64,22 +68,45 @@ model Verification {
   @@map("verification")
 }
 
+// ------- User Datas -------
+
+model UserData {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  email       String? @unique
+  displayName String?
+  isAdmin     Boolean @default(false)
+
+  repoAccounts RepoAccount[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user_data")
+}
+
 // ------- linked repositories account(s) -------
 
-model repoAccount {
-  id                    String    @id @default(uuid())
-  accountId             String
-  providerId            String // Ex. "github", "gitlab"
-  userId                String
-  // user                  User      @relation("UserRepoAccounts", fields: [userId], references: [id], onDelete: Cascade)
+model RepoAccount {
+  id         String  @id @default(uuid())
+  accountId  String
+  providerId String? // Ex. "github", "gitlab"
+
+  userDataId String
+  userData   UserData @relation(fields: [userDataId], references: [id], onDelete: Cascade)
+
   accessToken           String?
   refreshToken          String?
   idToken               String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
-  scope                 String?
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+
+  scope String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("repo_account")
 }
