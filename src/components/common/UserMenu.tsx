@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { LogOut, Settings, User } from "lucide-react"
-//import { signOut } from "next-auth/react"
+import {signOut} from "@/lib/auth/client";
 
 type UserMenuProps = {
   user?: {
@@ -30,7 +30,7 @@ export function UserMenu({ user = { name: "John Doe", email: "john@example.com",
 
   const handleSignOut = async () => {
     setIsLoading(true)
-    await signOut({ redirect: false })
+    await signOut()
     router.push("/login")
   }
 

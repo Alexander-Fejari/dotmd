@@ -1,74 +1,57 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useSession, signOut } from "@/lib/auth/client";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { useAuthStore } from "@/lib/stores/auth-store";
+import { useState, useEffect } from "react"
+import { DashboardCardSkeleton } from "@/components/common/Skeletons"
 
-export default function Dashboard() {
-    const { data: session, isPending } = useSession();
-    const router = useRouter();
-    const { authData, setAuthData, clearAuthData } = useAuthStore();
+export default function DashboardPage() {
+    const [isLoading, setIsLoading] = useState(true)
 
-    // Synchroniser la session Better Auth avec le store
     useEffect(() => {
-        if (session) {
-            setAuthData(session);
-        } else {
-            clearAuthData();
-        }
-    }, [session, setAuthData, clearAuthData]);
+        // Simuler un chargement
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1500)
 
-    if (isPending) {
-        return <div>Chargement...</div>;
-    }
+        return () => clearTimeout(timer)
+    }, [])
 
-    if (!session) {
+    if (isLoading) {
         return (
-            <div className="flex items-center justify-center min-h-screen">
-                <Card className="max-w-md">
-                    <CardHeader>
-                        <CardTitle>Non connecté</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p>Veuillez vous connecter pour accéder au tableau de bord.</p>
-                        <Button asChild>
-                            <Link href="/auth/signin">Se connecter</Link>
-                        </Button>
-                    </CardContent>
-                </Card>
-            </div>
-        );
+            <section className="flex flex-1 flex-col gap-4 p-4">
+                <section className="grid auto-rows-min gap-4 md:grid-cols-3">
+                    <DashboardCardSkeleton />
+                    <DashboardCardSkeleton />
+                    <DashboardCardSkeleton />
+                </section>
+                <section className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min flex items-center justify-center">
+                    <header className="text-center space-y-2">
+                        <div className="h-8 w-64 bg-muted rounded mx-auto" />
+                        <div className="h-4 w-80 bg-muted rounded mx-auto" />
+                    </header>
+                </section>
+            </section>
+        )
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <Card className="max-w-md">
-                <CardHeader>
-                    <CardTitle>
-                        Bienvenue, {authData?.user.name || authData?.user.email || "Utilisateur"}
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p>Vous êtes connecté !</p>
-                    <Button
-                        onClick={async () => {
-                            try {
-                                await signOut();
-                                clearAuthData();
-                                router.push("/");
-                            } catch (error) {
-                                console.error("Erreur lors de la déconnexion:", error);
-                            }
-                        }}
-                    >
-                        Se déconnecter
-                    </Button>
-                </CardContent>
-            </Card>
-        </div>
-    );
+        <section className="flex flex-1 flex-col gap-4 p-4">
+            <section className="grid auto-rows-min gap-4 md:grid-cols-3">
+                <article className="aspect-video rounded-xl bg-muted/50 flex items-center justify-center">
+                    <p className="text-muted-foreground">Statistiques</p>
+                </article>
+                <article className="aspect-video rounded-xl bg-muted/50 flex items-center justify-center">
+                    <p className="text-muted-foreground">Activité récente</p>
+                </article>
+                <article className="aspect-video rounded-xl bg-muted/50 flex items-center justify-center">
+                    <p className="text-muted-foreground">Notifications</p>
+                </article>
+            </section>
+            <section className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min flex items-center justify-center">
+                <header className="text-center space-y-2">
+                    <h1 className="text-2xl font-bold">Tableau de bord</h1>
+                    <p className="text-muted-foreground">Bienvenue sur votre dashboard dotMD</p>
+                </header>
+            </section>
+        </section>
+    )
 }
