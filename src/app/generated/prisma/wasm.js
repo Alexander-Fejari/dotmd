@@ -163,11 +163,21 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.UserDataScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  email: 'email',
+  displayName: 'displayName',
+  isAdmin: 'isAdmin',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.RepoAccountScalarFieldEnum = {
   id: 'id',
   accountId: 'accountId',
   providerId: 'providerId',
-  userId: 'userId',
+  userDataId: 'userDataId',
   accessToken: 'accessToken',
   refreshToken: 'refreshToken',
   idToken: 'idToken',
@@ -199,7 +209,8 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
-  repoAccount: 'repoAccount'
+  UserData: 'UserData',
+  RepoAccount: 'RepoAccount'
 };
 
 /**

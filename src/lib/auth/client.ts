@@ -6,7 +6,7 @@ export const authClient = createAuthClient({
 
 export const { signIn, signOut, signUp, useSession, resetPassword } = authClient;
 
-const supportedProviders = ["github", "google", "discord"] as const;
+const supportedProviders = ["github", "gitlab", "google", "discord"] as const;
 type Provider = (typeof supportedProviders)[number];
 
 // SignIn with social providers

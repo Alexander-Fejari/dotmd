@@ -31,7 +31,7 @@ export function UserMenu({ user = { name: "John Doe", email: "john@example.com",
   const handleSignOut = async () => {
     setIsLoading(true)
     await signOut()
-    router.push("/login")
+    router.push("/auth/signin")
   }
 
   return (

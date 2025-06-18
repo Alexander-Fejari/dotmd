@@ -2,28 +2,7 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { PrismaClient } from "@/app/generated/prisma";
 import { nextCookies } from "better-auth/next-js";
-// import Brevo from "@getbrevo/brevo";
 import { sendVerificationEmail, sendPasswordResetEmail } from "@/lib/services/email/email_auth";
-
-// const socialProviders = {
-//   github: github({ clientId: process.env.GITHUB_CLIENT_ID!, clientSecret: process.env.GITHUB_CLIENT_SECRET! }),
-//     // onSuccess: async ({ user, account, context }: { user: any, account: any, context: any}) => {
-//     //   await prisma.repoAccount.create({
-//     //     data: {
-//     //       accountId: account.id,
-//     //       providerId: "github",
-//     //       userId: user.id,
-//     //       accessToken: account.accessToken || null,
-//     //       refreshToken: account.refreshToken || null,
-//     //       accessTokenExpiresAt: account.accessTokenExpiresAt || null,
-//     //       refreshTokenExpiresAt: account.refreshTokenExpiresAt || null,
-//     //       scope: account.scope || null,
-//     //     },
-//     //   });
-//     // },
-//   google: google({ clientId: process.env.GOOGLE_CLIENT_ID!, clientSecret: process.env.GOOGLE_CLIENT_SECRET! }),
-//   discord: discord({ clientId: process.env.DISCORD_CLIENT_ID!, clientSecret: process.env.DISCORD_CLIENT_SECRET! }),
-// };
 
 const prisma = new PrismaClient();
 
@@ -33,12 +12,32 @@ export const auth = betterAuth({
   }),
   secret: process.env.BETTER_AUTH_SECRET!,
   baseURL: process.env.BETTER_AUTH_URL!,
+  callbacks: {
+    async onSignIn({ user, db }) {
+      console.log("onSignIn triggered for user:", {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+      });
+      return true;
+    },
+    async onSignUp({ user, db }) {
+    console.log("onSignUp triggered for user:", {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    });
+    return true;
+    },
+  },
   emailAndPassword: {
     enabled: true,
-    sendVerificationEmail,
-    sendPasswordResetEmail,
     emailVerification: {
+      enabled: true,
+      sendVerificationEmail: sendVerificationEmail,
       sendOnsignUp: true,
+      sendResetPassword: sendPasswordResetEmail,
+      sendOnUpdate: true,
     },
     passwordRules: {
       minLength: 5, // Change to more after tests
@@ -57,10 +56,10 @@ export const auth = betterAuth({
     github: {
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-      onSuccess: async ({ user, account }) => {
-        console.log("GitHub provider triggered", { user, account });
-      }
-      // ...add other options if needed
+    },
+    gitlab: {
+      clientId: process.env.GITLAB_CLIENT_ID as string,
+      clientSecret: process.env.GITLAB_CLIENT_SECRET as string,
     },
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
