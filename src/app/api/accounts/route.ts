@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { listGitHubAccounts } from "@/lib/services/repo_account";
+import { listGitHubAccounts } from "@/lib/server/services/repo_account";
 
 export async function GET(req: Request) {
   const result =  await listGitHubAccounts(req);

@@ -1,8 +1,8 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import prisma from "@/lib/utils/prisma";
+import prisma from "@/lib/server/db/prisma";
 import { nextCookies } from "better-auth/next-js";
-import { sendVerificationEmail, sendPasswordResetEmail } from "../services/email/email_auth";
+import { sendVerificationEmail, sendPasswordResetEmail } from "../email/email_auth";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, { 

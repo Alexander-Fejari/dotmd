@@ -1,5 +1,5 @@
-import prisma from "@/lib/utils/prisma";
-import { auth } from "@/lib/auth/auth";
+import prisma from "@/lib/server/db/prisma";
+import { auth } from "@/lib/server/auth/auth";
 
 // Liste les comptes GitHub liés à un utilisateur.
 export async function listGitHubAccounts(req: Request) {
