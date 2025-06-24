@@ -9,7 +9,7 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// ------- 4 "mandatory" tables better-auth -------
+// ------- 5 "mandatories" tables better-auth -------
 
 model User {
   id            String    @id @default(uuid())
@@ -66,6 +66,16 @@ model Verification {
   updatedAt  DateTime @updatedAt
 
   @@map("verification")
+}
+
+// PAS TOUCHE
+model Jwks {
+  id         String   @id @default(uuid())
+  publicKey  String
+  privateKey String
+  createdAt  DateTime @default(now())
+
+  @@map("jwks")
 }
 
 // ------- User Datas -------

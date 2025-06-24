@@ -2,6 +2,19 @@ import { createAuthClient } from "better-auth/react";
 
 export const authClient = createAuthClient({
   baseURL: process.env.BETTER_AUTH_URL,
+  fetchOptions: {
+    auth: {
+      type:"Bearer",
+        token: () => localStorage.getItem("bearer_token") || ""
+    },
+    onSuccess: (ctx) => {
+        const authToken = ctx.response.headers.get("set-auth-token") // get the token from the response headers
+        // Store the token securely (e.g., in localStorage)
+        if(authToken){
+          localStorage.setItem("bearer_token", authToken); // Surement demander à Alex si il ne vaut mieux pas le mettre dans un store 
+      }
+    }
+  }
 });
 
 export const { signIn, signOut, signUp, useSession, resetPassword } = authClient;

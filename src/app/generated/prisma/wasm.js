@@ -163,6 +163,13 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.JwksScalarFieldEnum = {
+  id: 'id',
+  publicKey: 'publicKey',
+  privateKey: 'privateKey',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.UserDataScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -209,6 +216,7 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
+  Jwks: 'Jwks',
   UserData: 'UserData',
   RepoAccount: 'RepoAccount'
 };
