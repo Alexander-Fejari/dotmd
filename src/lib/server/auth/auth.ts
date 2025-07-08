@@ -2,7 +2,6 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "@/lib/server/db/prisma";
 import { nextCookies } from "better-auth/next-js";
-import { bearer, jwt } from "better-auth/plugins";
 import { sendVerificationEmail, sendPasswordResetEmail } from "../email/email_auth";
 
 export const auth = betterAuth({
@@ -40,7 +39,5 @@ export const auth = betterAuth({
   },
   plugins: [
     nextCookies(),
-    bearer(),
-    jwt(),
   ],
 });

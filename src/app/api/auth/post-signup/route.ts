@@ -1,14 +1,18 @@
-import { validateToken } from "@/lib/server/auth/get_user_from_request";
+import { auth } from "@/lib/server/auth/auth";
 import { handlePostLogin } from "@/lib/server/auth/post_signup";
+import { headers } from "next/headers";
 
 export async function POST(req: Request) {
-  const token = req.headers.get("Authorization") || `ok`;
-  console.log(`Received token:`, token);
-  const payload = await validateToken(token);
-  if (!payload.user) return new Response(`Unauthorized`, { status: 401 });
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  console.log(`Session:`, session);
 
   try {
-    await handlePostLogin(payload.user);
+    if (session)
+      await handlePostLogin(session.user);
+    //console.log(`Post login request received`);
     return new Response(`OK`, { status: 200 });
   } 
   catch (error) {

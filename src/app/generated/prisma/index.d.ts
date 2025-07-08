@@ -34,11 +34,6 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
  */
 export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
 /**
- * Model Jwks
- * 
- */
-export type Jwks = $Result.DefaultSelection<Prisma.$JwksPayload>
-/**
  * Model UserData
  * 
  */
@@ -213,16 +208,6 @@ export class PrismaClient<
     * ```
     */
   get verification(): Prisma.VerificationDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.jwks`: Exposes CRUD operations for the **Jwks** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Jwks
-    * const jwks = await prisma.jwks.findMany()
-    * ```
-    */
-  get jwks(): Prisma.JwksDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.userData`: Exposes CRUD operations for the **UserData** model.
@@ -687,7 +672,6 @@ export namespace Prisma {
     Session: 'Session',
     Account: 'Account',
     Verification: 'Verification',
-    Jwks: 'Jwks',
     UserData: 'UserData',
     RepoAccount: 'RepoAccount'
   };
@@ -708,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "jwks" | "userData" | "repoAccount"
+      modelProps: "user" | "session" | "account" | "verification" | "userData" | "repoAccount"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1008,80 +992,6 @@ export namespace Prisma {
           }
         }
       }
-      Jwks: {
-        payload: Prisma.$JwksPayload<ExtArgs>
-        fields: Prisma.JwksFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.JwksFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.JwksFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload>
-          }
-          findFirst: {
-            args: Prisma.JwksFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.JwksFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload>
-          }
-          findMany: {
-            args: Prisma.JwksFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload>[]
-          }
-          create: {
-            args: Prisma.JwksCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload>
-          }
-          createMany: {
-            args: Prisma.JwksCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.JwksCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload>[]
-          }
-          delete: {
-            args: Prisma.JwksDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload>
-          }
-          update: {
-            args: Prisma.JwksUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload>
-          }
-          deleteMany: {
-            args: Prisma.JwksDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.JwksUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.JwksUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload>[]
-          }
-          upsert: {
-            args: Prisma.JwksUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JwksPayload>
-          }
-          aggregate: {
-            args: Prisma.JwksAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateJwks>
-          }
-          groupBy: {
-            args: Prisma.JwksGroupByArgs<ExtArgs>
-            result: $Utils.Optional<JwksGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.JwksCountArgs<ExtArgs>
-            result: $Utils.Optional<JwksCountAggregateOutputType> | number
-          }
-        }
-      }
       UserData: {
         payload: Prisma.$UserDataPayload<ExtArgs>
         fields: Prisma.UserDataFieldRefs
@@ -1318,7 +1228,6 @@ export namespace Prisma {
     session?: SessionOmit
     account?: AccountOmit
     verification?: VerificationOmit
-    jwks?: JwksOmit
     userData?: UserDataOmit
     repoAccount?: RepoAccountOmit
   }
@@ -5676,988 +5585,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Jwks
-   */
-
-  export type AggregateJwks = {
-    _count: JwksCountAggregateOutputType | null
-    _min: JwksMinAggregateOutputType | null
-    _max: JwksMaxAggregateOutputType | null
-  }
-
-  export type JwksMinAggregateOutputType = {
-    id: string | null
-    publicKey: string | null
-    privateKey: string | null
-    createdAt: Date | null
-  }
-
-  export type JwksMaxAggregateOutputType = {
-    id: string | null
-    publicKey: string | null
-    privateKey: string | null
-    createdAt: Date | null
-  }
-
-  export type JwksCountAggregateOutputType = {
-    id: number
-    publicKey: number
-    privateKey: number
-    createdAt: number
-    _all: number
-  }
-
-
-  export type JwksMinAggregateInputType = {
-    id?: true
-    publicKey?: true
-    privateKey?: true
-    createdAt?: true
-  }
-
-  export type JwksMaxAggregateInputType = {
-    id?: true
-    publicKey?: true
-    privateKey?: true
-    createdAt?: true
-  }
-
-  export type JwksCountAggregateInputType = {
-    id?: true
-    publicKey?: true
-    privateKey?: true
-    createdAt?: true
-    _all?: true
-  }
-
-  export type JwksAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Jwks to aggregate.
-     */
-    where?: JwksWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Jwks to fetch.
-     */
-    orderBy?: JwksOrderByWithRelationInput | JwksOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: JwksWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Jwks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Jwks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Jwks
-    **/
-    _count?: true | JwksCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: JwksMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: JwksMaxAggregateInputType
-  }
-
-  export type GetJwksAggregateType<T extends JwksAggregateArgs> = {
-        [P in keyof T & keyof AggregateJwks]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateJwks[P]>
-      : GetScalarType<T[P], AggregateJwks[P]>
-  }
-
-
-
-
-  export type JwksGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: JwksWhereInput
-    orderBy?: JwksOrderByWithAggregationInput | JwksOrderByWithAggregationInput[]
-    by: JwksScalarFieldEnum[] | JwksScalarFieldEnum
-    having?: JwksScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: JwksCountAggregateInputType | true
-    _min?: JwksMinAggregateInputType
-    _max?: JwksMaxAggregateInputType
-  }
-
-  export type JwksGroupByOutputType = {
-    id: string
-    publicKey: string
-    privateKey: string
-    createdAt: Date
-    _count: JwksCountAggregateOutputType | null
-    _min: JwksMinAggregateOutputType | null
-    _max: JwksMaxAggregateOutputType | null
-  }
-
-  type GetJwksGroupByPayload<T extends JwksGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<JwksGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof JwksGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], JwksGroupByOutputType[P]>
-            : GetScalarType<T[P], JwksGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type JwksSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    publicKey?: boolean
-    privateKey?: boolean
-    createdAt?: boolean
-  }, ExtArgs["result"]["jwks"]>
-
-  export type JwksSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    publicKey?: boolean
-    privateKey?: boolean
-    createdAt?: boolean
-  }, ExtArgs["result"]["jwks"]>
-
-  export type JwksSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    publicKey?: boolean
-    privateKey?: boolean
-    createdAt?: boolean
-  }, ExtArgs["result"]["jwks"]>
-
-  export type JwksSelectScalar = {
-    id?: boolean
-    publicKey?: boolean
-    privateKey?: boolean
-    createdAt?: boolean
-  }
-
-  export type JwksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "publicKey" | "privateKey" | "createdAt", ExtArgs["result"]["jwks"]>
-
-  export type $JwksPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Jwks"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      publicKey: string
-      privateKey: string
-      createdAt: Date
-    }, ExtArgs["result"]["jwks"]>
-    composites: {}
-  }
-
-  type JwksGetPayload<S extends boolean | null | undefined | JwksDefaultArgs> = $Result.GetResult<Prisma.$JwksPayload, S>
-
-  type JwksCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<JwksFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: JwksCountAggregateInputType | true
-    }
-
-  export interface JwksDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Jwks'], meta: { name: 'Jwks' } }
-    /**
-     * Find zero or one Jwks that matches the filter.
-     * @param {JwksFindUniqueArgs} args - Arguments to find a Jwks
-     * @example
-     * // Get one Jwks
-     * const jwks = await prisma.jwks.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends JwksFindUniqueArgs>(args: SelectSubset<T, JwksFindUniqueArgs<ExtArgs>>): Prisma__JwksClient<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Jwks that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {JwksFindUniqueOrThrowArgs} args - Arguments to find a Jwks
-     * @example
-     * // Get one Jwks
-     * const jwks = await prisma.jwks.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends JwksFindUniqueOrThrowArgs>(args: SelectSubset<T, JwksFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JwksClient<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Jwks that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {JwksFindFirstArgs} args - Arguments to find a Jwks
-     * @example
-     * // Get one Jwks
-     * const jwks = await prisma.jwks.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends JwksFindFirstArgs>(args?: SelectSubset<T, JwksFindFirstArgs<ExtArgs>>): Prisma__JwksClient<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Jwks that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {JwksFindFirstOrThrowArgs} args - Arguments to find a Jwks
-     * @example
-     * // Get one Jwks
-     * const jwks = await prisma.jwks.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends JwksFindFirstOrThrowArgs>(args?: SelectSubset<T, JwksFindFirstOrThrowArgs<ExtArgs>>): Prisma__JwksClient<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Jwks that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {JwksFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Jwks
-     * const jwks = await prisma.jwks.findMany()
-     * 
-     * // Get first 10 Jwks
-     * const jwks = await prisma.jwks.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const jwksWithIdOnly = await prisma.jwks.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends JwksFindManyArgs>(args?: SelectSubset<T, JwksFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Jwks.
-     * @param {JwksCreateArgs} args - Arguments to create a Jwks.
-     * @example
-     * // Create one Jwks
-     * const Jwks = await prisma.jwks.create({
-     *   data: {
-     *     // ... data to create a Jwks
-     *   }
-     * })
-     * 
-     */
-    create<T extends JwksCreateArgs>(args: SelectSubset<T, JwksCreateArgs<ExtArgs>>): Prisma__JwksClient<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Jwks.
-     * @param {JwksCreateManyArgs} args - Arguments to create many Jwks.
-     * @example
-     * // Create many Jwks
-     * const jwks = await prisma.jwks.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends JwksCreateManyArgs>(args?: SelectSubset<T, JwksCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Jwks and returns the data saved in the database.
-     * @param {JwksCreateManyAndReturnArgs} args - Arguments to create many Jwks.
-     * @example
-     * // Create many Jwks
-     * const jwks = await prisma.jwks.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Jwks and only return the `id`
-     * const jwksWithIdOnly = await prisma.jwks.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends JwksCreateManyAndReturnArgs>(args?: SelectSubset<T, JwksCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Jwks.
-     * @param {JwksDeleteArgs} args - Arguments to delete one Jwks.
-     * @example
-     * // Delete one Jwks
-     * const Jwks = await prisma.jwks.delete({
-     *   where: {
-     *     // ... filter to delete one Jwks
-     *   }
-     * })
-     * 
-     */
-    delete<T extends JwksDeleteArgs>(args: SelectSubset<T, JwksDeleteArgs<ExtArgs>>): Prisma__JwksClient<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Jwks.
-     * @param {JwksUpdateArgs} args - Arguments to update one Jwks.
-     * @example
-     * // Update one Jwks
-     * const jwks = await prisma.jwks.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends JwksUpdateArgs>(args: SelectSubset<T, JwksUpdateArgs<ExtArgs>>): Prisma__JwksClient<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Jwks.
-     * @param {JwksDeleteManyArgs} args - Arguments to filter Jwks to delete.
-     * @example
-     * // Delete a few Jwks
-     * const { count } = await prisma.jwks.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends JwksDeleteManyArgs>(args?: SelectSubset<T, JwksDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Jwks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {JwksUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Jwks
-     * const jwks = await prisma.jwks.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends JwksUpdateManyArgs>(args: SelectSubset<T, JwksUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Jwks and returns the data updated in the database.
-     * @param {JwksUpdateManyAndReturnArgs} args - Arguments to update many Jwks.
-     * @example
-     * // Update many Jwks
-     * const jwks = await prisma.jwks.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Jwks and only return the `id`
-     * const jwksWithIdOnly = await prisma.jwks.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends JwksUpdateManyAndReturnArgs>(args: SelectSubset<T, JwksUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Jwks.
-     * @param {JwksUpsertArgs} args - Arguments to update or create a Jwks.
-     * @example
-     * // Update or create a Jwks
-     * const jwks = await prisma.jwks.upsert({
-     *   create: {
-     *     // ... data to create a Jwks
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Jwks we want to update
-     *   }
-     * })
-     */
-    upsert<T extends JwksUpsertArgs>(args: SelectSubset<T, JwksUpsertArgs<ExtArgs>>): Prisma__JwksClient<$Result.GetResult<Prisma.$JwksPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Jwks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {JwksCountArgs} args - Arguments to filter Jwks to count.
-     * @example
-     * // Count the number of Jwks
-     * const count = await prisma.jwks.count({
-     *   where: {
-     *     // ... the filter for the Jwks we want to count
-     *   }
-     * })
-    **/
-    count<T extends JwksCountArgs>(
-      args?: Subset<T, JwksCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], JwksCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Jwks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {JwksAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends JwksAggregateArgs>(args: Subset<T, JwksAggregateArgs>): Prisma.PrismaPromise<GetJwksAggregateType<T>>
-
-    /**
-     * Group by Jwks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {JwksGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends JwksGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: JwksGroupByArgs['orderBy'] }
-        : { orderBy?: JwksGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, JwksGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJwksGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Jwks model
-   */
-  readonly fields: JwksFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Jwks.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__JwksClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Jwks model
-   */
-  interface JwksFieldRefs {
-    readonly id: FieldRef<"Jwks", 'String'>
-    readonly publicKey: FieldRef<"Jwks", 'String'>
-    readonly privateKey: FieldRef<"Jwks", 'String'>
-    readonly createdAt: FieldRef<"Jwks", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Jwks findUnique
-   */
-  export type JwksFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * Filter, which Jwks to fetch.
-     */
-    where: JwksWhereUniqueInput
-  }
-
-  /**
-   * Jwks findUniqueOrThrow
-   */
-  export type JwksFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * Filter, which Jwks to fetch.
-     */
-    where: JwksWhereUniqueInput
-  }
-
-  /**
-   * Jwks findFirst
-   */
-  export type JwksFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * Filter, which Jwks to fetch.
-     */
-    where?: JwksWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Jwks to fetch.
-     */
-    orderBy?: JwksOrderByWithRelationInput | JwksOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Jwks.
-     */
-    cursor?: JwksWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Jwks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Jwks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Jwks.
-     */
-    distinct?: JwksScalarFieldEnum | JwksScalarFieldEnum[]
-  }
-
-  /**
-   * Jwks findFirstOrThrow
-   */
-  export type JwksFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * Filter, which Jwks to fetch.
-     */
-    where?: JwksWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Jwks to fetch.
-     */
-    orderBy?: JwksOrderByWithRelationInput | JwksOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Jwks.
-     */
-    cursor?: JwksWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Jwks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Jwks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Jwks.
-     */
-    distinct?: JwksScalarFieldEnum | JwksScalarFieldEnum[]
-  }
-
-  /**
-   * Jwks findMany
-   */
-  export type JwksFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * Filter, which Jwks to fetch.
-     */
-    where?: JwksWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Jwks to fetch.
-     */
-    orderBy?: JwksOrderByWithRelationInput | JwksOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Jwks.
-     */
-    cursor?: JwksWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Jwks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Jwks.
-     */
-    skip?: number
-    distinct?: JwksScalarFieldEnum | JwksScalarFieldEnum[]
-  }
-
-  /**
-   * Jwks create
-   */
-  export type JwksCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * The data needed to create a Jwks.
-     */
-    data: XOR<JwksCreateInput, JwksUncheckedCreateInput>
-  }
-
-  /**
-   * Jwks createMany
-   */
-  export type JwksCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Jwks.
-     */
-    data: JwksCreateManyInput | JwksCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Jwks createManyAndReturn
-   */
-  export type JwksCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * The data used to create many Jwks.
-     */
-    data: JwksCreateManyInput | JwksCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Jwks update
-   */
-  export type JwksUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * The data needed to update a Jwks.
-     */
-    data: XOR<JwksUpdateInput, JwksUncheckedUpdateInput>
-    /**
-     * Choose, which Jwks to update.
-     */
-    where: JwksWhereUniqueInput
-  }
-
-  /**
-   * Jwks updateMany
-   */
-  export type JwksUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Jwks.
-     */
-    data: XOR<JwksUpdateManyMutationInput, JwksUncheckedUpdateManyInput>
-    /**
-     * Filter which Jwks to update
-     */
-    where?: JwksWhereInput
-    /**
-     * Limit how many Jwks to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Jwks updateManyAndReturn
-   */
-  export type JwksUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * The data used to update Jwks.
-     */
-    data: XOR<JwksUpdateManyMutationInput, JwksUncheckedUpdateManyInput>
-    /**
-     * Filter which Jwks to update
-     */
-    where?: JwksWhereInput
-    /**
-     * Limit how many Jwks to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Jwks upsert
-   */
-  export type JwksUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * The filter to search for the Jwks to update in case it exists.
-     */
-    where: JwksWhereUniqueInput
-    /**
-     * In case the Jwks found by the `where` argument doesn't exist, create a new Jwks with this data.
-     */
-    create: XOR<JwksCreateInput, JwksUncheckedCreateInput>
-    /**
-     * In case the Jwks was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<JwksUpdateInput, JwksUncheckedUpdateInput>
-  }
-
-  /**
-   * Jwks delete
-   */
-  export type JwksDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-    /**
-     * Filter which Jwks to delete.
-     */
-    where: JwksWhereUniqueInput
-  }
-
-  /**
-   * Jwks deleteMany
-   */
-  export type JwksDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Jwks to delete
-     */
-    where?: JwksWhereInput
-    /**
-     * Limit how many Jwks to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Jwks without action
-   */
-  export type JwksDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Jwks
-     */
-    select?: JwksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Jwks
-     */
-    omit?: JwksOmit<ExtArgs> | null
-  }
-
-
-  /**
    * Model UserData
    */
 
@@ -6670,6 +5597,7 @@ export namespace Prisma {
   export type UserDataMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    postLoginHandled: boolean | null
     email: string | null
     displayName: string | null
     isAdmin: boolean | null
@@ -6680,6 +5608,7 @@ export namespace Prisma {
   export type UserDataMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    postLoginHandled: boolean | null
     email: string | null
     displayName: string | null
     isAdmin: boolean | null
@@ -6690,6 +5619,7 @@ export namespace Prisma {
   export type UserDataCountAggregateOutputType = {
     id: number
     userId: number
+    postLoginHandled: number
     email: number
     displayName: number
     isAdmin: number
@@ -6702,6 +5632,7 @@ export namespace Prisma {
   export type UserDataMinAggregateInputType = {
     id?: true
     userId?: true
+    postLoginHandled?: true
     email?: true
     displayName?: true
     isAdmin?: true
@@ -6712,6 +5643,7 @@ export namespace Prisma {
   export type UserDataMaxAggregateInputType = {
     id?: true
     userId?: true
+    postLoginHandled?: true
     email?: true
     displayName?: true
     isAdmin?: true
@@ -6722,6 +5654,7 @@ export namespace Prisma {
   export type UserDataCountAggregateInputType = {
     id?: true
     userId?: true
+    postLoginHandled?: true
     email?: true
     displayName?: true
     isAdmin?: true
@@ -6805,6 +5738,7 @@ export namespace Prisma {
   export type UserDataGroupByOutputType = {
     id: string
     userId: string
+    postLoginHandled: boolean
     email: string | null
     displayName: string | null
     isAdmin: boolean
@@ -6832,6 +5766,7 @@ export namespace Prisma {
   export type UserDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    postLoginHandled?: boolean
     email?: boolean
     displayName?: boolean
     isAdmin?: boolean
@@ -6845,6 +5780,7 @@ export namespace Prisma {
   export type UserDataSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    postLoginHandled?: boolean
     email?: boolean
     displayName?: boolean
     isAdmin?: boolean
@@ -6856,6 +5792,7 @@ export namespace Prisma {
   export type UserDataSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    postLoginHandled?: boolean
     email?: boolean
     displayName?: boolean
     isAdmin?: boolean
@@ -6867,6 +5804,7 @@ export namespace Prisma {
   export type UserDataSelectScalar = {
     id?: boolean
     userId?: boolean
+    postLoginHandled?: boolean
     email?: boolean
     displayName?: boolean
     isAdmin?: boolean
@@ -6874,7 +5812,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "email" | "displayName" | "isAdmin" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
+  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "postLoginHandled" | "email" | "displayName" | "isAdmin" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
   export type UserDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     repoAccounts?: boolean | UserData$repoAccountsArgs<ExtArgs>
@@ -6896,6 +5834,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      postLoginHandled: boolean
       email: string | null
       displayName: string | null
       isAdmin: boolean
@@ -7328,6 +6267,7 @@ export namespace Prisma {
   interface UserDataFieldRefs {
     readonly id: FieldRef<"UserData", 'String'>
     readonly userId: FieldRef<"UserData", 'String'>
+    readonly postLoginHandled: FieldRef<"UserData", 'Boolean'>
     readonly email: FieldRef<"UserData", 'String'>
     readonly displayName: FieldRef<"UserData", 'String'>
     readonly isAdmin: FieldRef<"UserData", 'Boolean'>
@@ -8992,19 +7932,10 @@ export namespace Prisma {
   export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
-  export const JwksScalarFieldEnum: {
-    id: 'id',
-    publicKey: 'publicKey',
-    privateKey: 'privateKey',
-    createdAt: 'createdAt'
-  };
-
-  export type JwksScalarFieldEnum = (typeof JwksScalarFieldEnum)[keyof typeof JwksScalarFieldEnum]
-
-
   export const UserDataScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    postLoginHandled: 'postLoginHandled',
     email: 'email',
     displayName: 'displayName',
     isAdmin: 'isAdmin',
@@ -9395,59 +8326,13 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
   }
 
-  export type JwksWhereInput = {
-    AND?: JwksWhereInput | JwksWhereInput[]
-    OR?: JwksWhereInput[]
-    NOT?: JwksWhereInput | JwksWhereInput[]
-    id?: StringFilter<"Jwks"> | string
-    publicKey?: StringFilter<"Jwks"> | string
-    privateKey?: StringFilter<"Jwks"> | string
-    createdAt?: DateTimeFilter<"Jwks"> | Date | string
-  }
-
-  export type JwksOrderByWithRelationInput = {
-    id?: SortOrder
-    publicKey?: SortOrder
-    privateKey?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type JwksWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: JwksWhereInput | JwksWhereInput[]
-    OR?: JwksWhereInput[]
-    NOT?: JwksWhereInput | JwksWhereInput[]
-    publicKey?: StringFilter<"Jwks"> | string
-    privateKey?: StringFilter<"Jwks"> | string
-    createdAt?: DateTimeFilter<"Jwks"> | Date | string
-  }, "id">
-
-  export type JwksOrderByWithAggregationInput = {
-    id?: SortOrder
-    publicKey?: SortOrder
-    privateKey?: SortOrder
-    createdAt?: SortOrder
-    _count?: JwksCountOrderByAggregateInput
-    _max?: JwksMaxOrderByAggregateInput
-    _min?: JwksMinOrderByAggregateInput
-  }
-
-  export type JwksScalarWhereWithAggregatesInput = {
-    AND?: JwksScalarWhereWithAggregatesInput | JwksScalarWhereWithAggregatesInput[]
-    OR?: JwksScalarWhereWithAggregatesInput[]
-    NOT?: JwksScalarWhereWithAggregatesInput | JwksScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Jwks"> | string
-    publicKey?: StringWithAggregatesFilter<"Jwks"> | string
-    privateKey?: StringWithAggregatesFilter<"Jwks"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"Jwks"> | Date | string
-  }
-
   export type UserDataWhereInput = {
     AND?: UserDataWhereInput | UserDataWhereInput[]
     OR?: UserDataWhereInput[]
     NOT?: UserDataWhereInput | UserDataWhereInput[]
     id?: StringFilter<"UserData"> | string
     userId?: StringFilter<"UserData"> | string
+    postLoginHandled?: BoolFilter<"UserData"> | boolean
     email?: StringNullableFilter<"UserData"> | string | null
     displayName?: StringNullableFilter<"UserData"> | string | null
     isAdmin?: BoolFilter<"UserData"> | boolean
@@ -9460,6 +8345,7 @@ export namespace Prisma {
   export type UserDataOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    postLoginHandled?: SortOrder
     email?: SortOrderInput | SortOrder
     displayName?: SortOrderInput | SortOrder
     isAdmin?: SortOrder
@@ -9476,6 +8362,7 @@ export namespace Prisma {
     AND?: UserDataWhereInput | UserDataWhereInput[]
     OR?: UserDataWhereInput[]
     NOT?: UserDataWhereInput | UserDataWhereInput[]
+    postLoginHandled?: BoolFilter<"UserData"> | boolean
     displayName?: StringNullableFilter<"UserData"> | string | null
     isAdmin?: BoolFilter<"UserData"> | boolean
     createdAt?: DateTimeFilter<"UserData"> | Date | string
@@ -9487,6 +8374,7 @@ export namespace Prisma {
   export type UserDataOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    postLoginHandled?: SortOrder
     email?: SortOrderInput | SortOrder
     displayName?: SortOrderInput | SortOrder
     isAdmin?: SortOrder
@@ -9503,6 +8391,7 @@ export namespace Prisma {
     NOT?: UserDataScalarWhereWithAggregatesInput | UserDataScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"UserData"> | string
     userId?: StringWithAggregatesFilter<"UserData"> | string
+    postLoginHandled?: BoolWithAggregatesFilter<"UserData"> | boolean
     email?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     displayName?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     isAdmin?: BoolWithAggregatesFilter<"UserData"> | boolean
@@ -9926,57 +8815,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type JwksCreateInput = {
-    id?: string
-    publicKey: string
-    privateKey: string
-    createdAt?: Date | string
-  }
-
-  export type JwksUncheckedCreateInput = {
-    id?: string
-    publicKey: string
-    privateKey: string
-    createdAt?: Date | string
-  }
-
-  export type JwksUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    publicKey?: StringFieldUpdateOperationsInput | string
-    privateKey?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type JwksUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    publicKey?: StringFieldUpdateOperationsInput | string
-    privateKey?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type JwksCreateManyInput = {
-    id?: string
-    publicKey: string
-    privateKey: string
-    createdAt?: Date | string
-  }
-
-  export type JwksUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    publicKey?: StringFieldUpdateOperationsInput | string
-    privateKey?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type JwksUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    publicKey?: StringFieldUpdateOperationsInput | string
-    privateKey?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type UserDataCreateInput = {
     id?: string
+    postLoginHandled?: boolean
     email?: string | null
     displayName?: string | null
     isAdmin?: boolean
@@ -9989,6 +8830,7 @@ export namespace Prisma {
   export type UserDataUncheckedCreateInput = {
     id?: string
     userId: string
+    postLoginHandled?: boolean
     email?: string | null
     displayName?: string | null
     isAdmin?: boolean
@@ -9999,6 +8841,7 @@ export namespace Prisma {
 
   export type UserDataUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -10011,6 +8854,7 @@ export namespace Prisma {
   export type UserDataUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -10022,6 +8866,7 @@ export namespace Prisma {
   export type UserDataCreateManyInput = {
     id?: string
     userId: string
+    postLoginHandled?: boolean
     email?: string | null
     displayName?: string | null
     isAdmin?: boolean
@@ -10031,6 +8876,7 @@ export namespace Prisma {
 
   export type UserDataUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -10041,6 +8887,7 @@ export namespace Prisma {
   export type UserDataUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -10429,27 +9276,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type JwksCountOrderByAggregateInput = {
-    id?: SortOrder
-    publicKey?: SortOrder
-    privateKey?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type JwksMaxOrderByAggregateInput = {
-    id?: SortOrder
-    publicKey?: SortOrder
-    privateKey?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type JwksMinOrderByAggregateInput = {
-    id?: SortOrder
-    publicKey?: SortOrder
-    privateKey?: SortOrder
-    createdAt?: SortOrder
-  }
-
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -10468,6 +9294,7 @@ export namespace Prisma {
   export type UserDataCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    postLoginHandled?: SortOrder
     email?: SortOrder
     displayName?: SortOrder
     isAdmin?: SortOrder
@@ -10478,6 +9305,7 @@ export namespace Prisma {
   export type UserDataMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    postLoginHandled?: SortOrder
     email?: SortOrder
     displayName?: SortOrder
     isAdmin?: SortOrder
@@ -10488,6 +9316,7 @@ export namespace Prisma {
   export type UserDataMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    postLoginHandled?: SortOrder
     email?: SortOrder
     displayName?: SortOrder
     isAdmin?: SortOrder
@@ -10816,6 +9645,7 @@ export namespace Prisma {
 
   export type UserDataCreateWithoutUserInput = {
     id?: string
+    postLoginHandled?: boolean
     email?: string | null
     displayName?: string | null
     isAdmin?: boolean
@@ -10826,6 +9656,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateWithoutUserInput = {
     id?: string
+    postLoginHandled?: boolean
     email?: string | null
     displayName?: string | null
     isAdmin?: boolean
@@ -10852,6 +9683,7 @@ export namespace Prisma {
 
   export type UserDataUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -10862,6 +9694,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -11000,6 +9833,7 @@ export namespace Prisma {
 
   export type UserDataCreateWithoutRepoAccountsInput = {
     id?: string
+    postLoginHandled?: boolean
     email?: string | null
     displayName?: string | null
     isAdmin?: boolean
@@ -11011,6 +9845,7 @@ export namespace Prisma {
   export type UserDataUncheckedCreateWithoutRepoAccountsInput = {
     id?: string
     userId: string
+    postLoginHandled?: boolean
     email?: string | null
     displayName?: string | null
     isAdmin?: boolean
@@ -11036,6 +9871,7 @@ export namespace Prisma {
 
   export type UserDataUpdateWithoutRepoAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -11047,6 +9883,7 @@ export namespace Prisma {
   export type UserDataUncheckedUpdateWithoutRepoAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean

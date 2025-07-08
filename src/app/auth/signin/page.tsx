@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
-import { signIn, signInWithSocial } from "@/lib/auth/auth-client";
+import { signInEmailPassword, signInWithSocial } from "@/lib/auth/auth-client";
 
 import { GitHubIcon } from "@/components/icons/GitHubIcon";
 import { GoogleIcon } from "@/components/icons/GoogleIcon";
@@ -75,13 +75,17 @@ export default function SignIn() {
                         className="w-full"
                         disabled={loading}
                         onClick={async () => {
-                            await signIn.email(
-                                { email, password },
-                                {
-                                    onRequest: () => setLoading(true),
-                                    onResponse: () => setLoading(false),
+                            setLoading(true);
+                            try {
+                                const result = await signInEmailPassword(email, password, "/dashboard");
+                                if (!result.success) {
+                                    console.error(result.error);
                                 }
-                            );
+                            } catch (error) {
+                                console.error("Erreur de connexion :", error);
+                            } finally {
+                                setLoading(false);
+                            }
                         }}
                     >
                         {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Connexion"}

@@ -1,22 +1,8 @@
-import { jwt } from "better-auth/plugins";
 import { createAuthClient } from "better-auth/react";
 
 export const authClient = createAuthClient({
   baseURL: process.env.BETTER_AUTH_URL,
-  plugins: [jwt()],
-  fetchOptions: {
-    onSuccess: (ctx) => {
-      const authToken = ctx.response.headers.get("set-auth-token") || "ok" // get the token from the response headers
-      //console.log(`Auth token received:`, authToken);
-      if(authToken){
-        localStorage.setItem("bearer_token", authToken); // Surement demander à Alex si il ne vaut mieux pas le mettre dans un store 
-      }
-    },
-    auth: {
-      type:"Bearer",
-      token: () => localStorage.getItem("bearer_token") || ""
-    },
-  }
+  secret: process.env.BETTER_AUTH_SECRET,
 });
 
 export const { signIn, signOut, signUp, useSession, resetPassword } = authClient;
@@ -37,13 +23,6 @@ export const signInWithSocial = async (
     const data = await authClient.signIn.social({
       provider,
       callbackURL,
-    }, {
-      onSuccess: (ctx)=>{
-    const authToken = ctx.response.headers.get("set-auth-token") || "ok" // get the token from the response headers
-    console.log(`Auth token received:`, authToken);
-    // Store the token securely (e.g., in localStorage)
-    localStorage.setItem("bearer_token", authToken);
-  }
     });
     
     return { success: true, data };
@@ -53,6 +32,52 @@ export const signInWithSocial = async (
     return { success: false, error: (error as Error).message };
   }
 };
+
+export const signUpEmailPassword = async (
+  email: string,
+  password: string,
+  name: string,
+  image: string,
+  callbackURL: string
+) => {
+    // localStorage.removeItem("post_login_done");
+  try {
+    const data = await authClient.signUp.email({
+      email,
+      password,
+      name,
+      image,
+      callbackURL,
+    });
+    return { success: true, data };
+  }
+  catch (error) {
+    console.error("Erreur lors de l'inscription:", error);
+    return { success: false, error: (error as Error).message };
+  }
+};
+
+
+export const signInEmailPassword = async (
+  email: string,
+  password: string,
+  callbackURL: string
+) => {
+  localStorage.removeItem("post_login_done");
+  try {
+    const data = await authClient.signIn.email({
+      email,
+      password,
+      callbackURL,
+    });
+    return { success: true, data };
+  }
+  catch (error) {
+    console.error("Erreur lors de la connexion par email:", error);
+    return { success: false, error: (error as Error).message };
+  }
+}
+
 
 // Link Github account to dotmd account
 export const linkGitHubAccount = async (callbackURL = `/dashboard`) => {

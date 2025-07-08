@@ -1,4 +1,4 @@
-import  prisma from "@/lib/server/db/prisma";
+import prisma from "@/lib/server/db/prisma";
 
 export async function handlePostLogin(user: any) {
   console.log("Handling post login for user", user.id);
@@ -12,7 +12,8 @@ export async function handlePostLogin(user: any) {
       data: {
         userId: user.id,
         displayName: user.name || `No Name`,
-        isAdmin: false
+        isAdmin: false,
+        postLoginHandled: true, // Mark as handled
       },
     });
 

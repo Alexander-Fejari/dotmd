@@ -14,9 +14,13 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import Image from "next/image";
 import { Loader2, X } from "lucide-react";
-import { signUp } from "@/lib/auth/auth-client";
+import { signUpEmailPassword } from "@/lib/auth/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+
+function createName(firstName: string, lastName: string): string {
+    return `${firstName} ${lastName}`.trim();
+}
 
 export default function SignUp() {
     const [firstName, setFirstName] = useState("");
@@ -150,34 +154,20 @@ export default function SignUp() {
                         className="w-full"
                         disabled={loading}
                         onClick={async () => {
-                            await signUp.email({
+                            setLoading(true);
+                            const name = createName(firstName, lastName);
+                            const postedImage = image ? await convertImageToBase64(image) : "";
+                            await signUpEmailPassword( 
                                 email,
                                 password,
-                                name: `${firstName} ${lastName}`,
-                                image: image ? await convertImageToBase64(image) : "",
-                                callbackURL: "/dashboard",
-                                fetchOptions: {
-                                    onResponse: () => {
-                                        setLoading(false);
-                                    },
-                                    onRequest: () => {
-                                        setLoading(true);
-                                    },
-                                    onError: (ctx) => {
-                                        toast.error(ctx.error.message);
-                                    },
-                                    onSuccess: async () => {
-                                        router.push("/dashboard");
-                                    },
-                                },
-                            });
+                                name,
+                                postedImage,
+                                "/dashboard",
+                            );
+                            setLoading(false);
                         }}
                     >
-                        {loading ? (
-                            <Loader2 size={16} className="animate-spin" />
-                        ) : (
-                            "Create an account"
-                        )}
+                        {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Inscription"}
                     </Button>
                 </div>
             </CardContent>
