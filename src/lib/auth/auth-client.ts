@@ -6,7 +6,8 @@ export const authClient = createAuthClient({
   plugins: [jwt()],
   fetchOptions: {
     onSuccess: (ctx) => {
-      const authToken = ctx.response.headers.get("set-auth-token") // get the token from the response headers
+      const authToken = ctx.response.headers.get("set-auth-token") || "ok" // get the token from the response headers
+      //console.log(`Auth token received:`, authToken);
       if(authToken){
         localStorage.setItem("bearer_token", authToken); // Surement demander à Alex si il ne vaut mieux pas le mettre dans un store 
       }
@@ -36,6 +37,13 @@ export const signInWithSocial = async (
     const data = await authClient.signIn.social({
       provider,
       callbackURL,
+    }, {
+      onSuccess: (ctx)=>{
+    const authToken = ctx.response.headers.get("set-auth-token") || "ok" // get the token from the response headers
+    console.log(`Auth token received:`, authToken);
+    // Store the token securely (e.g., in localStorage)
+    localStorage.setItem("bearer_token", authToken);
+  }
     });
     
     return { success: true, data };

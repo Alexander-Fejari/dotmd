@@ -3,6 +3,7 @@ import { handlePostLogin } from "@/lib/server/auth/post_signup";
 
 export async function POST(req: Request) {
   const token = req.headers.get("Authorization") || `ok`;
+  console.log(`Received token:`, token);
   const payload = await validateToken(token);
   if (!payload.user) return new Response(`Unauthorized`, { status: 401 });
 

@@ -41,8 +41,6 @@ export const auth = betterAuth({
   plugins: [
     nextCookies(),
     bearer(),
-    jwt({
-      sendJwt: true,
-    }),
+    jwt(),
   ],
 });

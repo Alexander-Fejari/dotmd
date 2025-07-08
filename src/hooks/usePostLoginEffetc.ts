@@ -6,6 +6,10 @@ export const usePostLoginEffect = () => {
   useEffect(() => {
     const runPostLogin = async () => {
       const token = localStorage.getItem("bearer_token");
+      if (!token) {
+        console.warn("No bearer token found in localStorage");
+        return;
+      }
 
       const alreadyHandled = localStorage.getItem("post_login_done");
       if (alreadyHandled === "true") return;
@@ -15,8 +19,6 @@ export const usePostLoginEffect = () => {
           "Authorization": `Bearer ${token}`
         },
       })
-
-      //console.log("JWT Token:", jwtToken);
 
       await fetch("/api/auth/post-signup", {
         method: "POST",

@@ -5,8 +5,9 @@ export async function validateToken(token: string) {
     const JWKS = createRemoteJWKSet(
       new URL('http://localhost:3000/api/auth/jwks')
     )
+    console.log('Validating token:', token);
     const { payload } = await jwtVerify(token, JWKS, {
-      issuer: 'http://localhost:3000', // Should match your JWT issuer, which is the BASE_URL
+      issuer: 'http://localhost:3000', // Should match your JWT issuer, which is the BASE_URL by default
       audience: 'http://localhost:3000', // Should match your JWT audience, which is the BASE_URL by default
     })
     return payload
