@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     headers: await headers(),
   });
 
-  console.log(`Session:`, session);
+  //console.log(`Session:`, session);
 
   try {
     if (session)
