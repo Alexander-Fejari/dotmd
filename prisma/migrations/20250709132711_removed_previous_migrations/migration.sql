@@ -60,8 +60,15 @@ CREATE TABLE "verification" (
 CREATE TABLE "user_data" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "displayName" TEXT,
     "isAdmin" BOOLEAN NOT NULL DEFAULT false,
+    "postLoginHandled" BOOLEAN NOT NULL DEFAULT false,
+    "email" TEXT,
+    "lastName" TEXT,
+    "firstName" TEXT,
+    "displayName" TEXT,
+    "userBio" TEXT,
+    "birthday" TIMESTAMP(3),
+    "phoneNumber" INTEGER,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -72,8 +79,8 @@ CREATE TABLE "user_data" (
 CREATE TABLE "repo_account" (
     "id" TEXT NOT NULL,
     "accountId" TEXT NOT NULL,
-    "providerId" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
+    "providerId" TEXT,
+    "userDataId" TEXT NOT NULL,
     "accessToken" TEXT,
     "refreshToken" TEXT,
     "idToken" TEXT,
@@ -95,5 +102,11 @@ CREATE UNIQUE INDEX "session_token_key" ON "session"("token");
 -- CreateIndex
 CREATE UNIQUE INDEX "user_data_userId_key" ON "user_data"("userId");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "user_data_email_key" ON "user_data"("email");
+
 -- AddForeignKey
 ALTER TABLE "user_data" ADD CONSTRAINT "user_data_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "repo_account" ADD CONSTRAINT "repo_account_userDataId_fkey" FOREIGN KEY ("userDataId") REFERENCES "user_data"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -40,7 +40,7 @@ export const signUpEmailPassword = async (
   image: string,
   callbackURL: string
 ) => {
-    // localStorage.removeItem("post_login_done");
+  localStorage.removeItem("post_login_done");
   try {
     const data = await authClient.signUp.email({
       email,

@@ -166,10 +166,15 @@ exports.Prisma.VerificationScalarFieldEnum = {
 exports.Prisma.UserDataScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  isAdmin: 'isAdmin',
   postLoginHandled: 'postLoginHandled',
   email: 'email',
+  lastName: 'lastName',
+  firstName: 'firstName',
   displayName: 'displayName',
-  isAdmin: 'isAdmin',
+  userBio: 'userBio',
+  birthday: 'birthday',
+  phoneNumber: 'phoneNumber',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

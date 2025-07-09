@@ -5590,17 +5590,32 @@ export namespace Prisma {
 
   export type AggregateUserData = {
     _count: UserDataCountAggregateOutputType | null
+    _avg: UserDataAvgAggregateOutputType | null
+    _sum: UserDataSumAggregateOutputType | null
     _min: UserDataMinAggregateOutputType | null
     _max: UserDataMaxAggregateOutputType | null
+  }
+
+  export type UserDataAvgAggregateOutputType = {
+    phoneNumber: number | null
+  }
+
+  export type UserDataSumAggregateOutputType = {
+    phoneNumber: number | null
   }
 
   export type UserDataMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    isAdmin: boolean | null
     postLoginHandled: boolean | null
     email: string | null
+    lastName: string | null
+    firstName: string | null
     displayName: string | null
-    isAdmin: boolean | null
+    userBio: string | null
+    birthday: Date | null
+    phoneNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5608,10 +5623,15 @@ export namespace Prisma {
   export type UserDataMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    isAdmin: boolean | null
     postLoginHandled: boolean | null
     email: string | null
+    lastName: string | null
+    firstName: string | null
     displayName: string | null
-    isAdmin: boolean | null
+    userBio: string | null
+    birthday: Date | null
+    phoneNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5619,23 +5639,41 @@ export namespace Prisma {
   export type UserDataCountAggregateOutputType = {
     id: number
     userId: number
+    isAdmin: number
     postLoginHandled: number
     email: number
+    lastName: number
+    firstName: number
     displayName: number
-    isAdmin: number
+    userBio: number
+    birthday: number
+    phoneNumber: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
+  export type UserDataAvgAggregateInputType = {
+    phoneNumber?: true
+  }
+
+  export type UserDataSumAggregateInputType = {
+    phoneNumber?: true
+  }
+
   export type UserDataMinAggregateInputType = {
     id?: true
     userId?: true
+    isAdmin?: true
     postLoginHandled?: true
     email?: true
+    lastName?: true
+    firstName?: true
     displayName?: true
-    isAdmin?: true
+    userBio?: true
+    birthday?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5643,10 +5681,15 @@ export namespace Prisma {
   export type UserDataMaxAggregateInputType = {
     id?: true
     userId?: true
+    isAdmin?: true
     postLoginHandled?: true
     email?: true
+    lastName?: true
+    firstName?: true
     displayName?: true
-    isAdmin?: true
+    userBio?: true
+    birthday?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5654,10 +5697,15 @@ export namespace Prisma {
   export type UserDataCountAggregateInputType = {
     id?: true
     userId?: true
+    isAdmin?: true
     postLoginHandled?: true
     email?: true
+    lastName?: true
+    firstName?: true
     displayName?: true
-    isAdmin?: true
+    userBio?: true
+    birthday?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -5701,6 +5749,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UserDataAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserDataSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserDataMinAggregateInputType
@@ -5731,6 +5791,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserDataCountAggregateInputType | true
+    _avg?: UserDataAvgAggregateInputType
+    _sum?: UserDataSumAggregateInputType
     _min?: UserDataMinAggregateInputType
     _max?: UserDataMaxAggregateInputType
   }
@@ -5738,13 +5800,20 @@ export namespace Prisma {
   export type UserDataGroupByOutputType = {
     id: string
     userId: string
+    isAdmin: boolean
     postLoginHandled: boolean
     email: string | null
+    lastName: string | null
+    firstName: string | null
     displayName: string | null
-    isAdmin: boolean
+    userBio: string | null
+    birthday: Date | null
+    phoneNumber: number | null
     createdAt: Date
     updatedAt: Date
     _count: UserDataCountAggregateOutputType | null
+    _avg: UserDataAvgAggregateOutputType | null
+    _sum: UserDataSumAggregateOutputType | null
     _min: UserDataMinAggregateOutputType | null
     _max: UserDataMaxAggregateOutputType | null
   }
@@ -5766,10 +5835,15 @@ export namespace Prisma {
   export type UserDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: boolean
+    lastName?: boolean
+    firstName?: boolean
     displayName?: boolean
-    isAdmin?: boolean
+    userBio?: boolean
+    birthday?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5780,10 +5854,15 @@ export namespace Prisma {
   export type UserDataSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: boolean
+    lastName?: boolean
+    firstName?: boolean
     displayName?: boolean
-    isAdmin?: boolean
+    userBio?: boolean
+    birthday?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5792,10 +5871,15 @@ export namespace Prisma {
   export type UserDataSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: boolean
+    lastName?: boolean
+    firstName?: boolean
     displayName?: boolean
-    isAdmin?: boolean
+    userBio?: boolean
+    birthday?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5804,15 +5888,20 @@ export namespace Prisma {
   export type UserDataSelectScalar = {
     id?: boolean
     userId?: boolean
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: boolean
+    lastName?: boolean
+    firstName?: boolean
     displayName?: boolean
-    isAdmin?: boolean
+    userBio?: boolean
+    birthday?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "postLoginHandled" | "email" | "displayName" | "isAdmin" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
+  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "isAdmin" | "postLoginHandled" | "email" | "lastName" | "firstName" | "displayName" | "userBio" | "birthday" | "phoneNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
   export type UserDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     repoAccounts?: boolean | UserData$repoAccountsArgs<ExtArgs>
@@ -5834,10 +5923,15 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      isAdmin: boolean
       postLoginHandled: boolean
       email: string | null
+      lastName: string | null
+      firstName: string | null
       displayName: string | null
-      isAdmin: boolean
+      userBio: string | null
+      birthday: Date | null
+      phoneNumber: number | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["userData"]>
@@ -6267,10 +6361,15 @@ export namespace Prisma {
   interface UserDataFieldRefs {
     readonly id: FieldRef<"UserData", 'String'>
     readonly userId: FieldRef<"UserData", 'String'>
+    readonly isAdmin: FieldRef<"UserData", 'Boolean'>
     readonly postLoginHandled: FieldRef<"UserData", 'Boolean'>
     readonly email: FieldRef<"UserData", 'String'>
+    readonly lastName: FieldRef<"UserData", 'String'>
+    readonly firstName: FieldRef<"UserData", 'String'>
     readonly displayName: FieldRef<"UserData", 'String'>
-    readonly isAdmin: FieldRef<"UserData", 'Boolean'>
+    readonly userBio: FieldRef<"UserData", 'String'>
+    readonly birthday: FieldRef<"UserData", 'DateTime'>
+    readonly phoneNumber: FieldRef<"UserData", 'Int'>
     readonly createdAt: FieldRef<"UserData", 'DateTime'>
     readonly updatedAt: FieldRef<"UserData", 'DateTime'>
   }
@@ -7935,10 +8034,15 @@ export namespace Prisma {
   export const UserDataScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    isAdmin: 'isAdmin',
     postLoginHandled: 'postLoginHandled',
     email: 'email',
+    lastName: 'lastName',
+    firstName: 'firstName',
     displayName: 'displayName',
-    isAdmin: 'isAdmin',
+    userBio: 'userBio',
+    birthday: 'birthday',
+    phoneNumber: 'phoneNumber',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -8039,6 +8143,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -8332,10 +8450,15 @@ export namespace Prisma {
     NOT?: UserDataWhereInput | UserDataWhereInput[]
     id?: StringFilter<"UserData"> | string
     userId?: StringFilter<"UserData"> | string
+    isAdmin?: BoolFilter<"UserData"> | boolean
     postLoginHandled?: BoolFilter<"UserData"> | boolean
     email?: StringNullableFilter<"UserData"> | string | null
+    lastName?: StringNullableFilter<"UserData"> | string | null
+    firstName?: StringNullableFilter<"UserData"> | string | null
     displayName?: StringNullableFilter<"UserData"> | string | null
-    isAdmin?: BoolFilter<"UserData"> | boolean
+    userBio?: StringNullableFilter<"UserData"> | string | null
+    birthday?: DateTimeNullableFilter<"UserData"> | Date | string | null
+    phoneNumber?: IntNullableFilter<"UserData"> | number | null
     createdAt?: DateTimeFilter<"UserData"> | Date | string
     updatedAt?: DateTimeFilter<"UserData"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -8345,10 +8468,15 @@ export namespace Prisma {
   export type UserDataOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    isAdmin?: SortOrder
     postLoginHandled?: SortOrder
     email?: SortOrderInput | SortOrder
+    lastName?: SortOrderInput | SortOrder
+    firstName?: SortOrderInput | SortOrder
     displayName?: SortOrderInput | SortOrder
-    isAdmin?: SortOrder
+    userBio?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -8362,9 +8490,14 @@ export namespace Prisma {
     AND?: UserDataWhereInput | UserDataWhereInput[]
     OR?: UserDataWhereInput[]
     NOT?: UserDataWhereInput | UserDataWhereInput[]
-    postLoginHandled?: BoolFilter<"UserData"> | boolean
-    displayName?: StringNullableFilter<"UserData"> | string | null
     isAdmin?: BoolFilter<"UserData"> | boolean
+    postLoginHandled?: BoolFilter<"UserData"> | boolean
+    lastName?: StringNullableFilter<"UserData"> | string | null
+    firstName?: StringNullableFilter<"UserData"> | string | null
+    displayName?: StringNullableFilter<"UserData"> | string | null
+    userBio?: StringNullableFilter<"UserData"> | string | null
+    birthday?: DateTimeNullableFilter<"UserData"> | Date | string | null
+    phoneNumber?: IntNullableFilter<"UserData"> | number | null
     createdAt?: DateTimeFilter<"UserData"> | Date | string
     updatedAt?: DateTimeFilter<"UserData"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -8374,15 +8507,22 @@ export namespace Prisma {
   export type UserDataOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    isAdmin?: SortOrder
     postLoginHandled?: SortOrder
     email?: SortOrderInput | SortOrder
+    lastName?: SortOrderInput | SortOrder
+    firstName?: SortOrderInput | SortOrder
     displayName?: SortOrderInput | SortOrder
-    isAdmin?: SortOrder
+    userBio?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserDataCountOrderByAggregateInput
+    _avg?: UserDataAvgOrderByAggregateInput
     _max?: UserDataMaxOrderByAggregateInput
     _min?: UserDataMinOrderByAggregateInput
+    _sum?: UserDataSumOrderByAggregateInput
   }
 
   export type UserDataScalarWhereWithAggregatesInput = {
@@ -8391,10 +8531,15 @@ export namespace Prisma {
     NOT?: UserDataScalarWhereWithAggregatesInput | UserDataScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"UserData"> | string
     userId?: StringWithAggregatesFilter<"UserData"> | string
+    isAdmin?: BoolWithAggregatesFilter<"UserData"> | boolean
     postLoginHandled?: BoolWithAggregatesFilter<"UserData"> | boolean
     email?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    lastName?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    firstName?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     displayName?: StringNullableWithAggregatesFilter<"UserData"> | string | null
-    isAdmin?: BoolWithAggregatesFilter<"UserData"> | boolean
+    userBio?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    birthday?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
+    phoneNumber?: IntNullableWithAggregatesFilter<"UserData"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"UserData"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"UserData"> | Date | string
   }
@@ -8817,10 +8962,15 @@ export namespace Prisma {
 
   export type UserDataCreateInput = {
     id?: string
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: string | null
+    lastName?: string | null
+    firstName?: string | null
     displayName?: string | null
-    isAdmin?: boolean
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutUserDataInput
@@ -8830,10 +8980,15 @@ export namespace Prisma {
   export type UserDataUncheckedCreateInput = {
     id?: string
     userId: string
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: string | null
+    lastName?: string | null
+    firstName?: string | null
     displayName?: string | null
-    isAdmin?: boolean
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     repoAccounts?: RepoAccountUncheckedCreateNestedManyWithoutUserDataInput
@@ -8841,10 +8996,15 @@ export namespace Prisma {
 
   export type UserDataUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutUserDataNestedInput
@@ -8854,10 +9014,15 @@ export namespace Prisma {
   export type UserDataUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     repoAccounts?: RepoAccountUncheckedUpdateManyWithoutUserDataNestedInput
@@ -8866,20 +9031,30 @@ export namespace Prisma {
   export type UserDataCreateManyInput = {
     id?: string
     userId: string
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: string | null
+    lastName?: string | null
+    firstName?: string | null
     displayName?: string | null
-    isAdmin?: boolean
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type UserDataUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8887,10 +9062,15 @@ export namespace Prisma {
   export type UserDataUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9276,6 +9456,17 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -9294,21 +9485,35 @@ export namespace Prisma {
   export type UserDataCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    isAdmin?: SortOrder
     postLoginHandled?: SortOrder
     email?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
     displayName?: SortOrder
-    isAdmin?: SortOrder
+    userBio?: SortOrder
+    birthday?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserDataAvgOrderByAggregateInput = {
+    phoneNumber?: SortOrder
   }
 
   export type UserDataMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    isAdmin?: SortOrder
     postLoginHandled?: SortOrder
     email?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
     displayName?: SortOrder
-    isAdmin?: SortOrder
+    userBio?: SortOrder
+    birthday?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9316,12 +9521,37 @@ export namespace Prisma {
   export type UserDataMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    isAdmin?: SortOrder
     postLoginHandled?: SortOrder
     email?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
     displayName?: SortOrder
-    isAdmin?: SortOrder
+    userBio?: SortOrder
+    birthday?: SortOrder
+    phoneNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserDataSumOrderByAggregateInput = {
+    phoneNumber?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type UserDataScalarRelationFilter = {
@@ -9444,6 +9674,14 @@ export namespace Prisma {
     connectOrCreate?: RepoAccountCreateOrConnectWithoutUserDataInput | RepoAccountCreateOrConnectWithoutUserDataInput[]
     createMany?: RepoAccountCreateManyUserDataInputEnvelope
     connect?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type UserUpdateOneRequiredWithoutUserDataNestedInput = {
@@ -9643,12 +9881,44 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type UserDataCreateWithoutUserInput = {
     id?: string
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: string | null
+    lastName?: string | null
+    firstName?: string | null
     displayName?: string | null
-    isAdmin?: boolean
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     repoAccounts?: RepoAccountCreateNestedManyWithoutUserDataInput
@@ -9656,10 +9926,15 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateWithoutUserInput = {
     id?: string
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: string | null
+    lastName?: string | null
+    firstName?: string | null
     displayName?: string | null
-    isAdmin?: boolean
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     repoAccounts?: RepoAccountUncheckedCreateNestedManyWithoutUserDataInput
@@ -9683,10 +9958,15 @@ export namespace Prisma {
 
   export type UserDataUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     repoAccounts?: RepoAccountUpdateManyWithoutUserDataNestedInput
@@ -9694,10 +9974,15 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     repoAccounts?: RepoAccountUncheckedUpdateManyWithoutUserDataNestedInput
@@ -9833,10 +10118,15 @@ export namespace Prisma {
 
   export type UserDataCreateWithoutRepoAccountsInput = {
     id?: string
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: string | null
+    lastName?: string | null
+    firstName?: string | null
     displayName?: string | null
-    isAdmin?: boolean
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutUserDataInput
@@ -9845,10 +10135,15 @@ export namespace Prisma {
   export type UserDataUncheckedCreateWithoutRepoAccountsInput = {
     id?: string
     userId: string
+    isAdmin?: boolean
     postLoginHandled?: boolean
     email?: string | null
+    lastName?: string | null
+    firstName?: string | null
     displayName?: string | null
-    isAdmin?: boolean
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -9871,10 +10166,15 @@ export namespace Prisma {
 
   export type UserDataUpdateWithoutRepoAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutUserDataNestedInput
@@ -9883,10 +10183,15 @@ export namespace Prisma {
   export type UserDataUncheckedUpdateWithoutRepoAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
     displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
