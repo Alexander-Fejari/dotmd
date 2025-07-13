@@ -1,18 +1,17 @@
 "use client";
 
+import Link from "next/link";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
-import Link from "next/link";
 import { signIn, signInWithSocial } from "@/lib/auth/client";
-
-import { GitHubIcon } from "@/components/icons/GitHubIcon";
+import { GithubIcon } from "@/components/icons/GithubIcon";
 import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { DiscordIcon } from "@/components/icons/DiscordIcon";
-import { GitLabIcon } from "@/components/icons/GitLabIcon";
+import { GitlabIcon } from "@/components/icons/GitlabIcon";
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
@@ -104,7 +103,7 @@ export default function SignIn() {
                             disabled={loading}
                             onClick={() => handleSocialSignIn("github")}
                         >
-                            <GitHubIcon className="w-5 h-5" />
+                            <GithubIcon className="w-5 h-5" />
                             Connexion avec GitHub
                         </Button>
 
@@ -124,7 +123,7 @@ export default function SignIn() {
                             disabled={loading}
                             onClick={() => handleSocialSignIn("gitlab")}
                         >
-                            <GitLabIcon className="w-5 h-5" />
+                            <GitlabIcon className="w-5 h-5" />
                             Connexion avec GitLab
                         </Button>
                     </div>
