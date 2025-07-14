@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { DashboardCardSkeleton } from "@/components/common/Skeletons"
-import { usePostLoginEffect } from "@/hooks/usePostLoginEffetc";
 
 export default function DashboardPage() {
     const [isLoading, setIsLoading] = useState(true)
-    usePostLoginEffect();
 
     useEffect(() => {
-        // Simuler un chargement
+        // Simuler un chargement -> Demander à Alex pourquoi
         const timer = setTimeout(() => {
             setIsLoading(false)
         }, 1500)

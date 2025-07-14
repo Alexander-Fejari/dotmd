@@ -12,6 +12,7 @@ import {GithubIcon} from "@/components/icons/GithubIcon"
 import {GitlabIcon} from "@/components/icons/GitlabIcon"
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import type { SignupData } from "@/app/auth/signup/page"
+import { useEffect } from "react"
 
 
 const gitProviderSchema = z
@@ -50,6 +51,30 @@ export function GitProviderStep({
                                     isLoading,
                                     setIsLoadingAction,
                                 }: GitProviderStepProps) {
+    useEffect(() => {
+        const prepareStep = async () => {
+            //setIsLoadingAction(true);
+            try {
+                const res = await fetch("/api/auth/post-signup", {
+                    method: "POST"
+                });
+                if (!res.ok) {
+                    throw new Error(`Erreur lors de l'initialisation du post login: ${res.statusText}`);
+                }
+            } 
+            catch (error) {
+                console.error("Erreur init Git step:", error)
+                throw new Error(`Erreur lors de l'initialisation du post login: ${error.message}`);
+            } 
+            finally {
+                //setIsLoadingAction(false);
+            }
+        }
+        
+        prepareStep();
+        }, []);
+    
+
     const [githubAccount, setGithubAccount] = useState<GitAccount | null>(
         data.githubLinked === true ? { username: "johndoe", avatar: "", email: "john@github.com", repos: 42 } : null,
     )

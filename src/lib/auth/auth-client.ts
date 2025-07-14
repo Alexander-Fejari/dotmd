@@ -13,12 +13,12 @@ type Provider = (typeof supportedProviders)[number];
 // SignIn with social providers
 export const signInWithSocial = async (
   provider: Provider,
-  callbackURL = `/dashboard`
+  callbackURL: string 
 ) => {
   if (!supportedProviders.includes(provider)) {
     return { success: false, error: `Provider ${provider} non supporté` };
   }
-  localStorage.removeItem("post_login_done");
+  //localStorage.removeItem("post_login_done");
   try {
     const data = await authClient.signIn.social({
       provider,
@@ -40,7 +40,7 @@ export const signUpEmailPassword = async (
   image: string,
   callbackURL: string
 ) => {
-  localStorage.removeItem("post_login_done");
+  //localStorage.removeItem("post_login_done");
   try {
     const data = await authClient.signUp.email({
       email,
@@ -49,6 +49,7 @@ export const signUpEmailPassword = async (
       image,
       callbackURL,
     });
+
     return { success: true, data };
   }
   catch (error) {
@@ -63,7 +64,7 @@ export const signInEmailPassword = async (
   password: string,
   callbackURL: string
 ) => {
-  localStorage.removeItem("post_login_done");
+  //localStorage.removeItem("post_login_done");
   try {
     const data = await authClient.signIn.email({
       email,
@@ -73,22 +74,7 @@ export const signInEmailPassword = async (
     return { success: true, data };
   }
   catch (error) {
-    console.error("Erreur lors de la connexion par email:", error);
+    console.error(`Erreur lors de la connexion par email:`, error);
     return { success: false, error: (error as Error).message };
   }
 }
-
-
-// // Link Github account to dotmd account
-// export const linkGitHubAccount = async (callbackURL = `/dashboard`) => {
-//   try {
-//     const data = await authClient.signIn.social({
-//       provider: "github",
-//       callbackURL,
-//     });
-//     return { success: true, data };
-//   } catch (error) {
-//     console.error("Erreur lors du lien GitHub:", error);
-//     return { success: false, error: (error as Error).message };
-//   }
-// };

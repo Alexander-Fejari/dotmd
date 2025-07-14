@@ -7,6 +7,10 @@ export async function POST(req: Request) {
     headers: await headers(),
   });
 
+  if (!session) {
+    return new Response(`Non autorisé`, { status: 401 });
+  }
+
   //console.log(`Post signup request received. Session:`, session);
 
   try {

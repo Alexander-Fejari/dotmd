@@ -13,10 +13,12 @@ import {GitlabIcon} from "@/components/icons/GitlabIcon"
 import {DiscordIcon} from "@/components/icons/DiscordIcon";
 import {GoogleIcon} from "@/components/icons/GoogleIcon";
 import {Loader2} from "lucide-react";
+import { signUpEmailPassword, signInWithSocial } from "@/lib/auth/auth-client"
 
 const emailSignupSchema = z.object({
     email: z.email({ error: "Adresse email invalide" }),
     password: z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères"),
+    displayName: z.string().min(3, "Le nom doit contenir au moins 3 caractères"),
 })
 
 type EmailSignupForm = z.infer<typeof emailSignupSchema>
@@ -35,15 +37,16 @@ export function SignupStep({ data, onUpdateAction, onNextAction, isLoading, setI
         defaultValues: {
             email: data.email || "",
             password: data.password || "",
+            displayName: data.displayName || "",
         },
     })
 
     const handleEmailSignup = async (values: EmailSignupForm) => {
         setIsLoadingAction(true)
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1000))
             onUpdateAction({ email: values.email, password: values.password, provider: undefined })
-            onNextAction()
+            await signUpEmailPassword(values.email, values.password, values.displayName, "", `/auth/signup?step=2`);
+            onNextAction();
         } catch (error) {
             console.error("Erreur inscription:", error)
         } finally {
@@ -54,12 +57,12 @@ export function SignupStep({ data, onUpdateAction, onNextAction, isLoading, setI
     const handleSocialSignup = async (provider: "github" | "gitlab" | "google" | "discord") => {
         setIsLoadingAction(true)
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1000))
             onUpdateAction({
                 email: `user@${provider}.com`,
                 provider,
                 emailVerified: true,
             })
+            await signInWithSocial(provider, `/auth/signup?step=3`);
             onNextAction()
         } catch (error) {
             console.error(`Erreur avec ${provider}:`, error)
@@ -102,6 +105,20 @@ export function SignupStep({ data, onUpdateAction, onNextAction, isLoading, setI
                                     <Input type="password" placeholder="••••••••" {...field} disabled={isLoading} />
                                 </FormControl>
                                 <FormDescription>Minimum 8 caractères</FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="displayName"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Nom affiché</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Jean Raymond" {...field} disabled={isLoading} />
+                                </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
