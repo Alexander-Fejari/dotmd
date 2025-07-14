@@ -53,7 +53,6 @@ export function GitProviderStep({
                                 }: GitProviderStepProps) {
     useEffect(() => {
         const prepareStep = async () => {
-            //setIsLoadingAction(true);
             try {
                 const res = await fetch("/api/auth/post-signup", {
                     method: "POST"
@@ -66,9 +65,6 @@ export function GitProviderStep({
                 console.error("Erreur init Git step:", error)
                 throw new Error(`Erreur lors de l'initialisation du post login: ${error.message}`);
             } 
-            finally {
-                //setIsLoadingAction(false);
-            }
         }
         
         prepareStep();
