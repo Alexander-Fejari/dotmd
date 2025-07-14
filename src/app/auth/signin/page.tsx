@@ -64,7 +64,7 @@ export default function SigninPage() {
         setError(null)
 
        try {
-            const result = await signInWithSocial(provider, `/dashboard`);
+            const result = await signInWithSocial(provider, `/dashboard`/*, `/auth/signup?step=3`*/);
             if (!result.success) console.error(result.error);
         } catch (error) {
             console.error(`Erreur avec ${provider} :`, error);
