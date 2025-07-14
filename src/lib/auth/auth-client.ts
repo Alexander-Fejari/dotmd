@@ -18,7 +18,6 @@ export const signInWithSocial = async (
   if (!supportedProviders.includes(provider)) {
     return { success: false, error: `Provider ${provider} non supporté` };
   }
-  //localStorage.removeItem("post_login_done");
   try {
     const data = await authClient.signIn.social({
       provider,
@@ -40,7 +39,6 @@ export const signUpEmailPassword = async (
   image: string,
   callbackURL: string
 ) => {
-  //localStorage.removeItem("post_login_done");
   try {
     const data = await authClient.signUp.email({
       email,
@@ -64,7 +62,6 @@ export const signInEmailPassword = async (
   password: string,
   callbackURL: string
 ) => {
-  //localStorage.removeItem("post_login_done");
   try {
     const data = await authClient.signIn.email({
       email,
