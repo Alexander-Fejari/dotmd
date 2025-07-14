@@ -25,9 +25,7 @@ export async function listGitHubAccounts(req: Request) {
 
 // Lie un nouveau compte GitHub à un utilisateur.
 export async function linkGitHubAccount(req: Request) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const session = await auth.api.getSession({ headers: await headers() });
   if (!session) {
     return { error: `Non autorisé`, status: 401 };
   }
@@ -40,13 +38,10 @@ export async function linkGitHubAccount(req: Request) {
   try {
     const account = await prisma.repoAccount.create({
       data: {
-        id: crypto.randomUUID(),
         accountId,
         providerId: `github`,
         userDataId: session.user.id,
-        accessToken,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        accessToken
       },
     });
     return { data: account, status: 201 };

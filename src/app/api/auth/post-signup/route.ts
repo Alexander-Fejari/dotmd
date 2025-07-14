@@ -7,12 +7,11 @@ export async function POST(req: Request) {
     headers: await headers(),
   });
 
-  //console.log(`Session:`, session);
+  //console.log(`Post signup request received. Session:`, session);
 
   try {
     if (session)
       await handlePostLogin(session.user);
-    //console.log(`Post login request received`);
     return new Response(`OK`, { status: 200 });
   } 
   catch (error) {

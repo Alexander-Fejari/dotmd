@@ -1,7 +1,6 @@
 import prisma from "@/lib/server/db/prisma";
 
 export async function handlePostLogin(user: any) {
-  //console.log("Handling post login for user", user.id);
 
   const userData = await prisma.userData.findUnique({
     where: { userId: user.id },

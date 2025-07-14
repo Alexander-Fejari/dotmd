@@ -79,16 +79,16 @@ export const signInEmailPassword = async (
 }
 
 
-// Link Github account to dotmd account
-export const linkGitHubAccount = async (callbackURL = `/dashboard`) => {
-  try {
-    const data = await authClient.signIn.social({
-      provider: "github",
-      callbackURL,
-    });
-    return { success: true, data };
-  } catch (error) {
-    console.error("Erreur lors du lien GitHub:", error);
-    return { success: false, error: (error as Error).message };
-  }
-};
+// // Link Github account to dotmd account
+// export const linkGitHubAccount = async (callbackURL = `/dashboard`) => {
+//   try {
+//     const data = await authClient.signIn.social({
+//       provider: "github",
+//       callbackURL,
+//     });
+//     return { success: true, data };
+//   } catch (error) {
+//     console.error("Erreur lors du lien GitHub:", error);
+//     return { success: false, error: (error as Error).message };
+//   }
+// };
