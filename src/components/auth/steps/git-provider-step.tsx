@@ -52,7 +52,7 @@ export function GitProviderStep({
                                     setIsLoadingAction,
                                 }: GitProviderStepProps) {
     useEffect(() => {
-        const prepareStep = async () => {
+        const prepareDb = async () => {
             try {
                 const res = await fetch("/api/auth/post-signup", {
                     method: "POST"
@@ -67,7 +67,7 @@ export function GitProviderStep({
             } 
         }
         
-        prepareStep();
+        prepareDb();
         }, []);
     
 
