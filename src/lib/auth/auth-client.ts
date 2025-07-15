@@ -13,8 +13,7 @@ type Provider = (typeof supportedProviders)[number];
 // SignIn with social providers
 export const signInWithSocial = async (
   provider: Provider,
-  callbackURL: string,
-  //newUserCallbackURL: string
+  callbackURL: string
 ) => {
   if (!supportedProviders.includes(provider)) {
     return { success: false, error: `Provider ${provider} non supporté` };
@@ -22,8 +21,7 @@ export const signInWithSocial = async (
   try {
     const data = await authClient.signIn.social({
       provider,
-      callbackURL,
-      //newUserCallbackURL
+      callbackURL
     });
     
     return { success: true, data };

@@ -62,7 +62,7 @@ export function SignupStep({ data, onUpdateAction, onNextAction, isLoading, setI
                 provider,
                 emailVerified: true,
             })
-            await signInWithSocial(provider, `/auth/signup?step=3`/*, `/auth/signup?step=3`*/);
+            await signInWithSocial(provider, `/auth/signup?step=3`);
             onNextAction()
         } catch (error) {
             console.error(`Erreur avec ${provider}:`, error)

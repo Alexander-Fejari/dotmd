@@ -6,7 +6,8 @@ import { sendVerificationEmail, sendPasswordResetEmail } from "../email/email_au
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, { 
-    provider: "postgresql" 
+    provider: "postgresql",
+    //debugLogs: true
   }),
   secret: process.env.BETTER_AUTH_SECRET!,
   baseURL: process.env.BETTER_AUTH_URL!,

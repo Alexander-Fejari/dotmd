@@ -54,6 +54,7 @@ export function GitProviderStep({
     useEffect(() => {
         const prepareDb = async () => {
             try {
+                console.log("Initialisation du post login...");
                 const res = await fetch("/api/auth/post-signup", {
                     method: "POST"
                 });
