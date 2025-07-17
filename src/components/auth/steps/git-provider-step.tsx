@@ -54,8 +54,8 @@ export function GitProviderStep({
     useEffect(() => {
         const prepareDb = async () => {
             try {
-                const res = await fetch("/api/auth/post-signup", {
-                    method: "POST"
+                const res = await fetch(`/api/auth/post-signup`, {
+                    method: `POST`
                 });
                 if (res.status === 401) {
                     throw new Error(`Erreur lors de l'initialisation du post login: ${res.statusText}`); // À voir comment gérer les erreurs en front
@@ -68,7 +68,7 @@ export function GitProviderStep({
                 }
             }
             catch (error) {
-                console.error("Erreur init Git step:", error)
+                console.error(`Erreur init Git step:`, error)
                 throw new Error(`Erreur lors de l'initialisation du post login: ${ error.message }`);
             }
         }
