@@ -14,8 +14,18 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
-    sendVerificationEmail: sendVerificationEmail,
     //sendResetPassword: sendPasswordResetEmail,
+  },
+  emailVerification: {
+    sendOnSignup: true,
+    autoSignInAfterVerification: true,
+    sendVerificationEmail: async ( { user, url, token }, request ) => {
+      await sendVerificationEmail({
+        user: { email: user.email, id: user.id, name: user.name },
+        url,
+        token
+      });
+    },
   },
   socialProviders : {
     github: {
@@ -39,6 +49,6 @@ export const auth = betterAuth({
     expiresIn: 14 * 24 * 60 * 60, // 14 days
   },
   plugins: [
-    nextCookies(),
+    nextCookies(), // Must be Last Item
   ],
 });

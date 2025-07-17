@@ -45,7 +45,7 @@ export function SignupStep({ data, onUpdateAction, onNextAction, isLoading, setI
         setIsLoadingAction(true)
         try {
             onUpdateAction({ email: values.email, password: values.password, provider: undefined })
-            await signUpEmailPassword(values.email, values.password, values.displayName, "", `/auth/signup?step=2`);
+            await signUpEmailPassword(values.email, values.password, values.displayName, "", `/auth/signup?step=3`); // A changer
             onNextAction();
         } catch (error) {
             console.error("Erreur inscription:", error)
@@ -64,9 +64,11 @@ export function SignupStep({ data, onUpdateAction, onNextAction, isLoading, setI
             })
             await signInWithSocial(provider, `/auth/signup?step=3`);
             onNextAction()
-        } catch (error) {
+        } 
+        catch (error) {
             console.error(`Erreur avec ${provider}:`, error)
-        } finally {
+        } 
+        finally {
             setIsLoadingAction(false)
         }
     }

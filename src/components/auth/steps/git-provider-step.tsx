@@ -54,24 +54,22 @@ export function GitProviderStep({
     useEffect(() => {
         const prepareDb = async () => {
             try {
-                console.log("Initialisation du post login...");
                 const res = await fetch("/api/auth/post-signup", {
                     method: "POST"
                 });
                 if (!res.ok) {
                     throw new Error(`Erreur lors de l'initialisation du post login: ${res.statusText}`);
                 }
-            } 
+            }
             catch (error) {
                 console.error("Erreur init Git step:", error)
                 throw new Error(`Erreur lors de l'initialisation du post login: ${error.message}`);
-            } 
+            }
         }
         
         prepareDb();
-        }, []);
+    }, []);
     
-
     const [githubAccount, setGithubAccount] = useState<GitAccount | null>(
         data.githubLinked === true ? { username: "johndoe", avatar: "", email: "john@github.com", repos: 42 } : null,
     )
