@@ -26,4 +26,5 @@ export async function handlePostLogin(headers: Headers) {
   else {
     console.log(`UserData already exists for user ${user.id}`);
     return false;
+  }
 }
