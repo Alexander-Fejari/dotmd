@@ -45,6 +45,16 @@ export function SignupStep({ data, onUpdateAction, onNextAction, isLoading, setI
         setIsLoadingAction(true)
         try {
             onUpdateAction({ email: values.email, password: values.password, provider: undefined })
+            
+            const exists = await fetch(`/api/auth/check-existing-user?email=${encodeURIComponent(values.email)}`);
+            const data = await exists.json();
+
+            console.log("User exists:", data);
+
+            if (data.data.exists === true) {
+                alert("Un compte existe déjà avec cette adresse email. Veuillez vous connecter."); // A d'office changer haha
+                return ;
+            }
             await signUpEmailPassword(values.email, values.password, values.displayName, "", `/auth/signup?step=3`); // A changer
             onNextAction();
         } catch (error) {
