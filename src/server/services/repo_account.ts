@@ -1,5 +1,5 @@
-import prisma from "@/lib/server/db/prisma";
-import { auth } from "@/lib/server/auth/auth";
+import prisma from "@/server/db/prisma";
+import { auth } from "@/server/auth/auth";
 import { headers } from "next/headers";
 
 // Liste les comptes GitHub liés à un utilisateur.

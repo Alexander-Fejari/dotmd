@@ -57,13 +57,19 @@ export function GitProviderStep({
                 const res = await fetch("/api/auth/post-signup", {
                     method: "POST"
                 });
-                if (!res.ok) {
-                    throw new Error(`Erreur lors de l'initialisation du post login: ${res.statusText}`);
+                if (res.status === 401) {
+                    throw new Error(`Erreur lors de l'initialisation du post login: ${res.statusText}`); // À voir comment gérer les erreurs en front
+                }
+                // else if (res.status === 409) {
+                //     console.warn(`UserData already exists, skipping creation.`); // À voir comment gérer les erreurs en front
+                // }
+                else if (!res.ok) {
+                    throw new Error(`Erreur lors de l'initialisation du post login: ${res.statusText}`); // À voir comment gérer les erreurs en front
                 }
             }
             catch (error) {
                 console.error("Erreur init Git step:", error)
-                throw new Error(`Erreur lors de l'initialisation du post login: ${error.message}`);
+                throw new Error(`Erreur lors de l'initialisation du post login: ${ error.message }`);
             }
         }
         

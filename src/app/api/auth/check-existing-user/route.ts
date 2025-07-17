@@ -1,22 +1,13 @@
 import { NextRequest } from "next/server";
-import prisma from "@/lib/server/db/prisma";
+import { checkUserExists } from "@/server/services/user/check_existing_user";
 
 export async function GET(req: NextRequest) {
-  const email = req.nextUrl.searchParams.get(`email`);
-  
-  if (!email) {
-    return new Response(`Email is required`, { status: 400 });
-  }
-
   try {
-    const user = await prisma.user.findUnique({
-      where: { email },
-      select: { id: true }
-    });
-
-    const exists = !!user;
-
-    return Response.json({ data: { exists }, status: 200 });
+   const res = await checkUserExists(req);
+   if (res.emailExists || res.displayNameExists) {
+     return Response.json(res, { status: 404 });
+  }
+   return Response.json(res, { status: 200 }); // Return 404 if user exists, 200 if not
   }
   catch (error) {
     console.error(`Error checking existing user:`, error);

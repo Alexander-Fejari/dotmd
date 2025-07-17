@@ -1,22 +1,12 @@
-import { auth } from "@/lib/server/auth/auth";
-import { handlePostLogin } from "@/lib/server/auth/post_signup";
-import { headers } from "next/headers";
+import { handlePostLogin } from "@/server/auth/post_signup";
 
 export async function POST(req: Request) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session) {
-    return new Response(`Non autorisé`, { status: 401 });
-  }
-
-  //console.log(`Post signup request received. Session:`, session);
-
   try {
-    if (session)
-      await handlePostLogin(session.user);
-    return new Response(`OK`, { status: 200 });
+    const result = await handlePostLogin(req.headers);
+    if (result) {
+      return new Response(`UserData created successfully`, { status: 201 });
+    }
+    return new Response(`UserData already exists`, { status: 409 });
   } 
   catch (error) {
     console.error(`Post login error:`, error);

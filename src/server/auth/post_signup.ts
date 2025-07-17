@@ -1,7 +1,10 @@
-import prisma from "@/lib/server/db/prisma";
+import prisma from "@/server/db/prisma";
+import { requireSession } from "@/server/utils/require_session";
 
-export async function handlePostLogin(user: any) {
-
+export async function handlePostLogin(headers: Headers) {
+  const session = await requireSession(headers);
+  const user = session.user;
+  
   const userData = await prisma.userData.findUnique({
     where: { userId: user.id },
   });
@@ -18,8 +21,9 @@ export async function handlePostLogin(user: any) {
     });
 
     console.log(`Created userData for user : ${user.name}, id : ${user.id}, email : ${user.email}`);
+    return true;
   } 
   else {
     console.log(`UserData already exists for user ${user.id}`);
-  }
+    return false;
 }
