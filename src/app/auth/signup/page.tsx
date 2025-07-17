@@ -13,6 +13,7 @@ export type SignupData = {
     // Étape 1 - Inscription
     email?: string
     password?: string
+    displayName?: string
     provider?: "github" | "gitlab" | "google" | "discord"
 
     // Étape 2 - Email (skip si provider)

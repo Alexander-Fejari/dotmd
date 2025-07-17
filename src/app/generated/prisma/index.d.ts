@@ -34,10 +34,15 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
  */
 export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
 /**
- * Model repoAccount
+ * Model UserData
  * 
  */
-export type repoAccount = $Result.DefaultSelection<Prisma.$repoAccountPayload>
+export type UserData = $Result.DefaultSelection<Prisma.$UserDataPayload>
+/**
+ * Model RepoAccount
+ * 
+ */
+export type RepoAccount = $Result.DefaultSelection<Prisma.$RepoAccountPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -205,14 +210,24 @@ export class PrismaClient<
   get verification(): Prisma.VerificationDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.repoAccount`: Exposes CRUD operations for the **repoAccount** model.
+   * `prisma.userData`: Exposes CRUD operations for the **UserData** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserData
+    * const userData = await prisma.userData.findMany()
+    * ```
+    */
+  get userData(): Prisma.UserDataDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.repoAccount`: Exposes CRUD operations for the **RepoAccount** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more RepoAccounts
     * const repoAccounts = await prisma.repoAccount.findMany()
     * ```
     */
-  get repoAccount(): Prisma.repoAccountDelegate<ExtArgs, ClientOptions>;
+  get repoAccount(): Prisma.RepoAccountDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +672,8 @@ export namespace Prisma {
     Session: 'Session',
     Account: 'Account',
     Verification: 'Verification',
-    repoAccount: 'repoAccount'
+    UserData: 'UserData',
+    RepoAccount: 'RepoAccount'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "repoAccount"
+      modelProps: "user" | "session" | "account" | "verification" | "userData" | "repoAccount"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -976,76 +992,150 @@ export namespace Prisma {
           }
         }
       }
-      repoAccount: {
-        payload: Prisma.$repoAccountPayload<ExtArgs>
-        fields: Prisma.repoAccountFieldRefs
+      UserData: {
+        payload: Prisma.$UserDataPayload<ExtArgs>
+        fields: Prisma.UserDataFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.repoAccountFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload> | null
+            args: Prisma.UserDataFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.repoAccountFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload>
+            args: Prisma.UserDataFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload>
           }
           findFirst: {
-            args: Prisma.repoAccountFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload> | null
+            args: Prisma.UserDataFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.repoAccountFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload>
+            args: Prisma.UserDataFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload>
           }
           findMany: {
-            args: Prisma.repoAccountFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload>[]
+            args: Prisma.UserDataFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload>[]
           }
           create: {
-            args: Prisma.repoAccountCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload>
+            args: Prisma.UserDataCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload>
           }
           createMany: {
-            args: Prisma.repoAccountCreateManyArgs<ExtArgs>
+            args: Prisma.UserDataCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.repoAccountCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload>[]
+            args: Prisma.UserDataCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload>[]
           }
           delete: {
-            args: Prisma.repoAccountDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload>
+            args: Prisma.UserDataDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload>
           }
           update: {
-            args: Prisma.repoAccountUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload>
+            args: Prisma.UserDataUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload>
           }
           deleteMany: {
-            args: Prisma.repoAccountDeleteManyArgs<ExtArgs>
+            args: Prisma.UserDataDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.repoAccountUpdateManyArgs<ExtArgs>
+            args: Prisma.UserDataUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.repoAccountUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload>[]
+            args: Prisma.UserDataUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload>[]
           }
           upsert: {
-            args: Prisma.repoAccountUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$repoAccountPayload>
+            args: Prisma.UserDataUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDataPayload>
+          }
+          aggregate: {
+            args: Prisma.UserDataAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserData>
+          }
+          groupBy: {
+            args: Prisma.UserDataGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserDataGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserDataCountArgs<ExtArgs>
+            result: $Utils.Optional<UserDataCountAggregateOutputType> | number
+          }
+        }
+      }
+      RepoAccount: {
+        payload: Prisma.$RepoAccountPayload<ExtArgs>
+        fields: Prisma.RepoAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RepoAccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RepoAccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.RepoAccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RepoAccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload>
+          }
+          findMany: {
+            args: Prisma.RepoAccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload>[]
+          }
+          create: {
+            args: Prisma.RepoAccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload>
+          }
+          createMany: {
+            args: Prisma.RepoAccountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RepoAccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload>[]
+          }
+          delete: {
+            args: Prisma.RepoAccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload>
+          }
+          update: {
+            args: Prisma.RepoAccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.RepoAccountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RepoAccountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RepoAccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload>[]
+          }
+          upsert: {
+            args: Prisma.RepoAccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepoAccountPayload>
           }
           aggregate: {
             args: Prisma.RepoAccountAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateRepoAccount>
           }
           groupBy: {
-            args: Prisma.repoAccountGroupByArgs<ExtArgs>
+            args: Prisma.RepoAccountGroupByArgs<ExtArgs>
             result: $Utils.Optional<RepoAccountGroupByOutputType>[]
           }
           count: {
-            args: Prisma.repoAccountCountArgs<ExtArgs>
+            args: Prisma.RepoAccountCountArgs<ExtArgs>
             result: $Utils.Optional<RepoAccountCountAggregateOutputType> | number
           }
         }
@@ -1138,7 +1228,8 @@ export namespace Prisma {
     session?: SessionOmit
     account?: AccountOmit
     verification?: VerificationOmit
-    repoAccount?: repoAccountOmit
+    userData?: UserDataOmit
+    repoAccount?: RepoAccountOmit
   }
 
   /* Types for Logging */
@@ -1227,6 +1318,36 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type UserDataCountOutputType
+   */
+
+  export type UserDataCountOutputType = {
+    repoAccounts: number
+  }
+
+  export type UserDataCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repoAccounts?: boolean | UserDataCountOutputTypeCountRepoAccountsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserDataCountOutputType without action
+   */
+  export type UserDataCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDataCountOutputType
+     */
+    select?: UserDataCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserDataCountOutputType without action
+   */
+  export type UserDataCountOutputTypeCountRepoAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepoAccountWhereInput
+  }
 
 
   /**
@@ -1413,6 +1534,7 @@ export namespace Prisma {
     image?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    UserData?: boolean | User$UserDataArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1446,10 +1568,17 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    UserData?: boolean | User$UserDataArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      UserData: Prisma.$UserDataPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
@@ -1852,6 +1981,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    UserData<T extends User$UserDataArgs<ExtArgs> = {}>(args?: Subset<T, User$UserDataArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1905,6 +2035,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1923,6 +2057,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1940,6 +2078,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1989,6 +2131,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -2037,6 +2183,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -2079,6 +2229,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -2127,6 +2281,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -2194,6 +2352,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -2220,6 +2382,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -2240,6 +2406,25 @@ export namespace Prisma {
   }
 
   /**
+   * User.UserData
+   */
+  export type User$UserDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+    where?: UserDataWhereInput
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2251,6 +2436,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -5396,420 +5585,485 @@ export namespace Prisma {
 
 
   /**
-   * Model repoAccount
+   * Model UserData
    */
 
-  export type AggregateRepoAccount = {
-    _count: RepoAccountCountAggregateOutputType | null
-    _min: RepoAccountMinAggregateOutputType | null
-    _max: RepoAccountMaxAggregateOutputType | null
+  export type AggregateUserData = {
+    _count: UserDataCountAggregateOutputType | null
+    _avg: UserDataAvgAggregateOutputType | null
+    _sum: UserDataSumAggregateOutputType | null
+    _min: UserDataMinAggregateOutputType | null
+    _max: UserDataMaxAggregateOutputType | null
   }
 
-  export type RepoAccountMinAggregateOutputType = {
+  export type UserDataAvgAggregateOutputType = {
+    phoneNumber: number | null
+  }
+
+  export type UserDataSumAggregateOutputType = {
+    phoneNumber: number | null
+  }
+
+  export type UserDataMinAggregateOutputType = {
     id: string | null
-    accountId: string | null
-    providerId: string | null
     userId: string | null
-    accessToken: string | null
-    refreshToken: string | null
-    idToken: string | null
-    accessTokenExpiresAt: Date | null
-    refreshTokenExpiresAt: Date | null
-    scope: string | null
+    isAdmin: boolean | null
+    postLoginHandled: boolean | null
+    email: string | null
+    lastName: string | null
+    firstName: string | null
+    displayName: string | null
+    userBio: string | null
+    birthday: Date | null
+    phoneNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type RepoAccountMaxAggregateOutputType = {
+  export type UserDataMaxAggregateOutputType = {
     id: string | null
-    accountId: string | null
-    providerId: string | null
     userId: string | null
-    accessToken: string | null
-    refreshToken: string | null
-    idToken: string | null
-    accessTokenExpiresAt: Date | null
-    refreshTokenExpiresAt: Date | null
-    scope: string | null
+    isAdmin: boolean | null
+    postLoginHandled: boolean | null
+    email: string | null
+    lastName: string | null
+    firstName: string | null
+    displayName: string | null
+    userBio: string | null
+    birthday: Date | null
+    phoneNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type RepoAccountCountAggregateOutputType = {
+  export type UserDataCountAggregateOutputType = {
     id: number
-    accountId: number
-    providerId: number
     userId: number
-    accessToken: number
-    refreshToken: number
-    idToken: number
-    accessTokenExpiresAt: number
-    refreshTokenExpiresAt: number
-    scope: number
+    isAdmin: number
+    postLoginHandled: number
+    email: number
+    lastName: number
+    firstName: number
+    displayName: number
+    userBio: number
+    birthday: number
+    phoneNumber: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
-  export type RepoAccountMinAggregateInputType = {
+  export type UserDataAvgAggregateInputType = {
+    phoneNumber?: true
+  }
+
+  export type UserDataSumAggregateInputType = {
+    phoneNumber?: true
+  }
+
+  export type UserDataMinAggregateInputType = {
     id?: true
-    accountId?: true
-    providerId?: true
     userId?: true
-    accessToken?: true
-    refreshToken?: true
-    idToken?: true
-    accessTokenExpiresAt?: true
-    refreshTokenExpiresAt?: true
-    scope?: true
+    isAdmin?: true
+    postLoginHandled?: true
+    email?: true
+    lastName?: true
+    firstName?: true
+    displayName?: true
+    userBio?: true
+    birthday?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type RepoAccountMaxAggregateInputType = {
+  export type UserDataMaxAggregateInputType = {
     id?: true
-    accountId?: true
-    providerId?: true
     userId?: true
-    accessToken?: true
-    refreshToken?: true
-    idToken?: true
-    accessTokenExpiresAt?: true
-    refreshTokenExpiresAt?: true
-    scope?: true
+    isAdmin?: true
+    postLoginHandled?: true
+    email?: true
+    lastName?: true
+    firstName?: true
+    displayName?: true
+    userBio?: true
+    birthday?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type RepoAccountCountAggregateInputType = {
+  export type UserDataCountAggregateInputType = {
     id?: true
-    accountId?: true
-    providerId?: true
     userId?: true
-    accessToken?: true
-    refreshToken?: true
-    idToken?: true
-    accessTokenExpiresAt?: true
-    refreshTokenExpiresAt?: true
-    scope?: true
+    isAdmin?: true
+    postLoginHandled?: true
+    email?: true
+    lastName?: true
+    firstName?: true
+    displayName?: true
+    userBio?: true
+    birthday?: true
+    phoneNumber?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
-  export type RepoAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDataAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which repoAccount to aggregate.
+     * Filter which UserData to aggregate.
      */
-    where?: repoAccountWhereInput
+    where?: UserDataWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of repoAccounts to fetch.
+     * Determine the order of UserData to fetch.
      */
-    orderBy?: repoAccountOrderByWithRelationInput | repoAccountOrderByWithRelationInput[]
+    orderBy?: UserDataOrderByWithRelationInput | UserDataOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: repoAccountWhereUniqueInput
+    cursor?: UserDataWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` repoAccounts from the position of the cursor.
+     * Take `±n` UserData from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` repoAccounts.
+     * Skip the first `n` UserData.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned repoAccounts
+     * Count returned UserData
     **/
-    _count?: true | RepoAccountCountAggregateInputType
+    _count?: true | UserDataCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserDataAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserDataSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: RepoAccountMinAggregateInputType
+    _min?: UserDataMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: RepoAccountMaxAggregateInputType
+    _max?: UserDataMaxAggregateInputType
   }
 
-  export type GetRepoAccountAggregateType<T extends RepoAccountAggregateArgs> = {
-        [P in keyof T & keyof AggregateRepoAccount]: P extends '_count' | 'count'
+  export type GetUserDataAggregateType<T extends UserDataAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserData]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateRepoAccount[P]>
-      : GetScalarType<T[P], AggregateRepoAccount[P]>
+        : GetScalarType<T[P], AggregateUserData[P]>
+      : GetScalarType<T[P], AggregateUserData[P]>
   }
 
 
 
 
-  export type repoAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: repoAccountWhereInput
-    orderBy?: repoAccountOrderByWithAggregationInput | repoAccountOrderByWithAggregationInput[]
-    by: RepoAccountScalarFieldEnum[] | RepoAccountScalarFieldEnum
-    having?: repoAccountScalarWhereWithAggregatesInput
+  export type UserDataGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserDataWhereInput
+    orderBy?: UserDataOrderByWithAggregationInput | UserDataOrderByWithAggregationInput[]
+    by: UserDataScalarFieldEnum[] | UserDataScalarFieldEnum
+    having?: UserDataScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: RepoAccountCountAggregateInputType | true
-    _min?: RepoAccountMinAggregateInputType
-    _max?: RepoAccountMaxAggregateInputType
+    _count?: UserDataCountAggregateInputType | true
+    _avg?: UserDataAvgAggregateInputType
+    _sum?: UserDataSumAggregateInputType
+    _min?: UserDataMinAggregateInputType
+    _max?: UserDataMaxAggregateInputType
   }
 
-  export type RepoAccountGroupByOutputType = {
+  export type UserDataGroupByOutputType = {
     id: string
-    accountId: string
-    providerId: string
     userId: string
-    accessToken: string | null
-    refreshToken: string | null
-    idToken: string | null
-    accessTokenExpiresAt: Date | null
-    refreshTokenExpiresAt: Date | null
-    scope: string | null
+    isAdmin: boolean
+    postLoginHandled: boolean
+    email: string | null
+    lastName: string | null
+    firstName: string | null
+    displayName: string | null
+    userBio: string | null
+    birthday: Date | null
+    phoneNumber: number | null
     createdAt: Date
     updatedAt: Date
-    _count: RepoAccountCountAggregateOutputType | null
-    _min: RepoAccountMinAggregateOutputType | null
-    _max: RepoAccountMaxAggregateOutputType | null
+    _count: UserDataCountAggregateOutputType | null
+    _avg: UserDataAvgAggregateOutputType | null
+    _sum: UserDataSumAggregateOutputType | null
+    _min: UserDataMinAggregateOutputType | null
+    _max: UserDataMaxAggregateOutputType | null
   }
 
-  type GetRepoAccountGroupByPayload<T extends repoAccountGroupByArgs> = Prisma.PrismaPromise<
+  type GetUserDataGroupByPayload<T extends UserDataGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<RepoAccountGroupByOutputType, T['by']> &
+      PickEnumerable<UserDataGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof RepoAccountGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof UserDataGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], RepoAccountGroupByOutputType[P]>
-            : GetScalarType<T[P], RepoAccountGroupByOutputType[P]>
+              : GetScalarType<T[P], UserDataGroupByOutputType[P]>
+            : GetScalarType<T[P], UserDataGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type repoAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UserDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    accountId?: boolean
-    providerId?: boolean
     userId?: boolean
-    accessToken?: boolean
-    refreshToken?: boolean
-    idToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
-    scope?: boolean
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    displayName?: boolean
+    userBio?: boolean
+    birthday?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-  }, ExtArgs["result"]["repoAccount"]>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    repoAccounts?: boolean | UserData$repoAccountsArgs<ExtArgs>
+    _count?: boolean | UserDataCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userData"]>
 
-  export type repoAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UserDataSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    accountId?: boolean
-    providerId?: boolean
     userId?: boolean
-    accessToken?: boolean
-    refreshToken?: boolean
-    idToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
-    scope?: boolean
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    displayName?: boolean
+    userBio?: boolean
+    birthday?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-  }, ExtArgs["result"]["repoAccount"]>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userData"]>
 
-  export type repoAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UserDataSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    accountId?: boolean
-    providerId?: boolean
     userId?: boolean
-    accessToken?: boolean
-    refreshToken?: boolean
-    idToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
-    scope?: boolean
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    displayName?: boolean
+    userBio?: boolean
+    birthday?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-  }, ExtArgs["result"]["repoAccount"]>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userData"]>
 
-  export type repoAccountSelectScalar = {
+  export type UserDataSelectScalar = {
     id?: boolean
-    accountId?: boolean
-    providerId?: boolean
     userId?: boolean
-    accessToken?: boolean
-    refreshToken?: boolean
-    idToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
-    scope?: boolean
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    displayName?: boolean
+    userBio?: boolean
+    birthday?: boolean
+    phoneNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type repoAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accountId" | "providerId" | "userId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "createdAt" | "updatedAt", ExtArgs["result"]["repoAccount"]>
+  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "isAdmin" | "postLoginHandled" | "email" | "lastName" | "firstName" | "displayName" | "userBio" | "birthday" | "phoneNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
+  export type UserDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    repoAccounts?: boolean | UserData$repoAccountsArgs<ExtArgs>
+    _count?: boolean | UserDataCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserDataIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserDataIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
-  export type $repoAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "repoAccount"
-    objects: {}
+  export type $UserDataPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserData"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      repoAccounts: Prisma.$RepoAccountPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      accountId: string
-      providerId: string
       userId: string
-      accessToken: string | null
-      refreshToken: string | null
-      idToken: string | null
-      accessTokenExpiresAt: Date | null
-      refreshTokenExpiresAt: Date | null
-      scope: string | null
+      isAdmin: boolean
+      postLoginHandled: boolean
+      email: string | null
+      lastName: string | null
+      firstName: string | null
+      displayName: string | null
+      userBio: string | null
+      birthday: Date | null
+      phoneNumber: number | null
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["repoAccount"]>
+    }, ExtArgs["result"]["userData"]>
     composites: {}
   }
 
-  type repoAccountGetPayload<S extends boolean | null | undefined | repoAccountDefaultArgs> = $Result.GetResult<Prisma.$repoAccountPayload, S>
+  type UserDataGetPayload<S extends boolean | null | undefined | UserDataDefaultArgs> = $Result.GetResult<Prisma.$UserDataPayload, S>
 
-  type repoAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<repoAccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: RepoAccountCountAggregateInputType | true
+  type UserDataCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserDataFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserDataCountAggregateInputType | true
     }
 
-  export interface repoAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['repoAccount'], meta: { name: 'repoAccount' } }
+  export interface UserDataDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserData'], meta: { name: 'UserData' } }
     /**
-     * Find zero or one RepoAccount that matches the filter.
-     * @param {repoAccountFindUniqueArgs} args - Arguments to find a RepoAccount
+     * Find zero or one UserData that matches the filter.
+     * @param {UserDataFindUniqueArgs} args - Arguments to find a UserData
      * @example
-     * // Get one RepoAccount
-     * const repoAccount = await prisma.repoAccount.findUnique({
+     * // Get one UserData
+     * const userData = await prisma.userData.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends repoAccountFindUniqueArgs>(args: SelectSubset<T, repoAccountFindUniqueArgs<ExtArgs>>): Prisma__repoAccountClient<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends UserDataFindUniqueArgs>(args: SelectSubset<T, UserDataFindUniqueArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one RepoAccount that matches the filter or throw an error with `error.code='P2025'`
+     * Find one UserData that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {repoAccountFindUniqueOrThrowArgs} args - Arguments to find a RepoAccount
+     * @param {UserDataFindUniqueOrThrowArgs} args - Arguments to find a UserData
      * @example
-     * // Get one RepoAccount
-     * const repoAccount = await prisma.repoAccount.findUniqueOrThrow({
+     * // Get one UserData
+     * const userData = await prisma.userData.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends repoAccountFindUniqueOrThrowArgs>(args: SelectSubset<T, repoAccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__repoAccountClient<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends UserDataFindUniqueOrThrowArgs>(args: SelectSubset<T, UserDataFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first RepoAccount that matches the filter.
+     * Find the first UserData that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {repoAccountFindFirstArgs} args - Arguments to find a RepoAccount
+     * @param {UserDataFindFirstArgs} args - Arguments to find a UserData
      * @example
-     * // Get one RepoAccount
-     * const repoAccount = await prisma.repoAccount.findFirst({
+     * // Get one UserData
+     * const userData = await prisma.userData.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends repoAccountFindFirstArgs>(args?: SelectSubset<T, repoAccountFindFirstArgs<ExtArgs>>): Prisma__repoAccountClient<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends UserDataFindFirstArgs>(args?: SelectSubset<T, UserDataFindFirstArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first RepoAccount that matches the filter or
+     * Find the first UserData that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {repoAccountFindFirstOrThrowArgs} args - Arguments to find a RepoAccount
+     * @param {UserDataFindFirstOrThrowArgs} args - Arguments to find a UserData
      * @example
-     * // Get one RepoAccount
-     * const repoAccount = await prisma.repoAccount.findFirstOrThrow({
+     * // Get one UserData
+     * const userData = await prisma.userData.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends repoAccountFindFirstOrThrowArgs>(args?: SelectSubset<T, repoAccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__repoAccountClient<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends UserDataFindFirstOrThrowArgs>(args?: SelectSubset<T, UserDataFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more RepoAccounts that matches the filter.
+     * Find zero or more UserData that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {repoAccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {UserDataFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all RepoAccounts
-     * const repoAccounts = await prisma.repoAccount.findMany()
+     * // Get all UserData
+     * const userData = await prisma.userData.findMany()
      * 
-     * // Get first 10 RepoAccounts
-     * const repoAccounts = await prisma.repoAccount.findMany({ take: 10 })
+     * // Get first 10 UserData
+     * const userData = await prisma.userData.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const repoAccountWithIdOnly = await prisma.repoAccount.findMany({ select: { id: true } })
+     * const userDataWithIdOnly = await prisma.userData.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends repoAccountFindManyArgs>(args?: SelectSubset<T, repoAccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends UserDataFindManyArgs>(args?: SelectSubset<T, UserDataFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a RepoAccount.
-     * @param {repoAccountCreateArgs} args - Arguments to create a RepoAccount.
+     * Create a UserData.
+     * @param {UserDataCreateArgs} args - Arguments to create a UserData.
      * @example
-     * // Create one RepoAccount
-     * const RepoAccount = await prisma.repoAccount.create({
+     * // Create one UserData
+     * const UserData = await prisma.userData.create({
      *   data: {
-     *     // ... data to create a RepoAccount
+     *     // ... data to create a UserData
      *   }
      * })
      * 
      */
-    create<T extends repoAccountCreateArgs>(args: SelectSubset<T, repoAccountCreateArgs<ExtArgs>>): Prisma__repoAccountClient<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends UserDataCreateArgs>(args: SelectSubset<T, UserDataCreateArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many RepoAccounts.
-     * @param {repoAccountCreateManyArgs} args - Arguments to create many RepoAccounts.
+     * Create many UserData.
+     * @param {UserDataCreateManyArgs} args - Arguments to create many UserData.
      * @example
-     * // Create many RepoAccounts
-     * const repoAccount = await prisma.repoAccount.createMany({
+     * // Create many UserData
+     * const userData = await prisma.userData.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends repoAccountCreateManyArgs>(args?: SelectSubset<T, repoAccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends UserDataCreateManyArgs>(args?: SelectSubset<T, UserDataCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many RepoAccounts and returns the data saved in the database.
-     * @param {repoAccountCreateManyAndReturnArgs} args - Arguments to create many RepoAccounts.
+     * Create many UserData and returns the data saved in the database.
+     * @param {UserDataCreateManyAndReturnArgs} args - Arguments to create many UserData.
      * @example
-     * // Create many RepoAccounts
-     * const repoAccount = await prisma.repoAccount.createManyAndReturn({
+     * // Create many UserData
+     * const userData = await prisma.userData.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many RepoAccounts and only return the `id`
-     * const repoAccountWithIdOnly = await prisma.repoAccount.createManyAndReturn({
+     * // Create many UserData and only return the `id`
+     * const userDataWithIdOnly = await prisma.userData.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -5819,28 +6073,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends repoAccountCreateManyAndReturnArgs>(args?: SelectSubset<T, repoAccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends UserDataCreateManyAndReturnArgs>(args?: SelectSubset<T, UserDataCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a RepoAccount.
-     * @param {repoAccountDeleteArgs} args - Arguments to delete one RepoAccount.
+     * Delete a UserData.
+     * @param {UserDataDeleteArgs} args - Arguments to delete one UserData.
      * @example
-     * // Delete one RepoAccount
-     * const RepoAccount = await prisma.repoAccount.delete({
+     * // Delete one UserData
+     * const UserData = await prisma.userData.delete({
      *   where: {
-     *     // ... filter to delete one RepoAccount
+     *     // ... filter to delete one UserData
      *   }
      * })
      * 
      */
-    delete<T extends repoAccountDeleteArgs>(args: SelectSubset<T, repoAccountDeleteArgs<ExtArgs>>): Prisma__repoAccountClient<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends UserDataDeleteArgs>(args: SelectSubset<T, UserDataDeleteArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one RepoAccount.
-     * @param {repoAccountUpdateArgs} args - Arguments to update one RepoAccount.
+     * Update one UserData.
+     * @param {UserDataUpdateArgs} args - Arguments to update one UserData.
      * @example
-     * // Update one RepoAccount
-     * const repoAccount = await prisma.repoAccount.update({
+     * // Update one UserData
+     * const userData = await prisma.userData.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5850,30 +6104,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends repoAccountUpdateArgs>(args: SelectSubset<T, repoAccountUpdateArgs<ExtArgs>>): Prisma__repoAccountClient<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends UserDataUpdateArgs>(args: SelectSubset<T, UserDataUpdateArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more RepoAccounts.
-     * @param {repoAccountDeleteManyArgs} args - Arguments to filter RepoAccounts to delete.
+     * Delete zero or more UserData.
+     * @param {UserDataDeleteManyArgs} args - Arguments to filter UserData to delete.
      * @example
-     * // Delete a few RepoAccounts
-     * const { count } = await prisma.repoAccount.deleteMany({
+     * // Delete a few UserData
+     * const { count } = await prisma.userData.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends repoAccountDeleteManyArgs>(args?: SelectSubset<T, repoAccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends UserDataDeleteManyArgs>(args?: SelectSubset<T, UserDataDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more RepoAccounts.
+     * Update zero or more UserData.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {repoAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {UserDataUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many RepoAccounts
-     * const repoAccount = await prisma.repoAccount.updateMany({
+     * // Update many UserData
+     * const userData = await prisma.userData.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5883,14 +6137,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends repoAccountUpdateManyArgs>(args: SelectSubset<T, repoAccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends UserDataUpdateManyArgs>(args: SelectSubset<T, UserDataUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more RepoAccounts and returns the data updated in the database.
-     * @param {repoAccountUpdateManyAndReturnArgs} args - Arguments to update many RepoAccounts.
+     * Update zero or more UserData and returns the data updated in the database.
+     * @param {UserDataUpdateManyAndReturnArgs} args - Arguments to update many UserData.
      * @example
-     * // Update many RepoAccounts
-     * const repoAccount = await prisma.repoAccount.updateManyAndReturn({
+     * // Update many UserData
+     * const userData = await prisma.userData.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5899,8 +6153,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more RepoAccounts and only return the `id`
-     * const repoAccountWithIdOnly = await prisma.repoAccount.updateManyAndReturn({
+     * // Update zero or more UserData and only return the `id`
+     * const userDataWithIdOnly = await prisma.userData.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -5913,56 +6167,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends repoAccountUpdateManyAndReturnArgs>(args: SelectSubset<T, repoAccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends UserDataUpdateManyAndReturnArgs>(args: SelectSubset<T, UserDataUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one RepoAccount.
-     * @param {repoAccountUpsertArgs} args - Arguments to update or create a RepoAccount.
+     * Create or update one UserData.
+     * @param {UserDataUpsertArgs} args - Arguments to update or create a UserData.
      * @example
-     * // Update or create a RepoAccount
-     * const repoAccount = await prisma.repoAccount.upsert({
+     * // Update or create a UserData
+     * const userData = await prisma.userData.upsert({
      *   create: {
-     *     // ... data to create a RepoAccount
+     *     // ... data to create a UserData
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the RepoAccount we want to update
+     *     // ... the filter for the UserData we want to update
      *   }
      * })
      */
-    upsert<T extends repoAccountUpsertArgs>(args: SelectSubset<T, repoAccountUpsertArgs<ExtArgs>>): Prisma__repoAccountClient<$Result.GetResult<Prisma.$repoAccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends UserDataUpsertArgs>(args: SelectSubset<T, UserDataUpsertArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of RepoAccounts.
+     * Count the number of UserData.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {repoAccountCountArgs} args - Arguments to filter RepoAccounts to count.
+     * @param {UserDataCountArgs} args - Arguments to filter UserData to count.
      * @example
-     * // Count the number of RepoAccounts
-     * const count = await prisma.repoAccount.count({
+     * // Count the number of UserData
+     * const count = await prisma.userData.count({
      *   where: {
-     *     // ... the filter for the RepoAccounts we want to count
+     *     // ... the filter for the UserData we want to count
      *   }
      * })
     **/
-    count<T extends repoAccountCountArgs>(
-      args?: Subset<T, repoAccountCountArgs>,
+    count<T extends UserDataCountArgs>(
+      args?: Subset<T, UserDataCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], RepoAccountCountAggregateOutputType>
+          : GetScalarType<T['select'], UserDataCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a RepoAccount.
+     * Allows you to perform aggregations operations on a UserData.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RepoAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {UserDataAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -5982,13 +6236,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends RepoAccountAggregateArgs>(args: Subset<T, RepoAccountAggregateArgs>): Prisma.PrismaPromise<GetRepoAccountAggregateType<T>>
+    aggregate<T extends UserDataAggregateArgs>(args: Subset<T, UserDataAggregateArgs>): Prisma.PrismaPromise<GetUserDataAggregateType<T>>
 
     /**
-     * Group by RepoAccount.
+     * Group by UserData.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {repoAccountGroupByArgs} args - Group by arguments.
+     * @param {UserDataGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -6003,14 +6257,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends repoAccountGroupByArgs,
+      T extends UserDataGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: repoAccountGroupByArgs['orderBy'] }
-        : { orderBy?: repoAccountGroupByArgs['orderBy'] },
+        ? { orderBy: UserDataGroupByArgs['orderBy'] }
+        : { orderBy?: UserDataGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -6059,21 +6313,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, repoAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRepoAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, UserDataGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserDataGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the repoAccount model
+   * Fields of the UserData model
    */
-  readonly fields: repoAccountFieldRefs;
+  readonly fields: UserDataFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for repoAccount.
+   * The delegate class that acts as a "Promise-like" for UserData.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__repoAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__UserDataClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    repoAccounts<T extends UserData$repoAccountsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$repoAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6100,384 +6356,1606 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the repoAccount model
+   * Fields of the UserData model
    */
-  interface repoAccountFieldRefs {
-    readonly id: FieldRef<"repoAccount", 'String'>
-    readonly accountId: FieldRef<"repoAccount", 'String'>
-    readonly providerId: FieldRef<"repoAccount", 'String'>
-    readonly userId: FieldRef<"repoAccount", 'String'>
-    readonly accessToken: FieldRef<"repoAccount", 'String'>
-    readonly refreshToken: FieldRef<"repoAccount", 'String'>
-    readonly idToken: FieldRef<"repoAccount", 'String'>
-    readonly accessTokenExpiresAt: FieldRef<"repoAccount", 'DateTime'>
-    readonly refreshTokenExpiresAt: FieldRef<"repoAccount", 'DateTime'>
-    readonly scope: FieldRef<"repoAccount", 'String'>
-    readonly createdAt: FieldRef<"repoAccount", 'DateTime'>
-    readonly updatedAt: FieldRef<"repoAccount", 'DateTime'>
+  interface UserDataFieldRefs {
+    readonly id: FieldRef<"UserData", 'String'>
+    readonly userId: FieldRef<"UserData", 'String'>
+    readonly isAdmin: FieldRef<"UserData", 'Boolean'>
+    readonly postLoginHandled: FieldRef<"UserData", 'Boolean'>
+    readonly email: FieldRef<"UserData", 'String'>
+    readonly lastName: FieldRef<"UserData", 'String'>
+    readonly firstName: FieldRef<"UserData", 'String'>
+    readonly displayName: FieldRef<"UserData", 'String'>
+    readonly userBio: FieldRef<"UserData", 'String'>
+    readonly birthday: FieldRef<"UserData", 'DateTime'>
+    readonly phoneNumber: FieldRef<"UserData", 'Int'>
+    readonly createdAt: FieldRef<"UserData", 'DateTime'>
+    readonly updatedAt: FieldRef<"UserData", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * repoAccount findUnique
+   * UserData findUnique
    */
-  export type repoAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDataFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the UserData
      */
-    select?: repoAccountSelect<ExtArgs> | null
+    select?: UserDataSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the UserData
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: UserDataOmit<ExtArgs> | null
     /**
-     * Filter, which repoAccount to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: repoAccountWhereUniqueInput
+    include?: UserDataInclude<ExtArgs> | null
+    /**
+     * Filter, which UserData to fetch.
+     */
+    where: UserDataWhereUniqueInput
   }
 
   /**
-   * repoAccount findUniqueOrThrow
+   * UserData findUniqueOrThrow
    */
-  export type repoAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDataFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the UserData
      */
-    select?: repoAccountSelect<ExtArgs> | null
+    select?: UserDataSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the UserData
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: UserDataOmit<ExtArgs> | null
     /**
-     * Filter, which repoAccount to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: repoAccountWhereUniqueInput
+    include?: UserDataInclude<ExtArgs> | null
+    /**
+     * Filter, which UserData to fetch.
+     */
+    where: UserDataWhereUniqueInput
   }
 
   /**
-   * repoAccount findFirst
+   * UserData findFirst
    */
-  export type repoAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDataFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the UserData
      */
-    select?: repoAccountSelect<ExtArgs> | null
+    select?: UserDataSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the UserData
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: UserDataOmit<ExtArgs> | null
     /**
-     * Filter, which repoAccount to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: repoAccountWhereInput
+    include?: UserDataInclude<ExtArgs> | null
+    /**
+     * Filter, which UserData to fetch.
+     */
+    where?: UserDataWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of repoAccounts to fetch.
+     * Determine the order of UserData to fetch.
      */
-    orderBy?: repoAccountOrderByWithRelationInput | repoAccountOrderByWithRelationInput[]
+    orderBy?: UserDataOrderByWithRelationInput | UserDataOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for repoAccounts.
+     * Sets the position for searching for UserData.
      */
-    cursor?: repoAccountWhereUniqueInput
+    cursor?: UserDataWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` repoAccounts from the position of the cursor.
+     * Take `±n` UserData from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` repoAccounts.
+     * Skip the first `n` UserData.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of repoAccounts.
+     * Filter by unique combinations of UserData.
      */
-    distinct?: RepoAccountScalarFieldEnum | RepoAccountScalarFieldEnum[]
+    distinct?: UserDataScalarFieldEnum | UserDataScalarFieldEnum[]
   }
 
   /**
-   * repoAccount findFirstOrThrow
+   * UserData findFirstOrThrow
    */
-  export type repoAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDataFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the UserData
      */
-    select?: repoAccountSelect<ExtArgs> | null
+    select?: UserDataSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the UserData
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: UserDataOmit<ExtArgs> | null
     /**
-     * Filter, which repoAccount to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: repoAccountWhereInput
+    include?: UserDataInclude<ExtArgs> | null
+    /**
+     * Filter, which UserData to fetch.
+     */
+    where?: UserDataWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of repoAccounts to fetch.
+     * Determine the order of UserData to fetch.
      */
-    orderBy?: repoAccountOrderByWithRelationInput | repoAccountOrderByWithRelationInput[]
+    orderBy?: UserDataOrderByWithRelationInput | UserDataOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for repoAccounts.
+     * Sets the position for searching for UserData.
      */
-    cursor?: repoAccountWhereUniqueInput
+    cursor?: UserDataWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` repoAccounts from the position of the cursor.
+     * Take `±n` UserData from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` repoAccounts.
+     * Skip the first `n` UserData.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of repoAccounts.
+     * Filter by unique combinations of UserData.
      */
-    distinct?: RepoAccountScalarFieldEnum | RepoAccountScalarFieldEnum[]
+    distinct?: UserDataScalarFieldEnum | UserDataScalarFieldEnum[]
   }
 
   /**
-   * repoAccount findMany
+   * UserData findMany
    */
-  export type repoAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDataFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the UserData
      */
-    select?: repoAccountSelect<ExtArgs> | null
+    select?: UserDataSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the UserData
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: UserDataOmit<ExtArgs> | null
     /**
-     * Filter, which repoAccounts to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: repoAccountWhereInput
+    include?: UserDataInclude<ExtArgs> | null
+    /**
+     * Filter, which UserData to fetch.
+     */
+    where?: UserDataWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of repoAccounts to fetch.
+     * Determine the order of UserData to fetch.
      */
-    orderBy?: repoAccountOrderByWithRelationInput | repoAccountOrderByWithRelationInput[]
+    orderBy?: UserDataOrderByWithRelationInput | UserDataOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing repoAccounts.
+     * Sets the position for listing UserData.
      */
-    cursor?: repoAccountWhereUniqueInput
+    cursor?: UserDataWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` repoAccounts from the position of the cursor.
+     * Take `±n` UserData from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` repoAccounts.
+     * Skip the first `n` UserData.
+     */
+    skip?: number
+    distinct?: UserDataScalarFieldEnum | UserDataScalarFieldEnum[]
+  }
+
+  /**
+   * UserData create
+   */
+  export type UserDataCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserData.
+     */
+    data: XOR<UserDataCreateInput, UserDataUncheckedCreateInput>
+  }
+
+  /**
+   * UserData createMany
+   */
+  export type UserDataCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserData.
+     */
+    data: UserDataCreateManyInput | UserDataCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserData createManyAndReturn
+   */
+  export type UserDataCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserData.
+     */
+    data: UserDataCreateManyInput | UserDataCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserData update
+   */
+  export type UserDataUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserData.
+     */
+    data: XOR<UserDataUpdateInput, UserDataUncheckedUpdateInput>
+    /**
+     * Choose, which UserData to update.
+     */
+    where: UserDataWhereUniqueInput
+  }
+
+  /**
+   * UserData updateMany
+   */
+  export type UserDataUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserData.
+     */
+    data: XOR<UserDataUpdateManyMutationInput, UserDataUncheckedUpdateManyInput>
+    /**
+     * Filter which UserData to update
+     */
+    where?: UserDataWhereInput
+    /**
+     * Limit how many UserData to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserData updateManyAndReturn
+   */
+  export type UserDataUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * The data used to update UserData.
+     */
+    data: XOR<UserDataUpdateManyMutationInput, UserDataUncheckedUpdateManyInput>
+    /**
+     * Filter which UserData to update
+     */
+    where?: UserDataWhereInput
+    /**
+     * Limit how many UserData to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserData upsert
+   */
+  export type UserDataUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserData to update in case it exists.
+     */
+    where: UserDataWhereUniqueInput
+    /**
+     * In case the UserData found by the `where` argument doesn't exist, create a new UserData with this data.
+     */
+    create: XOR<UserDataCreateInput, UserDataUncheckedCreateInput>
+    /**
+     * In case the UserData was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserDataUpdateInput, UserDataUncheckedUpdateInput>
+  }
+
+  /**
+   * UserData delete
+   */
+  export type UserDataDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+    /**
+     * Filter which UserData to delete.
+     */
+    where: UserDataWhereUniqueInput
+  }
+
+  /**
+   * UserData deleteMany
+   */
+  export type UserDataDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserData to delete
+     */
+    where?: UserDataWhereInput
+    /**
+     * Limit how many UserData to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserData.repoAccounts
+   */
+  export type UserData$repoAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepoAccount
+     */
+    select?: RepoAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepoAccount
+     */
+    omit?: RepoAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountInclude<ExtArgs> | null
+    where?: RepoAccountWhereInput
+    orderBy?: RepoAccountOrderByWithRelationInput | RepoAccountOrderByWithRelationInput[]
+    cursor?: RepoAccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepoAccountScalarFieldEnum | RepoAccountScalarFieldEnum[]
+  }
+
+  /**
+   * UserData without action
+   */
+  export type UserDataDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RepoAccount
+   */
+
+  export type AggregateRepoAccount = {
+    _count: RepoAccountCountAggregateOutputType | null
+    _min: RepoAccountMinAggregateOutputType | null
+    _max: RepoAccountMaxAggregateOutputType | null
+  }
+
+  export type RepoAccountMinAggregateOutputType = {
+    id: string | null
+    accountId: string | null
+    providerId: string | null
+    userDataId: string | null
+    accessToken: string | null
+    refreshToken: string | null
+    idToken: string | null
+    accessTokenExpiresAt: Date | null
+    refreshTokenExpiresAt: Date | null
+    scope: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RepoAccountMaxAggregateOutputType = {
+    id: string | null
+    accountId: string | null
+    providerId: string | null
+    userDataId: string | null
+    accessToken: string | null
+    refreshToken: string | null
+    idToken: string | null
+    accessTokenExpiresAt: Date | null
+    refreshTokenExpiresAt: Date | null
+    scope: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RepoAccountCountAggregateOutputType = {
+    id: number
+    accountId: number
+    providerId: number
+    userDataId: number
+    accessToken: number
+    refreshToken: number
+    idToken: number
+    accessTokenExpiresAt: number
+    refreshTokenExpiresAt: number
+    scope: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RepoAccountMinAggregateInputType = {
+    id?: true
+    accountId?: true
+    providerId?: true
+    userDataId?: true
+    accessToken?: true
+    refreshToken?: true
+    idToken?: true
+    accessTokenExpiresAt?: true
+    refreshTokenExpiresAt?: true
+    scope?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RepoAccountMaxAggregateInputType = {
+    id?: true
+    accountId?: true
+    providerId?: true
+    userDataId?: true
+    accessToken?: true
+    refreshToken?: true
+    idToken?: true
+    accessTokenExpiresAt?: true
+    refreshTokenExpiresAt?: true
+    scope?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RepoAccountCountAggregateInputType = {
+    id?: true
+    accountId?: true
+    providerId?: true
+    userDataId?: true
+    accessToken?: true
+    refreshToken?: true
+    idToken?: true
+    accessTokenExpiresAt?: true
+    refreshTokenExpiresAt?: true
+    scope?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RepoAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepoAccount to aggregate.
+     */
+    where?: RepoAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepoAccounts to fetch.
+     */
+    orderBy?: RepoAccountOrderByWithRelationInput | RepoAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RepoAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepoAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepoAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RepoAccounts
+    **/
+    _count?: true | RepoAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RepoAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RepoAccountMaxAggregateInputType
+  }
+
+  export type GetRepoAccountAggregateType<T extends RepoAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateRepoAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRepoAccount[P]>
+      : GetScalarType<T[P], AggregateRepoAccount[P]>
+  }
+
+
+
+
+  export type RepoAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepoAccountWhereInput
+    orderBy?: RepoAccountOrderByWithAggregationInput | RepoAccountOrderByWithAggregationInput[]
+    by: RepoAccountScalarFieldEnum[] | RepoAccountScalarFieldEnum
+    having?: RepoAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RepoAccountCountAggregateInputType | true
+    _min?: RepoAccountMinAggregateInputType
+    _max?: RepoAccountMaxAggregateInputType
+  }
+
+  export type RepoAccountGroupByOutputType = {
+    id: string
+    accountId: string
+    providerId: string | null
+    userDataId: string
+    accessToken: string | null
+    refreshToken: string | null
+    idToken: string | null
+    accessTokenExpiresAt: Date | null
+    refreshTokenExpiresAt: Date | null
+    scope: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: RepoAccountCountAggregateOutputType | null
+    _min: RepoAccountMinAggregateOutputType | null
+    _max: RepoAccountMaxAggregateOutputType | null
+  }
+
+  type GetRepoAccountGroupByPayload<T extends RepoAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RepoAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RepoAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RepoAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], RepoAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RepoAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accountId?: boolean
+    providerId?: boolean
+    userDataId?: boolean
+    accessToken?: boolean
+    refreshToken?: boolean
+    idToken?: boolean
+    accessTokenExpiresAt?: boolean
+    refreshTokenExpiresAt?: boolean
+    scope?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userData?: boolean | UserDataDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repoAccount"]>
+
+  export type RepoAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accountId?: boolean
+    providerId?: boolean
+    userDataId?: boolean
+    accessToken?: boolean
+    refreshToken?: boolean
+    idToken?: boolean
+    accessTokenExpiresAt?: boolean
+    refreshTokenExpiresAt?: boolean
+    scope?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userData?: boolean | UserDataDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repoAccount"]>
+
+  export type RepoAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accountId?: boolean
+    providerId?: boolean
+    userDataId?: boolean
+    accessToken?: boolean
+    refreshToken?: boolean
+    idToken?: boolean
+    accessTokenExpiresAt?: boolean
+    refreshTokenExpiresAt?: boolean
+    scope?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userData?: boolean | UserDataDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repoAccount"]>
+
+  export type RepoAccountSelectScalar = {
+    id?: boolean
+    accountId?: boolean
+    providerId?: boolean
+    userDataId?: boolean
+    accessToken?: boolean
+    refreshToken?: boolean
+    idToken?: boolean
+    accessTokenExpiresAt?: boolean
+    refreshTokenExpiresAt?: boolean
+    scope?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RepoAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accountId" | "providerId" | "userDataId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "createdAt" | "updatedAt", ExtArgs["result"]["repoAccount"]>
+  export type RepoAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    userData?: boolean | UserDataDefaultArgs<ExtArgs>
+  }
+  export type RepoAccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    userData?: boolean | UserDataDefaultArgs<ExtArgs>
+  }
+  export type RepoAccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    userData?: boolean | UserDataDefaultArgs<ExtArgs>
+  }
+
+  export type $RepoAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RepoAccount"
+    objects: {
+      userData: Prisma.$UserDataPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      accountId: string
+      providerId: string | null
+      userDataId: string
+      accessToken: string | null
+      refreshToken: string | null
+      idToken: string | null
+      accessTokenExpiresAt: Date | null
+      refreshTokenExpiresAt: Date | null
+      scope: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["repoAccount"]>
+    composites: {}
+  }
+
+  type RepoAccountGetPayload<S extends boolean | null | undefined | RepoAccountDefaultArgs> = $Result.GetResult<Prisma.$RepoAccountPayload, S>
+
+  type RepoAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RepoAccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RepoAccountCountAggregateInputType | true
+    }
+
+  export interface RepoAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RepoAccount'], meta: { name: 'RepoAccount' } }
+    /**
+     * Find zero or one RepoAccount that matches the filter.
+     * @param {RepoAccountFindUniqueArgs} args - Arguments to find a RepoAccount
+     * @example
+     * // Get one RepoAccount
+     * const repoAccount = await prisma.repoAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RepoAccountFindUniqueArgs>(args: SelectSubset<T, RepoAccountFindUniqueArgs<ExtArgs>>): Prisma__RepoAccountClient<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RepoAccount that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RepoAccountFindUniqueOrThrowArgs} args - Arguments to find a RepoAccount
+     * @example
+     * // Get one RepoAccount
+     * const repoAccount = await prisma.repoAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RepoAccountFindUniqueOrThrowArgs>(args: SelectSubset<T, RepoAccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RepoAccountClient<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepoAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepoAccountFindFirstArgs} args - Arguments to find a RepoAccount
+     * @example
+     * // Get one RepoAccount
+     * const repoAccount = await prisma.repoAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RepoAccountFindFirstArgs>(args?: SelectSubset<T, RepoAccountFindFirstArgs<ExtArgs>>): Prisma__RepoAccountClient<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepoAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepoAccountFindFirstOrThrowArgs} args - Arguments to find a RepoAccount
+     * @example
+     * // Get one RepoAccount
+     * const repoAccount = await prisma.repoAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RepoAccountFindFirstOrThrowArgs>(args?: SelectSubset<T, RepoAccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__RepoAccountClient<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepoAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepoAccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RepoAccounts
+     * const repoAccounts = await prisma.repoAccount.findMany()
+     * 
+     * // Get first 10 RepoAccounts
+     * const repoAccounts = await prisma.repoAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const repoAccountWithIdOnly = await prisma.repoAccount.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RepoAccountFindManyArgs>(args?: SelectSubset<T, RepoAccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RepoAccount.
+     * @param {RepoAccountCreateArgs} args - Arguments to create a RepoAccount.
+     * @example
+     * // Create one RepoAccount
+     * const RepoAccount = await prisma.repoAccount.create({
+     *   data: {
+     *     // ... data to create a RepoAccount
+     *   }
+     * })
+     * 
+     */
+    create<T extends RepoAccountCreateArgs>(args: SelectSubset<T, RepoAccountCreateArgs<ExtArgs>>): Prisma__RepoAccountClient<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RepoAccounts.
+     * @param {RepoAccountCreateManyArgs} args - Arguments to create many RepoAccounts.
+     * @example
+     * // Create many RepoAccounts
+     * const repoAccount = await prisma.repoAccount.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RepoAccountCreateManyArgs>(args?: SelectSubset<T, RepoAccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RepoAccounts and returns the data saved in the database.
+     * @param {RepoAccountCreateManyAndReturnArgs} args - Arguments to create many RepoAccounts.
+     * @example
+     * // Create many RepoAccounts
+     * const repoAccount = await prisma.repoAccount.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RepoAccounts and only return the `id`
+     * const repoAccountWithIdOnly = await prisma.repoAccount.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RepoAccountCreateManyAndReturnArgs>(args?: SelectSubset<T, RepoAccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RepoAccount.
+     * @param {RepoAccountDeleteArgs} args - Arguments to delete one RepoAccount.
+     * @example
+     * // Delete one RepoAccount
+     * const RepoAccount = await prisma.repoAccount.delete({
+     *   where: {
+     *     // ... filter to delete one RepoAccount
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RepoAccountDeleteArgs>(args: SelectSubset<T, RepoAccountDeleteArgs<ExtArgs>>): Prisma__RepoAccountClient<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RepoAccount.
+     * @param {RepoAccountUpdateArgs} args - Arguments to update one RepoAccount.
+     * @example
+     * // Update one RepoAccount
+     * const repoAccount = await prisma.repoAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RepoAccountUpdateArgs>(args: SelectSubset<T, RepoAccountUpdateArgs<ExtArgs>>): Prisma__RepoAccountClient<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RepoAccounts.
+     * @param {RepoAccountDeleteManyArgs} args - Arguments to filter RepoAccounts to delete.
+     * @example
+     * // Delete a few RepoAccounts
+     * const { count } = await prisma.repoAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RepoAccountDeleteManyArgs>(args?: SelectSubset<T, RepoAccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepoAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepoAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RepoAccounts
+     * const repoAccount = await prisma.repoAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RepoAccountUpdateManyArgs>(args: SelectSubset<T, RepoAccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepoAccounts and returns the data updated in the database.
+     * @param {RepoAccountUpdateManyAndReturnArgs} args - Arguments to update many RepoAccounts.
+     * @example
+     * // Update many RepoAccounts
+     * const repoAccount = await prisma.repoAccount.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RepoAccounts and only return the `id`
+     * const repoAccountWithIdOnly = await prisma.repoAccount.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RepoAccountUpdateManyAndReturnArgs>(args: SelectSubset<T, RepoAccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RepoAccount.
+     * @param {RepoAccountUpsertArgs} args - Arguments to update or create a RepoAccount.
+     * @example
+     * // Update or create a RepoAccount
+     * const repoAccount = await prisma.repoAccount.upsert({
+     *   create: {
+     *     // ... data to create a RepoAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RepoAccount we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RepoAccountUpsertArgs>(args: SelectSubset<T, RepoAccountUpsertArgs<ExtArgs>>): Prisma__RepoAccountClient<$Result.GetResult<Prisma.$RepoAccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RepoAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepoAccountCountArgs} args - Arguments to filter RepoAccounts to count.
+     * @example
+     * // Count the number of RepoAccounts
+     * const count = await prisma.repoAccount.count({
+     *   where: {
+     *     // ... the filter for the RepoAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends RepoAccountCountArgs>(
+      args?: Subset<T, RepoAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RepoAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RepoAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepoAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RepoAccountAggregateArgs>(args: Subset<T, RepoAccountAggregateArgs>): Prisma.PrismaPromise<GetRepoAccountAggregateType<T>>
+
+    /**
+     * Group by RepoAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepoAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RepoAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RepoAccountGroupByArgs['orderBy'] }
+        : { orderBy?: RepoAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RepoAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRepoAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RepoAccount model
+   */
+  readonly fields: RepoAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RepoAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RepoAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    userData<T extends UserDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDataDefaultArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RepoAccount model
+   */
+  interface RepoAccountFieldRefs {
+    readonly id: FieldRef<"RepoAccount", 'String'>
+    readonly accountId: FieldRef<"RepoAccount", 'String'>
+    readonly providerId: FieldRef<"RepoAccount", 'String'>
+    readonly userDataId: FieldRef<"RepoAccount", 'String'>
+    readonly accessToken: FieldRef<"RepoAccount", 'String'>
+    readonly refreshToken: FieldRef<"RepoAccount", 'String'>
+    readonly idToken: FieldRef<"RepoAccount", 'String'>
+    readonly accessTokenExpiresAt: FieldRef<"RepoAccount", 'DateTime'>
+    readonly refreshTokenExpiresAt: FieldRef<"RepoAccount", 'DateTime'>
+    readonly scope: FieldRef<"RepoAccount", 'String'>
+    readonly createdAt: FieldRef<"RepoAccount", 'DateTime'>
+    readonly updatedAt: FieldRef<"RepoAccount", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RepoAccount findUnique
+   */
+  export type RepoAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepoAccount
+     */
+    select?: RepoAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepoAccount
+     */
+    omit?: RepoAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which RepoAccount to fetch.
+     */
+    where: RepoAccountWhereUniqueInput
+  }
+
+  /**
+   * RepoAccount findUniqueOrThrow
+   */
+  export type RepoAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepoAccount
+     */
+    select?: RepoAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepoAccount
+     */
+    omit?: RepoAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which RepoAccount to fetch.
+     */
+    where: RepoAccountWhereUniqueInput
+  }
+
+  /**
+   * RepoAccount findFirst
+   */
+  export type RepoAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepoAccount
+     */
+    select?: RepoAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepoAccount
+     */
+    omit?: RepoAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which RepoAccount to fetch.
+     */
+    where?: RepoAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepoAccounts to fetch.
+     */
+    orderBy?: RepoAccountOrderByWithRelationInput | RepoAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepoAccounts.
+     */
+    cursor?: RepoAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepoAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepoAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepoAccounts.
+     */
+    distinct?: RepoAccountScalarFieldEnum | RepoAccountScalarFieldEnum[]
+  }
+
+  /**
+   * RepoAccount findFirstOrThrow
+   */
+  export type RepoAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepoAccount
+     */
+    select?: RepoAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepoAccount
+     */
+    omit?: RepoAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which RepoAccount to fetch.
+     */
+    where?: RepoAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepoAccounts to fetch.
+     */
+    orderBy?: RepoAccountOrderByWithRelationInput | RepoAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepoAccounts.
+     */
+    cursor?: RepoAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepoAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepoAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepoAccounts.
+     */
+    distinct?: RepoAccountScalarFieldEnum | RepoAccountScalarFieldEnum[]
+  }
+
+  /**
+   * RepoAccount findMany
+   */
+  export type RepoAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepoAccount
+     */
+    select?: RepoAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepoAccount
+     */
+    omit?: RepoAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which RepoAccounts to fetch.
+     */
+    where?: RepoAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepoAccounts to fetch.
+     */
+    orderBy?: RepoAccountOrderByWithRelationInput | RepoAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RepoAccounts.
+     */
+    cursor?: RepoAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepoAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepoAccounts.
      */
     skip?: number
     distinct?: RepoAccountScalarFieldEnum | RepoAccountScalarFieldEnum[]
   }
 
   /**
-   * repoAccount create
+   * RepoAccount create
    */
-  export type repoAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RepoAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the RepoAccount
      */
-    select?: repoAccountSelect<ExtArgs> | null
+    select?: RepoAccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the RepoAccount
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: RepoAccountOmit<ExtArgs> | null
     /**
-     * The data needed to create a repoAccount.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<repoAccountCreateInput, repoAccountUncheckedCreateInput>
+    include?: RepoAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RepoAccount.
+     */
+    data: XOR<RepoAccountCreateInput, RepoAccountUncheckedCreateInput>
   }
 
   /**
-   * repoAccount createMany
+   * RepoAccount createMany
    */
-  export type repoAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RepoAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many repoAccounts.
+     * The data used to create many RepoAccounts.
      */
-    data: repoAccountCreateManyInput | repoAccountCreateManyInput[]
+    data: RepoAccountCreateManyInput | RepoAccountCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * repoAccount createManyAndReturn
+   * RepoAccount createManyAndReturn
    */
-  export type repoAccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RepoAccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the RepoAccount
      */
-    select?: repoAccountSelectCreateManyAndReturn<ExtArgs> | null
+    select?: RepoAccountSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the RepoAccount
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: RepoAccountOmit<ExtArgs> | null
     /**
-     * The data used to create many repoAccounts.
+     * The data used to create many RepoAccounts.
      */
-    data: repoAccountCreateManyInput | repoAccountCreateManyInput[]
+    data: RepoAccountCreateManyInput | RepoAccountCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * repoAccount update
+   * RepoAccount update
    */
-  export type repoAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RepoAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the RepoAccount
      */
-    select?: repoAccountSelect<ExtArgs> | null
+    select?: RepoAccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the RepoAccount
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: RepoAccountOmit<ExtArgs> | null
     /**
-     * The data needed to update a repoAccount.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<repoAccountUpdateInput, repoAccountUncheckedUpdateInput>
+    include?: RepoAccountInclude<ExtArgs> | null
     /**
-     * Choose, which repoAccount to update.
+     * The data needed to update a RepoAccount.
      */
-    where: repoAccountWhereUniqueInput
+    data: XOR<RepoAccountUpdateInput, RepoAccountUncheckedUpdateInput>
+    /**
+     * Choose, which RepoAccount to update.
+     */
+    where: RepoAccountWhereUniqueInput
   }
 
   /**
-   * repoAccount updateMany
+   * RepoAccount updateMany
    */
-  export type repoAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RepoAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update repoAccounts.
+     * The data used to update RepoAccounts.
      */
-    data: XOR<repoAccountUpdateManyMutationInput, repoAccountUncheckedUpdateManyInput>
+    data: XOR<RepoAccountUpdateManyMutationInput, RepoAccountUncheckedUpdateManyInput>
     /**
-     * Filter which repoAccounts to update
+     * Filter which RepoAccounts to update
      */
-    where?: repoAccountWhereInput
+    where?: RepoAccountWhereInput
     /**
-     * Limit how many repoAccounts to update.
+     * Limit how many RepoAccounts to update.
      */
     limit?: number
   }
 
   /**
-   * repoAccount updateManyAndReturn
+   * RepoAccount updateManyAndReturn
    */
-  export type repoAccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RepoAccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the RepoAccount
      */
-    select?: repoAccountSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: RepoAccountSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the RepoAccount
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: RepoAccountOmit<ExtArgs> | null
     /**
-     * The data used to update repoAccounts.
+     * The data used to update RepoAccounts.
      */
-    data: XOR<repoAccountUpdateManyMutationInput, repoAccountUncheckedUpdateManyInput>
+    data: XOR<RepoAccountUpdateManyMutationInput, RepoAccountUncheckedUpdateManyInput>
     /**
-     * Filter which repoAccounts to update
+     * Filter which RepoAccounts to update
      */
-    where?: repoAccountWhereInput
+    where?: RepoAccountWhereInput
     /**
-     * Limit how many repoAccounts to update.
+     * Limit how many RepoAccounts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RepoAccount upsert
+   */
+  export type RepoAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepoAccount
+     */
+    select?: RepoAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepoAccount
+     */
+    omit?: RepoAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RepoAccount to update in case it exists.
+     */
+    where: RepoAccountWhereUniqueInput
+    /**
+     * In case the RepoAccount found by the `where` argument doesn't exist, create a new RepoAccount with this data.
+     */
+    create: XOR<RepoAccountCreateInput, RepoAccountUncheckedCreateInput>
+    /**
+     * In case the RepoAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RepoAccountUpdateInput, RepoAccountUncheckedUpdateInput>
+  }
+
+  /**
+   * RepoAccount delete
+   */
+  export type RepoAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepoAccount
+     */
+    select?: RepoAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepoAccount
+     */
+    omit?: RepoAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepoAccountInclude<ExtArgs> | null
+    /**
+     * Filter which RepoAccount to delete.
+     */
+    where: RepoAccountWhereUniqueInput
+  }
+
+  /**
+   * RepoAccount deleteMany
+   */
+  export type RepoAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepoAccounts to delete
+     */
+    where?: RepoAccountWhereInput
+    /**
+     * Limit how many RepoAccounts to delete.
      */
     limit?: number
   }
 
   /**
-   * repoAccount upsert
+   * RepoAccount without action
    */
-  export type repoAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RepoAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the repoAccount
+     * Select specific fields to fetch from the RepoAccount
      */
-    select?: repoAccountSelect<ExtArgs> | null
+    select?: RepoAccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the repoAccount
+     * Omit specific fields from the RepoAccount
      */
-    omit?: repoAccountOmit<ExtArgs> | null
+    omit?: RepoAccountOmit<ExtArgs> | null
     /**
-     * The filter to search for the repoAccount to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: repoAccountWhereUniqueInput
-    /**
-     * In case the repoAccount found by the `where` argument doesn't exist, create a new repoAccount with this data.
-     */
-    create: XOR<repoAccountCreateInput, repoAccountUncheckedCreateInput>
-    /**
-     * In case the repoAccount was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<repoAccountUpdateInput, repoAccountUncheckedUpdateInput>
-  }
-
-  /**
-   * repoAccount delete
-   */
-  export type repoAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the repoAccount
-     */
-    select?: repoAccountSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the repoAccount
-     */
-    omit?: repoAccountOmit<ExtArgs> | null
-    /**
-     * Filter which repoAccount to delete.
-     */
-    where: repoAccountWhereUniqueInput
-  }
-
-  /**
-   * repoAccount deleteMany
-   */
-  export type repoAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which repoAccounts to delete
-     */
-    where?: repoAccountWhereInput
-    /**
-     * Limit how many repoAccounts to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * repoAccount without action
-   */
-  export type repoAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the repoAccount
-     */
-    select?: repoAccountSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the repoAccount
-     */
-    omit?: repoAccountOmit<ExtArgs> | null
+    include?: RepoAccountInclude<ExtArgs> | null
   }
 
 
@@ -6553,11 +8031,30 @@ export namespace Prisma {
   export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
+  export const UserDataScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    isAdmin: 'isAdmin',
+    postLoginHandled: 'postLoginHandled',
+    email: 'email',
+    lastName: 'lastName',
+    firstName: 'firstName',
+    displayName: 'displayName',
+    userBio: 'userBio',
+    birthday: 'birthday',
+    phoneNumber: 'phoneNumber',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserDataScalarFieldEnum = (typeof UserDataScalarFieldEnum)[keyof typeof UserDataScalarFieldEnum]
+
+
   export const RepoAccountScalarFieldEnum: {
     id: 'id',
     accountId: 'accountId',
     providerId: 'providerId',
-    userId: 'userId',
+    userDataId: 'userDataId',
     accessToken: 'accessToken',
     refreshToken: 'refreshToken',
     idToken: 'idToken',
@@ -6647,6 +8144,20 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -6663,6 +8174,7 @@ export namespace Prisma {
     image?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    UserData?: XOR<UserDataNullableScalarRelationFilter, UserDataWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6673,20 +8185,22 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    UserData?: UserDataOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    name?: string
     email?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    name?: StringFilter<"User"> | string
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-  }, "id" | "email">
+    UserData?: XOR<UserDataNullableScalarRelationFilter, UserDataWhereInput> | null
+  }, "id" | "name" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6930,29 +8444,130 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
   }
 
-  export type repoAccountWhereInput = {
-    AND?: repoAccountWhereInput | repoAccountWhereInput[]
-    OR?: repoAccountWhereInput[]
-    NOT?: repoAccountWhereInput | repoAccountWhereInput[]
-    id?: StringFilter<"repoAccount"> | string
-    accountId?: StringFilter<"repoAccount"> | string
-    providerId?: StringFilter<"repoAccount"> | string
-    userId?: StringFilter<"repoAccount"> | string
-    accessToken?: StringNullableFilter<"repoAccount"> | string | null
-    refreshToken?: StringNullableFilter<"repoAccount"> | string | null
-    idToken?: StringNullableFilter<"repoAccount"> | string | null
-    accessTokenExpiresAt?: DateTimeNullableFilter<"repoAccount"> | Date | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"repoAccount"> | Date | string | null
-    scope?: StringNullableFilter<"repoAccount"> | string | null
-    createdAt?: DateTimeFilter<"repoAccount"> | Date | string
-    updatedAt?: DateTimeFilter<"repoAccount"> | Date | string
+  export type UserDataWhereInput = {
+    AND?: UserDataWhereInput | UserDataWhereInput[]
+    OR?: UserDataWhereInput[]
+    NOT?: UserDataWhereInput | UserDataWhereInput[]
+    id?: StringFilter<"UserData"> | string
+    userId?: StringFilter<"UserData"> | string
+    isAdmin?: BoolFilter<"UserData"> | boolean
+    postLoginHandled?: BoolFilter<"UserData"> | boolean
+    email?: StringNullableFilter<"UserData"> | string | null
+    lastName?: StringNullableFilter<"UserData"> | string | null
+    firstName?: StringNullableFilter<"UserData"> | string | null
+    displayName?: StringNullableFilter<"UserData"> | string | null
+    userBio?: StringNullableFilter<"UserData"> | string | null
+    birthday?: DateTimeNullableFilter<"UserData"> | Date | string | null
+    phoneNumber?: IntNullableFilter<"UserData"> | number | null
+    createdAt?: DateTimeFilter<"UserData"> | Date | string
+    updatedAt?: DateTimeFilter<"UserData"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    repoAccounts?: RepoAccountListRelationFilter
   }
 
-  export type repoAccountOrderByWithRelationInput = {
+  export type UserDataOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    isAdmin?: SortOrder
+    postLoginHandled?: SortOrder
+    email?: SortOrderInput | SortOrder
+    lastName?: SortOrderInput | SortOrder
+    firstName?: SortOrderInput | SortOrder
+    displayName?: SortOrderInput | SortOrder
+    userBio?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    repoAccounts?: RepoAccountOrderByRelationAggregateInput
+  }
+
+  export type UserDataWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    email?: string
+    AND?: UserDataWhereInput | UserDataWhereInput[]
+    OR?: UserDataWhereInput[]
+    NOT?: UserDataWhereInput | UserDataWhereInput[]
+    isAdmin?: BoolFilter<"UserData"> | boolean
+    postLoginHandled?: BoolFilter<"UserData"> | boolean
+    lastName?: StringNullableFilter<"UserData"> | string | null
+    firstName?: StringNullableFilter<"UserData"> | string | null
+    displayName?: StringNullableFilter<"UserData"> | string | null
+    userBio?: StringNullableFilter<"UserData"> | string | null
+    birthday?: DateTimeNullableFilter<"UserData"> | Date | string | null
+    phoneNumber?: IntNullableFilter<"UserData"> | number | null
+    createdAt?: DateTimeFilter<"UserData"> | Date | string
+    updatedAt?: DateTimeFilter<"UserData"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    repoAccounts?: RepoAccountListRelationFilter
+  }, "id" | "userId" | "email">
+
+  export type UserDataOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    isAdmin?: SortOrder
+    postLoginHandled?: SortOrder
+    email?: SortOrderInput | SortOrder
+    lastName?: SortOrderInput | SortOrder
+    firstName?: SortOrderInput | SortOrder
+    displayName?: SortOrderInput | SortOrder
+    userBio?: SortOrderInput | SortOrder
+    birthday?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserDataCountOrderByAggregateInput
+    _avg?: UserDataAvgOrderByAggregateInput
+    _max?: UserDataMaxOrderByAggregateInput
+    _min?: UserDataMinOrderByAggregateInput
+    _sum?: UserDataSumOrderByAggregateInput
+  }
+
+  export type UserDataScalarWhereWithAggregatesInput = {
+    AND?: UserDataScalarWhereWithAggregatesInput | UserDataScalarWhereWithAggregatesInput[]
+    OR?: UserDataScalarWhereWithAggregatesInput[]
+    NOT?: UserDataScalarWhereWithAggregatesInput | UserDataScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserData"> | string
+    userId?: StringWithAggregatesFilter<"UserData"> | string
+    isAdmin?: BoolWithAggregatesFilter<"UserData"> | boolean
+    postLoginHandled?: BoolWithAggregatesFilter<"UserData"> | boolean
+    email?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    lastName?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    firstName?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    displayName?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    userBio?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    birthday?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
+    phoneNumber?: IntNullableWithAggregatesFilter<"UserData"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"UserData"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UserData"> | Date | string
+  }
+
+  export type RepoAccountWhereInput = {
+    AND?: RepoAccountWhereInput | RepoAccountWhereInput[]
+    OR?: RepoAccountWhereInput[]
+    NOT?: RepoAccountWhereInput | RepoAccountWhereInput[]
+    id?: StringFilter<"RepoAccount"> | string
+    accountId?: StringFilter<"RepoAccount"> | string
+    providerId?: StringNullableFilter<"RepoAccount"> | string | null
+    userDataId?: StringFilter<"RepoAccount"> | string
+    accessToken?: StringNullableFilter<"RepoAccount"> | string | null
+    refreshToken?: StringNullableFilter<"RepoAccount"> | string | null
+    idToken?: StringNullableFilter<"RepoAccount"> | string | null
+    accessTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
+    refreshTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
+    scope?: StringNullableFilter<"RepoAccount"> | string | null
+    createdAt?: DateTimeFilter<"RepoAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"RepoAccount"> | Date | string
+    userData?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
+  }
+
+  export type RepoAccountOrderByWithRelationInput = {
     id?: SortOrder
     accountId?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
+    providerId?: SortOrderInput | SortOrder
+    userDataId?: SortOrder
     accessToken?: SortOrderInput | SortOrder
     refreshToken?: SortOrderInput | SortOrder
     idToken?: SortOrderInput | SortOrder
@@ -6961,31 +8576,33 @@ export namespace Prisma {
     scope?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userData?: UserDataOrderByWithRelationInput
   }
 
-  export type repoAccountWhereUniqueInput = Prisma.AtLeast<{
+  export type RepoAccountWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: repoAccountWhereInput | repoAccountWhereInput[]
-    OR?: repoAccountWhereInput[]
-    NOT?: repoAccountWhereInput | repoAccountWhereInput[]
-    accountId?: StringFilter<"repoAccount"> | string
-    providerId?: StringFilter<"repoAccount"> | string
-    userId?: StringFilter<"repoAccount"> | string
-    accessToken?: StringNullableFilter<"repoAccount"> | string | null
-    refreshToken?: StringNullableFilter<"repoAccount"> | string | null
-    idToken?: StringNullableFilter<"repoAccount"> | string | null
-    accessTokenExpiresAt?: DateTimeNullableFilter<"repoAccount"> | Date | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"repoAccount"> | Date | string | null
-    scope?: StringNullableFilter<"repoAccount"> | string | null
-    createdAt?: DateTimeFilter<"repoAccount"> | Date | string
-    updatedAt?: DateTimeFilter<"repoAccount"> | Date | string
+    AND?: RepoAccountWhereInput | RepoAccountWhereInput[]
+    OR?: RepoAccountWhereInput[]
+    NOT?: RepoAccountWhereInput | RepoAccountWhereInput[]
+    accountId?: StringFilter<"RepoAccount"> | string
+    providerId?: StringNullableFilter<"RepoAccount"> | string | null
+    userDataId?: StringFilter<"RepoAccount"> | string
+    accessToken?: StringNullableFilter<"RepoAccount"> | string | null
+    refreshToken?: StringNullableFilter<"RepoAccount"> | string | null
+    idToken?: StringNullableFilter<"RepoAccount"> | string | null
+    accessTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
+    refreshTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
+    scope?: StringNullableFilter<"RepoAccount"> | string | null
+    createdAt?: DateTimeFilter<"RepoAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"RepoAccount"> | Date | string
+    userData?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
   }, "id">
 
-  export type repoAccountOrderByWithAggregationInput = {
+  export type RepoAccountOrderByWithAggregationInput = {
     id?: SortOrder
     accountId?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
+    providerId?: SortOrderInput | SortOrder
+    userDataId?: SortOrder
     accessToken?: SortOrderInput | SortOrder
     refreshToken?: SortOrderInput | SortOrder
     idToken?: SortOrderInput | SortOrder
@@ -6994,27 +8611,27 @@ export namespace Prisma {
     scope?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: repoAccountCountOrderByAggregateInput
-    _max?: repoAccountMaxOrderByAggregateInput
-    _min?: repoAccountMinOrderByAggregateInput
+    _count?: RepoAccountCountOrderByAggregateInput
+    _max?: RepoAccountMaxOrderByAggregateInput
+    _min?: RepoAccountMinOrderByAggregateInput
   }
 
-  export type repoAccountScalarWhereWithAggregatesInput = {
-    AND?: repoAccountScalarWhereWithAggregatesInput | repoAccountScalarWhereWithAggregatesInput[]
-    OR?: repoAccountScalarWhereWithAggregatesInput[]
-    NOT?: repoAccountScalarWhereWithAggregatesInput | repoAccountScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"repoAccount"> | string
-    accountId?: StringWithAggregatesFilter<"repoAccount"> | string
-    providerId?: StringWithAggregatesFilter<"repoAccount"> | string
-    userId?: StringWithAggregatesFilter<"repoAccount"> | string
-    accessToken?: StringNullableWithAggregatesFilter<"repoAccount"> | string | null
-    refreshToken?: StringNullableWithAggregatesFilter<"repoAccount"> | string | null
-    idToken?: StringNullableWithAggregatesFilter<"repoAccount"> | string | null
-    accessTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"repoAccount"> | Date | string | null
-    refreshTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"repoAccount"> | Date | string | null
-    scope?: StringNullableWithAggregatesFilter<"repoAccount"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"repoAccount"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"repoAccount"> | Date | string
+  export type RepoAccountScalarWhereWithAggregatesInput = {
+    AND?: RepoAccountScalarWhereWithAggregatesInput | RepoAccountScalarWhereWithAggregatesInput[]
+    OR?: RepoAccountScalarWhereWithAggregatesInput[]
+    NOT?: RepoAccountScalarWhereWithAggregatesInput | RepoAccountScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RepoAccount"> | string
+    accountId?: StringWithAggregatesFilter<"RepoAccount"> | string
+    providerId?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
+    userDataId?: StringWithAggregatesFilter<"RepoAccount"> | string
+    accessToken?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
+    refreshToken?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
+    idToken?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
+    accessTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"RepoAccount"> | Date | string | null
+    refreshTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"RepoAccount"> | Date | string | null
+    scope?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RepoAccount"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RepoAccount"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -7025,6 +8642,7 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    UserData?: UserDataCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -7035,6 +8653,7 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    UserData?: UserDataUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -7045,6 +8664,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UserData?: UserDataUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -7055,6 +8675,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UserData?: UserDataUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -7339,11 +8960,141 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type repoAccountCreateInput = {
+  export type UserDataCreateInput = {
+    id?: string
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: string | null
+    lastName?: string | null
+    firstName?: string | null
+    displayName?: string | null
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutUserDataInput
+    repoAccounts?: RepoAccountCreateNestedManyWithoutUserDataInput
+  }
+
+  export type UserDataUncheckedCreateInput = {
+    id?: string
+    userId: string
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: string | null
+    lastName?: string | null
+    firstName?: string | null
+    displayName?: string | null
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repoAccounts?: RepoAccountUncheckedCreateNestedManyWithoutUserDataInput
+  }
+
+  export type UserDataUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    repoAccounts?: RepoAccountUpdateManyWithoutUserDataNestedInput
+  }
+
+  export type UserDataUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repoAccounts?: RepoAccountUncheckedUpdateManyWithoutUserDataNestedInput
+  }
+
+  export type UserDataCreateManyInput = {
+    id?: string
+    userId: string
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: string | null
+    lastName?: string | null
+    firstName?: string | null
+    displayName?: string | null
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserDataUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserDataUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepoAccountCreateInput = {
     id?: string
     accountId: string
-    providerId: string
-    userId: string
+    providerId?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    idToken?: string | null
+    accessTokenExpiresAt?: Date | string | null
+    refreshTokenExpiresAt?: Date | string | null
+    scope?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userData: UserDataCreateNestedOneWithoutRepoAccountsInput
+  }
+
+  export type RepoAccountUncheckedCreateInput = {
+    id?: string
+    accountId: string
+    providerId?: string | null
+    userDataId: string
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
@@ -7354,11 +9105,41 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type repoAccountUncheckedCreateInput = {
+  export type RepoAccountUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    idToken?: NullableStringFieldUpdateOperationsInput | string | null
+    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userData?: UserDataUpdateOneRequiredWithoutRepoAccountsNestedInput
+  }
+
+  export type RepoAccountUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
+    userDataId?: StringFieldUpdateOperationsInput | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    idToken?: NullableStringFieldUpdateOperationsInput | string | null
+    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepoAccountCreateManyInput = {
     id?: string
     accountId: string
-    providerId: string
-    userId: string
+    providerId?: string | null
+    userDataId: string
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
@@ -7369,11 +9150,10 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type repoAccountUpdateInput = {
+  export type RepoAccountUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7384,56 +9164,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type repoAccountUncheckedUpdateInput = {
+  export type RepoAccountUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    idToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type repoAccountCreateManyInput = {
-    id?: string
-    accountId: string
-    providerId: string
-    userId: string
-    accessToken?: string | null
-    refreshToken?: string | null
-    idToken?: string | null
-    accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
-    scope?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type repoAccountUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    idToken?: NullableStringFieldUpdateOperationsInput | string | null
-    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type repoAccountUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accountId?: StringFieldUpdateOperationsInput | string
-    providerId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
+    userDataId?: StringFieldUpdateOperationsInput | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7488,6 +9223,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type UserDataNullableScalarRelationFilter = {
+    is?: UserDataWhereInput | null
+    isNot?: UserDataWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -7716,11 +9456,114 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type repoAccountCountOrderByAggregateInput = {
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type RepoAccountListRelationFilter = {
+    every?: RepoAccountWhereInput
+    some?: RepoAccountWhereInput
+    none?: RepoAccountWhereInput
+  }
+
+  export type RepoAccountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserDataCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    isAdmin?: SortOrder
+    postLoginHandled?: SortOrder
+    email?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    displayName?: SortOrder
+    userBio?: SortOrder
+    birthday?: SortOrder
+    phoneNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserDataAvgOrderByAggregateInput = {
+    phoneNumber?: SortOrder
+  }
+
+  export type UserDataMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    isAdmin?: SortOrder
+    postLoginHandled?: SortOrder
+    email?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    displayName?: SortOrder
+    userBio?: SortOrder
+    birthday?: SortOrder
+    phoneNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserDataMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    isAdmin?: SortOrder
+    postLoginHandled?: SortOrder
+    email?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    displayName?: SortOrder
+    userBio?: SortOrder
+    birthday?: SortOrder
+    phoneNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserDataSumOrderByAggregateInput = {
+    phoneNumber?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type UserDataScalarRelationFilter = {
+    is?: UserDataWhereInput
+    isNot?: UserDataWhereInput
+  }
+
+  export type RepoAccountCountOrderByAggregateInput = {
     id?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
-    userId?: SortOrder
+    userDataId?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrder
     idToken?: SortOrder
@@ -7731,11 +9574,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type repoAccountMaxOrderByAggregateInput = {
+  export type RepoAccountMaxOrderByAggregateInput = {
     id?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
-    userId?: SortOrder
+    userDataId?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrder
     idToken?: SortOrder
@@ -7746,11 +9589,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type repoAccountMinOrderByAggregateInput = {
+  export type RepoAccountMinOrderByAggregateInput = {
     id?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
-    userId?: SortOrder
+    userDataId?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrder
     idToken?: SortOrder
@@ -7759,6 +9602,18 @@ export namespace Prisma {
     scope?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserDataCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserDataCreateWithoutUserInput, UserDataUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutUserInput
+    connect?: UserDataWhereUniqueInput
+  }
+
+  export type UserDataUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserDataCreateWithoutUserInput, UserDataUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutUserInput
+    connect?: UserDataWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -7777,8 +9632,106 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type UserDataUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserDataCreateWithoutUserInput, UserDataUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutUserInput
+    upsert?: UserDataUpsertWithoutUserInput
+    disconnect?: UserDataWhereInput | boolean
+    delete?: UserDataWhereInput | boolean
+    connect?: UserDataWhereUniqueInput
+    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutUserInput, UserDataUpdateWithoutUserInput>, UserDataUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserDataUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserDataCreateWithoutUserInput, UserDataUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutUserInput
+    upsert?: UserDataUpsertWithoutUserInput
+    disconnect?: UserDataWhereInput | boolean
+    delete?: UserDataWhereInput | boolean
+    connect?: UserDataWhereUniqueInput
+    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutUserInput, UserDataUpdateWithoutUserInput>, UserDataUncheckedUpdateWithoutUserInput>
+  }
+
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type UserCreateNestedOneWithoutUserDataInput = {
+    create?: XOR<UserCreateWithoutUserDataInput, UserUncheckedCreateWithoutUserDataInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserDataInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type RepoAccountCreateNestedManyWithoutUserDataInput = {
+    create?: XOR<RepoAccountCreateWithoutUserDataInput, RepoAccountUncheckedCreateWithoutUserDataInput> | RepoAccountCreateWithoutUserDataInput[] | RepoAccountUncheckedCreateWithoutUserDataInput[]
+    connectOrCreate?: RepoAccountCreateOrConnectWithoutUserDataInput | RepoAccountCreateOrConnectWithoutUserDataInput[]
+    createMany?: RepoAccountCreateManyUserDataInputEnvelope
+    connect?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+  }
+
+  export type RepoAccountUncheckedCreateNestedManyWithoutUserDataInput = {
+    create?: XOR<RepoAccountCreateWithoutUserDataInput, RepoAccountUncheckedCreateWithoutUserDataInput> | RepoAccountCreateWithoutUserDataInput[] | RepoAccountUncheckedCreateWithoutUserDataInput[]
+    connectOrCreate?: RepoAccountCreateOrConnectWithoutUserDataInput | RepoAccountCreateOrConnectWithoutUserDataInput[]
+    createMany?: RepoAccountCreateManyUserDataInputEnvelope
+    connect?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutUserDataNestedInput = {
+    create?: XOR<UserCreateWithoutUserDataInput, UserUncheckedCreateWithoutUserDataInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserDataInput
+    upsert?: UserUpsertWithoutUserDataInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserDataInput, UserUpdateWithoutUserDataInput>, UserUncheckedUpdateWithoutUserDataInput>
+  }
+
+  export type RepoAccountUpdateManyWithoutUserDataNestedInput = {
+    create?: XOR<RepoAccountCreateWithoutUserDataInput, RepoAccountUncheckedCreateWithoutUserDataInput> | RepoAccountCreateWithoutUserDataInput[] | RepoAccountUncheckedCreateWithoutUserDataInput[]
+    connectOrCreate?: RepoAccountCreateOrConnectWithoutUserDataInput | RepoAccountCreateOrConnectWithoutUserDataInput[]
+    upsert?: RepoAccountUpsertWithWhereUniqueWithoutUserDataInput | RepoAccountUpsertWithWhereUniqueWithoutUserDataInput[]
+    createMany?: RepoAccountCreateManyUserDataInputEnvelope
+    set?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+    disconnect?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+    delete?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+    connect?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+    update?: RepoAccountUpdateWithWhereUniqueWithoutUserDataInput | RepoAccountUpdateWithWhereUniqueWithoutUserDataInput[]
+    updateMany?: RepoAccountUpdateManyWithWhereWithoutUserDataInput | RepoAccountUpdateManyWithWhereWithoutUserDataInput[]
+    deleteMany?: RepoAccountScalarWhereInput | RepoAccountScalarWhereInput[]
+  }
+
+  export type RepoAccountUncheckedUpdateManyWithoutUserDataNestedInput = {
+    create?: XOR<RepoAccountCreateWithoutUserDataInput, RepoAccountUncheckedCreateWithoutUserDataInput> | RepoAccountCreateWithoutUserDataInput[] | RepoAccountUncheckedCreateWithoutUserDataInput[]
+    connectOrCreate?: RepoAccountCreateOrConnectWithoutUserDataInput | RepoAccountCreateOrConnectWithoutUserDataInput[]
+    upsert?: RepoAccountUpsertWithWhereUniqueWithoutUserDataInput | RepoAccountUpsertWithWhereUniqueWithoutUserDataInput[]
+    createMany?: RepoAccountCreateManyUserDataInputEnvelope
+    set?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+    disconnect?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+    delete?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+    connect?: RepoAccountWhereUniqueInput | RepoAccountWhereUniqueInput[]
+    update?: RepoAccountUpdateWithWhereUniqueWithoutUserDataInput | RepoAccountUpdateWithWhereUniqueWithoutUserDataInput[]
+    updateMany?: RepoAccountUpdateManyWithWhereWithoutUserDataInput | RepoAccountUpdateManyWithWhereWithoutUserDataInput[]
+    deleteMany?: RepoAccountScalarWhereInput | RepoAccountScalarWhereInput[]
+  }
+
+  export type UserDataCreateNestedOneWithoutRepoAccountsInput = {
+    create?: XOR<UserDataCreateWithoutRepoAccountsInput, UserDataUncheckedCreateWithoutRepoAccountsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutRepoAccountsInput
+    connect?: UserDataWhereUniqueInput
+  }
+
+  export type UserDataUpdateOneRequiredWithoutRepoAccountsNestedInput = {
+    create?: XOR<UserDataCreateWithoutRepoAccountsInput, UserDataUncheckedCreateWithoutRepoAccountsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutRepoAccountsInput
+    upsert?: UserDataUpsertWithoutRepoAccountsInput
+    connect?: UserDataWhereUniqueInput
+    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutRepoAccountsInput, UserDataUpdateWithoutRepoAccountsInput>, UserDataUncheckedUpdateWithoutRepoAccountsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -7926,6 +9879,377 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type UserDataCreateWithoutUserInput = {
+    id?: string
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: string | null
+    lastName?: string | null
+    firstName?: string | null
+    displayName?: string | null
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repoAccounts?: RepoAccountCreateNestedManyWithoutUserDataInput
+  }
+
+  export type UserDataUncheckedCreateWithoutUserInput = {
+    id?: string
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: string | null
+    lastName?: string | null
+    firstName?: string | null
+    displayName?: string | null
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repoAccounts?: RepoAccountUncheckedCreateNestedManyWithoutUserDataInput
+  }
+
+  export type UserDataCreateOrConnectWithoutUserInput = {
+    where: UserDataWhereUniqueInput
+    create: XOR<UserDataCreateWithoutUserInput, UserDataUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserDataUpsertWithoutUserInput = {
+    update: XOR<UserDataUpdateWithoutUserInput, UserDataUncheckedUpdateWithoutUserInput>
+    create: XOR<UserDataCreateWithoutUserInput, UserDataUncheckedCreateWithoutUserInput>
+    where?: UserDataWhereInput
+  }
+
+  export type UserDataUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserDataWhereInput
+    data: XOR<UserDataUpdateWithoutUserInput, UserDataUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserDataUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repoAccounts?: RepoAccountUpdateManyWithoutUserDataNestedInput
+  }
+
+  export type UserDataUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repoAccounts?: RepoAccountUncheckedUpdateManyWithoutUserDataNestedInput
+  }
+
+  export type UserCreateWithoutUserDataInput = {
+    id?: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutUserDataInput = {
+    id?: string
+    name: string
+    email: string
+    emailVerified: boolean
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutUserDataInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUserDataInput, UserUncheckedCreateWithoutUserDataInput>
+  }
+
+  export type RepoAccountCreateWithoutUserDataInput = {
+    id?: string
+    accountId: string
+    providerId?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    idToken?: string | null
+    accessTokenExpiresAt?: Date | string | null
+    refreshTokenExpiresAt?: Date | string | null
+    scope?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepoAccountUncheckedCreateWithoutUserDataInput = {
+    id?: string
+    accountId: string
+    providerId?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    idToken?: string | null
+    accessTokenExpiresAt?: Date | string | null
+    refreshTokenExpiresAt?: Date | string | null
+    scope?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepoAccountCreateOrConnectWithoutUserDataInput = {
+    where: RepoAccountWhereUniqueInput
+    create: XOR<RepoAccountCreateWithoutUserDataInput, RepoAccountUncheckedCreateWithoutUserDataInput>
+  }
+
+  export type RepoAccountCreateManyUserDataInputEnvelope = {
+    data: RepoAccountCreateManyUserDataInput | RepoAccountCreateManyUserDataInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutUserDataInput = {
+    update: XOR<UserUpdateWithoutUserDataInput, UserUncheckedUpdateWithoutUserDataInput>
+    create: XOR<UserCreateWithoutUserDataInput, UserUncheckedCreateWithoutUserDataInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserDataInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserDataInput, UserUncheckedUpdateWithoutUserDataInput>
+  }
+
+  export type UserUpdateWithoutUserDataInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutUserDataInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepoAccountUpsertWithWhereUniqueWithoutUserDataInput = {
+    where: RepoAccountWhereUniqueInput
+    update: XOR<RepoAccountUpdateWithoutUserDataInput, RepoAccountUncheckedUpdateWithoutUserDataInput>
+    create: XOR<RepoAccountCreateWithoutUserDataInput, RepoAccountUncheckedCreateWithoutUserDataInput>
+  }
+
+  export type RepoAccountUpdateWithWhereUniqueWithoutUserDataInput = {
+    where: RepoAccountWhereUniqueInput
+    data: XOR<RepoAccountUpdateWithoutUserDataInput, RepoAccountUncheckedUpdateWithoutUserDataInput>
+  }
+
+  export type RepoAccountUpdateManyWithWhereWithoutUserDataInput = {
+    where: RepoAccountScalarWhereInput
+    data: XOR<RepoAccountUpdateManyMutationInput, RepoAccountUncheckedUpdateManyWithoutUserDataInput>
+  }
+
+  export type RepoAccountScalarWhereInput = {
+    AND?: RepoAccountScalarWhereInput | RepoAccountScalarWhereInput[]
+    OR?: RepoAccountScalarWhereInput[]
+    NOT?: RepoAccountScalarWhereInput | RepoAccountScalarWhereInput[]
+    id?: StringFilter<"RepoAccount"> | string
+    accountId?: StringFilter<"RepoAccount"> | string
+    providerId?: StringNullableFilter<"RepoAccount"> | string | null
+    userDataId?: StringFilter<"RepoAccount"> | string
+    accessToken?: StringNullableFilter<"RepoAccount"> | string | null
+    refreshToken?: StringNullableFilter<"RepoAccount"> | string | null
+    idToken?: StringNullableFilter<"RepoAccount"> | string | null
+    accessTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
+    refreshTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
+    scope?: StringNullableFilter<"RepoAccount"> | string | null
+    createdAt?: DateTimeFilter<"RepoAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"RepoAccount"> | Date | string
+  }
+
+  export type UserDataCreateWithoutRepoAccountsInput = {
+    id?: string
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: string | null
+    lastName?: string | null
+    firstName?: string | null
+    displayName?: string | null
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutUserDataInput
+  }
+
+  export type UserDataUncheckedCreateWithoutRepoAccountsInput = {
+    id?: string
+    userId: string
+    isAdmin?: boolean
+    postLoginHandled?: boolean
+    email?: string | null
+    lastName?: string | null
+    firstName?: string | null
+    displayName?: string | null
+    userBio?: string | null
+    birthday?: Date | string | null
+    phoneNumber?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserDataCreateOrConnectWithoutRepoAccountsInput = {
+    where: UserDataWhereUniqueInput
+    create: XOR<UserDataCreateWithoutRepoAccountsInput, UserDataUncheckedCreateWithoutRepoAccountsInput>
+  }
+
+  export type UserDataUpsertWithoutRepoAccountsInput = {
+    update: XOR<UserDataUpdateWithoutRepoAccountsInput, UserDataUncheckedUpdateWithoutRepoAccountsInput>
+    create: XOR<UserDataCreateWithoutRepoAccountsInput, UserDataUncheckedCreateWithoutRepoAccountsInput>
+    where?: UserDataWhereInput
+  }
+
+  export type UserDataUpdateToOneWithWhereWithoutRepoAccountsInput = {
+    where?: UserDataWhereInput
+    data: XOR<UserDataUpdateWithoutRepoAccountsInput, UserDataUncheckedUpdateWithoutRepoAccountsInput>
+  }
+
+  export type UserDataUpdateWithoutRepoAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+  }
+
+  export type UserDataUncheckedUpdateWithoutRepoAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    userBio?: NullableStringFieldUpdateOperationsInput | string | null
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepoAccountCreateManyUserDataInput = {
+    id?: string
+    accountId: string
+    providerId?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    idToken?: string | null
+    accessTokenExpiresAt?: Date | string | null
+    refreshTokenExpiresAt?: Date | string | null
+    scope?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepoAccountUpdateWithoutUserDataInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    idToken?: NullableStringFieldUpdateOperationsInput | string | null
+    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepoAccountUncheckedUpdateWithoutUserDataInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    idToken?: NullableStringFieldUpdateOperationsInput | string | null
+    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepoAccountUncheckedUpdateManyWithoutUserDataInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    idToken?: NullableStringFieldUpdateOperationsInput | string | null
+    accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

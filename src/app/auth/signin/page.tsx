@@ -17,6 +17,7 @@ import {GitlabIcon} from "@/components/icons/GitlabIcon"
 import {DiscordIcon} from "@/components/icons/DiscordIcon";
 import {GoogleIcon} from "@/components/icons/GoogleIcon";
 import { Eye, EyeOff, Loader2 } from "lucide-react"
+import { signInWithSocial, signInEmailPassword } from "@/lib/auth/auth-client"
 
 
 const signinSchema = z.object({
@@ -27,7 +28,7 @@ const signinSchema = z.object({
 type SigninForm = z.infer<typeof signinSchema>
 
 export default function SigninPage() {
-    const router = useRouter()
+    //const router = useRouter()
     const [showPassword, setShowPassword] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
@@ -45,59 +46,30 @@ export default function SigninPage() {
         setError(null)
 
         try {
-            // Simulation d'une authentification
-            await new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    // Simuler une erreur parfois
-                    if (values.email === "error@test.com") {
-                        reject(new Error("Email ou mot de passe incorrect"))
-                    } else {
-                        resolve(true)
-                    }
-                }, 1000)
-            })
-
-            // Stocker les données d'authentification
-            localStorage.setItem("isAuthenticated", "true")
-            localStorage.setItem(
-                "user",
-                JSON.stringify({
-                    name: "John Doe",
-                    email: values.email,
-                    image: "",
-                }),
-            )
-
-            router.push("/dashboard")
-        } catch (error) {
-            setError(error instanceof Error ? error.message : "Une erreur est survenue")
-        } finally {
-            setIsLoading(false)
+            const result = await signInEmailPassword(values.email, values.password, `/dashboard`);
+            if (!result.success) {
+                console.error(result.error);
+            }
+        } 
+        catch (error) {
+            console.error("Erreur de connexion :", error);
+        } 
+        finally {
+            setIsLoading(false);
         }
     }
 
-    const handleSocialSignin = async (provider: "github" | "gitlab" | "google" | "discord") => {
+    const handleSocialSignin = async (provider: `github` | `gitlab` | `google` | `discord`) => {
         setIsLoading(true)
         setError(null)
 
-        try {
-            await new Promise((resolve) => setTimeout(resolve, 1000))
-
-            localStorage.setItem("isAuthenticated", "true")
-            localStorage.setItem(
-                "user",
-                JSON.stringify({
-                    name: "John Doe",
-                    email: `user@${provider}.com`,
-                    image: "",
-                }),
-            )
-
-            router.push("/dashboard")
+       try {
+            const result = await signInWithSocial(provider, `/dashboard`);
+            if (!result.success) console.error(result.error);
         } catch (error) {
-            setError(`Erreur de connexion avec ${provider}`)
+            console.error(`Erreur avec ${provider} :`, error);
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
         }
     }
 

@@ -9,16 +9,17 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// ------- 4 "mandatory" tables better-auth -------
+// ------- 4 "mandatories" tables better-auth -------
 
 model User {
-  id            String   @id @default(uuid())
-  name          String
-  email         String   @unique
+  id            String    @id @default(uuid())
+  name          String    @unique
+  email         String    @unique
   emailVerified Boolean
   image         String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  UserData      UserData?
 
   @@map("user")
 }
@@ -67,22 +68,52 @@ model Verification {
   @@map("verification")
 }
 
+// ------- User Datas -------
+
+model UserData {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  isAdmin          Boolean @default(false)
+  postLoginHandled Boolean @default(false)
+
+  email       String?   @unique
+  lastName    String?
+  firstName   String?
+  displayName String?
+  userBio     String?
+  birthday    DateTime?
+  phoneNumber Int?
+
+  repoAccounts RepoAccount[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user_data")
+}
+
 // ------- linked repositories account(s) -------
 
-model repoAccount {
-  id                    String    @id @default(uuid())
-  accountId             String
-  providerId            String // Ex. "github", "gitlab"
-  userId                String
-  // user                  User      @relation("UserRepoAccounts", fields: [userId], references: [id], onDelete: Cascade)
+model RepoAccount {
+  id         String  @id @default(uuid())
+  accountId  String
+  providerId String? // Ex. "github", "gitlab"
+
+  userDataId String
+  userData   UserData @relation(fields: [userDataId], references: [id], onDelete: Cascade)
+
   accessToken           String?
   refreshToken          String?
   idToken               String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
-  scope                 String?
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+
+  scope String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("repo_account")
 }

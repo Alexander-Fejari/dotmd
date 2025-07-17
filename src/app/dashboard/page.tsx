@@ -7,7 +7,7 @@ export default function DashboardPage() {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        // Simuler un chargement
+        // Simuler un chargement -> Demander à Alex pourquoi
         const timer = setTimeout(() => {
             setIsLoading(false)
         }, 1500)

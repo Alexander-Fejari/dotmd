@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { LogOut, Settings, User } from "lucide-react"
-import {signOut} from "@/lib/auth/client";
+import {signOut} from "@/lib/auth/auth-client";
 
 type UserMenuProps = {
   user?: {
@@ -31,7 +31,7 @@ export function UserMenu({ user = { name: "John Doe", email: "john@example.com",
   const handleSignOut = async () => {
     setIsLoading(true)
     await signOut()
-    router.push("/")
+    router.push("/auth/signin")
   }
 
   return (

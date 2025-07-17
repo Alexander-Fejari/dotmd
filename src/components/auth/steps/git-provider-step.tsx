@@ -12,6 +12,7 @@ import {GithubIcon} from "@/components/icons/GithubIcon"
 import {GitlabIcon} from "@/components/icons/GitlabIcon"
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import type { SignupData } from "@/app/auth/signup/page"
+import { useEffect } from "react"
 
 
 const gitProviderSchema = z
@@ -50,6 +51,31 @@ export function GitProviderStep({
                                     isLoading,
                                     setIsLoadingAction,
                                 }: GitProviderStepProps) {
+    useEffect(() => {
+        const prepareDb = async () => {
+            try {
+                const res = await fetch(`/api/auth/post-signup`, {
+                    method: `POST`
+                });
+                if (res.status === 401) {
+                    throw new Error(`Erreur lors de l'initialisation du post login: ${res.statusText}`); // À voir comment gérer les erreurs en front
+                }
+                // else if (res.status === 409) {
+                //     console.warn(`UserData already exists, skipping creation.`); // À voir comment gérer les erreurs en front
+                // }
+                else if (!res.ok) {
+                    throw new Error(`Erreur lors de l'initialisation du post login: ${res.statusText}`); // À voir comment gérer les erreurs en front
+                }
+            }
+            catch (error) {
+                console.error(`Erreur init Git step:`, error)
+                throw new Error(`Erreur lors de l'initialisation du post login: ${ error.message }`);
+            }
+        }
+        
+        prepareDb();
+    }, []);
+    
     const [githubAccount, setGithubAccount] = useState<GitAccount | null>(
         data.githubLinked === true ? { username: "johndoe", avatar: "", email: "john@github.com", repos: 42 } : null,
     )
