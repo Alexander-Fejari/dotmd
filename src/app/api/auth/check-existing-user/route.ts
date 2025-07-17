@@ -1,6 +1,5 @@
 import { NextRequest } from "next/server";
 import prisma from "@/lib/server/db/prisma";
-import { stat } from "fs";
 
 export async function GET(req: NextRequest) {
   const email = req.nextUrl.searchParams.get(`email`);
