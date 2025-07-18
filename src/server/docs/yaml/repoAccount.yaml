@@ -1,0 +1,40 @@
+components:
+  schemas:
+    RepoAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        providerId:
+          type: string
+          nullable: true
+        userDataId:
+          type: string
+        accessToken:
+          type: string
+          nullable: true
+        refreshToken:
+          type: string
+          nullable: true
+        idToken:
+          type: string
+          nullable: true
+        accessTokenExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        refreshTokenExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        scope:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time

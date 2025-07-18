@@ -1,0 +1,241 @@
+openapi: 3.0.0
+info:
+  title: dotMD API
+  version: 1.0.0
+  description: |
+    Documentation officielle de l'API de dotMD.
+paths:
+  /api/auth/check-existing-user:
+    get:
+      summary: Vérifier l'existence d'un utilisateur
+      description: Retourne `emailExists` et `displayNameExists` selon que
+        l'utilisateur existe déjà ou non.
+      parameters:
+        - in: query
+          name: email
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: displayName
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: L'utilisateur n'existe pas
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserExistenceResponse"
+        "404":
+          description: L'utilisateur existe déjà
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserExistenceResponse"
+        "500":
+          description: Erreur interne du serveur
+  /api/auth/post-signup:
+    post:
+      summary: Gérer la création de UserData à la connexion
+      description: Crée une entité UserData pour un utilisateur s'il n'en possède pas déjà.
+      responses:
+        "201":
+          description: UserData créée avec succès
+        "409":
+          description: UserData existe déjà
+        "500":
+          description: Erreur interne du serveur
+components:
+  schemas:
+    UserExistenceResponse:
+      type: object
+      properties:
+        emailExists:
+          type: boolean
+        displayNameExists:
+          type: boolean
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        emailVerified:
+          type: boolean
+        image:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        token:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+        ipAddress:
+          type: string
+          nullable: true
+        userAgent:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        accountId:
+          type: string
+        providerId:
+          type: string
+        accessToken:
+          type: string
+          nullable: true
+        refreshToken:
+          type: string
+          nullable: true
+        idToken:
+          type: string
+          nullable: true
+        accessTokenExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        refreshTokenExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        scope:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Verification:
+      type: object
+      properties:
+        id:
+          type: string
+        identifier:
+          type: string
+        value:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    RepoAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        providerId:
+          type: string
+          nullable: true
+        userDataId:
+          type: string
+        accessToken:
+          type: string
+          nullable: true
+        refreshToken:
+          type: string
+          nullable: true
+        idToken:
+          type: string
+          nullable: true
+        accessTokenExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        refreshTokenExpiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        scope:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    UserData:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        isAdmin:
+          type: boolean
+        postLoginHandled:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        userBio:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+        phoneNumber:
+          type: integer
+          nullable: true
+        repoAccounts:
+          type: array
+          items:
+            $ref: "#/components/schemas/RepoAccount"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
