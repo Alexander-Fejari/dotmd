@@ -1,0 +1,45 @@
+components:
+  schemas:
+    UserData:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        isAdmin:
+          type: boolean
+        postLoginHandled:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        userBio:
+          type: string
+          nullable: true
+        birthday:
+          type: string
+          format: date-time
+          nullable: true
+        phoneNumber:
+          type: integer
+          nullable: true
+        repoAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepoAccount'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time

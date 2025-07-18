@@ -1,11 +1,10 @@
-import { getApiDocs } from "@/server/swagger";
-import ReactSwagger from "./react-swagger";
-
-export default async function IndexPage() {
-  const spec = await getApiDocs();
+export default function DocsRedirect() {
   return (
-    <section className="container">
-      <ReactSwagger spec={spec} />
-    </section>
+    <html>
+      <head>
+        <meta httpEquiv="refresh" content="0;url=/docs/index.html" />
+      </head>
+      <body />
+    </html>
   );
 }
