@@ -1,9 +1,9 @@
 import { NextRequest } from "next/server";
-import { checkUserExists } from "@/server/auth/check_existing_user";
+import { checkEmailDisplayName } from "@/server/auth/check_email_display_name";
 
 export async function GET(req: NextRequest) {
   try {
-   const res = await checkUserExists(req);
+   const res = await checkEmailDisplayName(req);
    if (res.emailExists || res.displayNameExists) {
      return Response.json(res, { status: 404 });
   }

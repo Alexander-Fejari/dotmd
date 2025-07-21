@@ -186,7 +186,6 @@ exports.Prisma.RepoAccountScalarFieldEnum = {
   userDataId: 'userDataId',
   accessToken: 'accessToken',
   refreshToken: 'refreshToken',
-  idToken: 'idToken',
   accessTokenExpiresAt: 'accessTokenExpiresAt',
   refreshTokenExpiresAt: 'refreshTokenExpiresAt',
   scope: 'scope',

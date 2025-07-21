@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import prisma from "@/server/db/prisma";
 
-export async function checkUserExists(req: NextRequest) {
+export async function checkEmailDisplayName(req: NextRequest) {
   const email = req.nextUrl.searchParams.get(`email`);
   const displayName = req.nextUrl.searchParams.get(`displayName`);
 

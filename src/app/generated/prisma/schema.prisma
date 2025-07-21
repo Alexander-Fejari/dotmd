@@ -106,7 +106,6 @@ model RepoAccount {
 
   accessToken           String?
   refreshToken          String?
-  idToken               String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
 

@@ -1,5 +1,5 @@
 paths:
-  /api/auth/check-existing-user?email={email}&displayName={displayName}:
+  /api/auth/check-email-displayname?email={email}&displayName={displayName}:
     get:
       summary: Vérifier l'existence d'un utilisateur
       description: Retourne `emailExists` et `displayNameExists` selon que l'utilisateur existe déjà ou non.
