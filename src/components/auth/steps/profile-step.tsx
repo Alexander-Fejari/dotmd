@@ -42,9 +42,6 @@ export function ProfileStep({ data, onUpdateAction, onPrevAction, isLoading, set
             await new Promise((r) => setTimeout(r, 1000))
             onUpdateAction({ name: values.name, bio: values.bio })
 
-            // Envoyer toutes les données API
-            console.log("Données complètes d'inscription:", { ...data, ...values })
-
             router.push("/dashboard")
         } catch (error) {
             console.error("Erreur finalisation:", error)

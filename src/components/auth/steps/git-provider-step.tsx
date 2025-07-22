@@ -145,7 +145,6 @@ export function GitProviderStep({
     }
 
     const handleSubmit = (values: GitProviderForm) => {
-        console.log("Git providers sélectionnés:", values)
         onNextAction()
     }
 
