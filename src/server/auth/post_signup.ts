@@ -15,6 +15,7 @@ export async function handlePostLogin(headers: Headers) {
         userId: user.id,
         displayName: user.name || `No Name`,
         email: user.email || `No Email`,
+        image: user.image || `No Image`,
         isAdmin: false,
         postLoginHandled: true, // Mark as handled
       },

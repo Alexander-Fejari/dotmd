@@ -46,10 +46,9 @@ export function SignupStep({ data, onUpdateAction, onNextAction, isLoading, setI
         try {
             onUpdateAction({ email: values.email, password: values.password, provider: undefined })
             
-            const exists = await fetch(`/api/auth/check-existing-user?email=${encodeURIComponent(values.email)}&displayName=${encodeURIComponent(values.displayName)}`);
+            const exists = await fetch(`/api/auth/check-email-displayname?email=${encodeURIComponent(values.email)}&displayName=${encodeURIComponent(values.displayName)}`);
             const verif = await exists.json();
 
-            console.log("Verification result:", verif);
 
             if (verif.emailExists == true) {
                 alert("Un compte existe déjà avec cette adresse email. Veuillez vous connecter."); // A d'office changer haha

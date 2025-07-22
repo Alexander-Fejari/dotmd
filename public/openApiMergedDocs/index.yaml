@@ -5,7 +5,7 @@ info:
   description: |
     Documentation officielle de l'API de dotMD.
 paths:
-  /api/auth/check-existing-user:
+  /api/auth/check-email-displayname?email={email}&displayName={displayName}:
     get:
       summary: Vérifier l'existence d'un utilisateur
       description: Retourne `emailExists` et `displayNameExists` selon que
