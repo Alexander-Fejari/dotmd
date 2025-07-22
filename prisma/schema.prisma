@@ -75,6 +75,8 @@ model UserData {
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  image String?
+
   isAdmin          Boolean @default(false)
   postLoginHandled Boolean @default(false)
 
