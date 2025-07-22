@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -66,9 +65,11 @@ export default function SigninPage() {
        try {
             const result = await signInWithSocial(provider, `/dashboard`);
             if (!result.success) console.error(result.error);
-        } catch (error) {
+        } 
+        catch (error) {
             console.error(`Erreur avec ${provider} :`, error);
-        } finally {
+        } 
+        finally {
             setIsLoading(false);
         }
     }
