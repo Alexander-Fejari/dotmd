@@ -3,18 +3,18 @@ export interface BetterAuthUser {
     name: string;
     email: string;
     emailVerified: boolean;
-    image?: string;
-    createdAt: string;
-    updatedAt: string;
+    image?: string | null;
+    createdAt: string | Date;
+    updatedAt: string | Date;
 }
 
 export interface BetterAuthSession {
     id: string;
     userId: string;
     token: string;
-    expiresAt: string;
-    ipAddress?: string;
-    userAgent?: string;
-    createdAt: string;
-    updatedAt: string;
+    expiresAt: string | Date;
+    ipAddress?: string | null;
+    userAgent?: string | null;
+    createdAt: string | Date;
+    updatedAt: string | Date;
 }
