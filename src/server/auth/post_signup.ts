@@ -21,11 +21,7 @@ export async function handlePostLogin(headers: Headers) {
       },
     });
 
-    //console.log(`Created userData for user : ${user.name}, id : ${user.id}, email : ${user.email}`);
     return true;
   } 
-  else {
-    //console.log(`UserData already exists for user ${user.id}`);
-    return false;
-  }
+  return false;
 }

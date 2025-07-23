@@ -79,6 +79,7 @@ model UserData {
 
   isAdmin          Boolean @default(false)
   postLoginHandled Boolean @default(false)
+  signUpFinished   Boolean @default(false)
 
   email       String?   @unique
   lastName    String?
@@ -107,9 +108,8 @@ model RepoAccount {
   userData   UserData @relation(fields: [userDataId], references: [id], onDelete: Cascade)
 
   accessToken           String?
-  refreshToken          String?
   accessTokenExpiresAt  DateTime?
-  refreshTokenExpiresAt DateTime?
+  refreshToken          String?
 
   scope String?
 
