@@ -1,40 +1,25 @@
-import { create } from "zustand";
+import { create } from "zustand"
+import { BetterAuthUser, BetterAuthSession } from "@/types"
 
-// Type aligné avec useSession
-interface AuthUser {
-    id: string;
-    name: string;
-    email: string;
-    emailVerified: boolean;
-    image?: string | null | undefined;
-    createdAt: Date | string;
-    updatedAt: Date | string;
+interface UserState {
+    user: BetterAuthUser | null
+    session: BetterAuthSession | null
+    setUser: (data: { user: BetterAuthUser; session: BetterAuthSession }) => void
+    clearUser: () => void
+    isSessionExpired: () => boolean
 }
 
-interface AuthSession {
-    id: string;
-    expiresAt: string | Date;
-    token: string;
-    createdAt: string | Date;
-    updatedAt: string | Date;
-    ipAddress?: string | null;
-    userAgent?: string | null;
-    userId: string;
-}
+export const useUserStore = create<UserState>((set, get) => ({
+    user: null,
+    session: null,
 
-interface AuthData {
-    user: AuthUser;
-    session: AuthSession;
-}
+    setUser: ({ user, session }) => set({ user, session }),
 
-interface AuthState {
-    authData: AuthData | null;
-    setAuthData: (authData: AuthData | null) => void;
-    clearAuthData: () => void;
-}
+    clearUser: () => set({ user: null, session: null }),
 
-export const useAuthStore = create<AuthState>((set) => ({
-    authData: null,
-    setAuthData: (authData) => set({ authData }),
-    clearAuthData: () => set({ authData: null }),
-}));
+    isSessionExpired: () => {
+        const session = get().session
+        if (!session) return true
+        return new Date(session.expiresAt) < new Date()
+    },
+}))
