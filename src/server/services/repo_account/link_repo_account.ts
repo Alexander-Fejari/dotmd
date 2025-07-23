@@ -7,7 +7,7 @@ export async function linkRepoAccount(req: Request) {
   const session = await requireSession(await headers());
 
   const { accessToken, repoProvider } = await req.json();
-  if (!accessToken || !repoProvider || repoProvider !== "github" && repoProvider !== "gitlab") {
+  if (!accessToken || !repoProvider || repoProvider !== `github` && repoProvider !== `gitlab`) {
     return { error: `No GH/GL access token or no specified repo Provider`, status: 400 };
   }
 
@@ -19,24 +19,15 @@ export async function linkRepoAccount(req: Request) {
       select: { id: true }
     });
 
-    if (!userData) return { error: "UserData not found", status: 404 };
+    if (!userData) return { error: `UserData not found`, status: 404 };
 
-    const linked = await prisma.repoAccount.upsert({
-      where: {
-        accountId_providerId: {
-          accountId: repoAccountUser.id.toString(),
-          providerId: "github"
-        }
-      },
-      update: {
-        accessToken,
-        updatedAt: new Date()
-      },
-      create: {
+    const linked = await prisma.repoAccount.create({
+      data: {
         accountId: repoAccountUser.id.toString(),
         providerId: repoProvider,
         userDataId: userData.id,
-        accessToken
+        accessToken,
+        scope: repoProvider === `github` ? `read_user,repo` : `read_user,api`,
       }
     });
 
@@ -47,7 +38,37 @@ export async function linkRepoAccount(req: Request) {
   }
 }
 
-// // Liste les comptes GitHub liés à un utilisateur.
+export async function getAuthUrl(repoProvider: string) {
+  if (repoProvider !== `github` && repoProvider !== `gitlab`) {
+    return new Error(`Invalid repoProvider: ${repoProvider}`);
+  }
+
+  const redirectUri = `${process.env.BETTER_AUTH_URL}/api/repo-accounts/link`;
+
+  if (repoProvider === `github`) {
+    const clientId = process.env.GITHUB_CLIENT_ID!;
+    const githubAuthUrl = new URL("https://github.com/login/oauth/authorize");
+    githubAuthUrl.searchParams.set("client_id", clientId);
+    githubAuthUrl.searchParams.set("redirect_uri", redirectUri);
+    githubAuthUrl.searchParams.set("scope", "read:user repo");
+    return githubAuthUrl;
+  }
+
+  else if (repoProvider === `gitlab`) {
+    const clientId = process.env.GITLAB_CLIENT_ID!;
+    const gitlabAuthUrl = new URL("https://gitlab.com/oauth/authorize");
+    gitlabAuthUrl.searchParams.set("client_id", clientId);
+    gitlabAuthUrl.searchParams.set("redirect_uri", redirectUri);
+    gitlabAuthUrl.searchParams.set("response_type", "code");
+    gitlabAuthUrl.searchParams.set("scope", "read_user api");
+    return gitlabAuthUrl;
+  }
+
+  return new Error(`Unsupported repoProvider: ${repoProvider}`);
+}
+
+
+
 // export async function listGitHubAccounts() {
 //   const session = await auth.api.getSession({ headers: await headers() });
 //   if (!session) {

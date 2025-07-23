@@ -95,16 +95,12 @@ export function GitProviderStep({
     const handleConnectGitHub = async () => {
         setIsLoadingAction(true)
         try {
-            await new Promise((r) => setTimeout(r, 1500))
-            const mockGitHubData: GitAccount = {
-                username: "johndoe",
-                avatar: "/placeholder.svg?height=40&width=40",
-                email: "john@github.com",
-                repos: 42,
-            }
-            setGithubAccount(mockGitHubData)
+            const getAccessToken = await fetch(`/api/repo-accounts/begin-link?repoProvider=github`, {
+                method: `GET`,
+            });
+            //setGithubAccount(mockGitHubData)
             form.setValue("connectGithub", true)
-            onUpdateAction({ githubLinked: true, githubToken: "mock_github_token" })
+            onUpdateAction({ githubLinked: true, githubToken: getAccessToken. })
         } catch (error) {
             console.error("Erreur connexion GitHub:", error)
         } finally {
@@ -144,7 +140,7 @@ export function GitProviderStep({
         }
     }
 
-    const handleSubmit = (values: GitProviderForm) => {
+    const handleSubmit = () => {
         onNextAction()
     }
 
