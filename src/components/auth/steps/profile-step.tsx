@@ -12,7 +12,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import type { SignupData } from "@/app/auth/signup/page"
 
 const profileSchema = z.object({
-    name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
+    lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
     bio: z.string().optional(),
 })
 
@@ -31,7 +31,7 @@ export function ProfileStep({ data, onUpdateAction, onPrevAction, isLoading, set
     const form = useForm<ProfileForm>({
         resolver: zodResolver(profileSchema),
         defaultValues: {
-            name: data.name || "",
+            lastName: data.lastName || "",
             bio: data.bio || "",
         },
     })
@@ -39,16 +39,27 @@ export function ProfileStep({ data, onUpdateAction, onPrevAction, isLoading, set
     const handleFinish = async (values: ProfileForm) => {
         setIsLoadingAction(true)
         try {
-            await new Promise((r) => setTimeout(r, 1000))
-            onUpdateAction({ name: values.name, bio: values.bio })
+            const res = await fetch(`/api/auth/user/updateUserData`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    displayName: values.lastName,
+                    userBio: values.bio,
+                    signUpFinished: true,
+                }),
+            })
 
-            // Envoyer toutes les données API
-            console.log("Données complètes d'inscription:", { ...data, ...values })
-
+            if (!res.ok) {
+                return new Error("Erreur lors de la sauvegarde du profil.")
+            }
             router.push("/dashboard")
-        } catch (error) {
+        } 
+        catch (error) {
             console.error("Erreur finalisation:", error)
-        } finally {
+        } 
+        finally {
             setIsLoadingAction(false)
         }
     }
@@ -64,7 +75,7 @@ export function ProfileStep({ data, onUpdateAction, onPrevAction, isLoading, set
                 <form onSubmit={form.handleSubmit(handleFinish)} className="space-y-4">
                     <FormField
                         control={form.control}
-                        name="name"
+                        name="lastName"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Nom complet</FormLabel>

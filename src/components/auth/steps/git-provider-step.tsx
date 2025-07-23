@@ -95,19 +95,23 @@ export function GitProviderStep({
     const handleConnectGitHub = async () => {
         setIsLoadingAction(true)
         try {
-            await new Promise((r) => setTimeout(r, 1500))
-            const mockGitHubData: GitAccount = {
-                username: "johndoe",
-                avatar: "/placeholder.svg?height=40&width=40",
-                email: "john@github.com",
-                repos: 42,
+            const res = await fetch(`/api/repo-accounts/begin-link?repoProvider=github`);
+            const data = await res.json();
+
+            if (res.ok && data.url) {
+                window.location.href = data.url;
             }
-            setGithubAccount(mockGitHubData)
+            else {
+                console.error("Erreur lors de la connexion GitHub:", data.error || "Unknown error");
+            }
+            //setGithubAccount(mockGitHubData)
             form.setValue("connectGithub", true)
-            onUpdateAction({ githubLinked: true, githubToken: "mock_github_token" })
-        } catch (error) {
+            //onUpdateAction({ githubLinked: true, githubToken: getAccessToken.headers.get("Authorization") || "mock_github_token" })
+        } 
+        catch (error) {
             console.error("Erreur connexion GitHub:", error)
-        } finally {
+        } 
+        finally {
             setIsLoadingAction(false)
         }
     }
@@ -115,16 +119,18 @@ export function GitProviderStep({
     const handleConnectGitLab = async () => {
         setIsLoadingAction(true)
         try {
-            await new Promise((r) => setTimeout(r, 1500))
-            const mockGitLabData: GitAccount = {
-                username: "johndoe",
-                avatar: "/placeholder.svg?height=40&width=40",
-                email: "john@gitlab.com",
-                repos: 15,
+            const res = await fetch(`/api/repo-accounts/begin-link?repoProvider=gitlab`);
+            const data = await res.json();
+
+            if (res.ok && data.url) {
+                window.location.href = data.url;
             }
-            setGitlabAccount(mockGitLabData)
+            else {
+                console.error("Erreur lors de la connexion GitHub:", data.error || "Unknown error");
+            }
+            //setGitlabAccount(mockGitLabData)
             form.setValue("connectGitlab", true)
-            onUpdateAction({ gitlabLinked: true, gitlabToken: "mock_gitlab_token" })
+            //onUpdateAction({ gitlabLinked: true, gitlabToken: "mock_gitlab_token" })
         } catch (error) {
             console.error("Erreur connexion GitLab:", error)
         } finally {
@@ -144,8 +150,7 @@ export function GitProviderStep({
         }
     }
 
-    const handleSubmit = (values: GitProviderForm) => {
-        console.log("Git providers sélectionnés:", values)
+    const handleSubmit = () => {
         onNextAction()
     }
 

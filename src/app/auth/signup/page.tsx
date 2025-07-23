@@ -27,7 +27,7 @@ export type SignupData = {
     gitlabToken?: string
 
     // Étape 4 - Profil
-    name?: string
+    lastName?: string
     bio?: string
     avatar?: string
 }

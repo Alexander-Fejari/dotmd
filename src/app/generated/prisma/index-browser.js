@@ -172,6 +172,7 @@ exports.Prisma.UserDataScalarFieldEnum = {
   image: 'image',
   isAdmin: 'isAdmin',
   postLoginHandled: 'postLoginHandled',
+  signUpFinished: 'signUpFinished',
   email: 'email',
   lastName: 'lastName',
   firstName: 'firstName',
@@ -189,9 +190,8 @@ exports.Prisma.RepoAccountScalarFieldEnum = {
   providerId: 'providerId',
   userDataId: 'userDataId',
   accessToken: 'accessToken',
-  refreshToken: 'refreshToken',
   accessTokenExpiresAt: 'accessTokenExpiresAt',
-  refreshTokenExpiresAt: 'refreshTokenExpiresAt',
+  refreshToken: 'refreshToken',
   scope: 'scope',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

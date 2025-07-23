@@ -5610,6 +5610,7 @@ export namespace Prisma {
     image: string | null
     isAdmin: boolean | null
     postLoginHandled: boolean | null
+    signUpFinished: boolean | null
     email: string | null
     lastName: string | null
     firstName: string | null
@@ -5627,6 +5628,7 @@ export namespace Prisma {
     image: string | null
     isAdmin: boolean | null
     postLoginHandled: boolean | null
+    signUpFinished: boolean | null
     email: string | null
     lastName: string | null
     firstName: string | null
@@ -5644,6 +5646,7 @@ export namespace Prisma {
     image: number
     isAdmin: number
     postLoginHandled: number
+    signUpFinished: number
     email: number
     lastName: number
     firstName: number
@@ -5671,6 +5674,7 @@ export namespace Prisma {
     image?: true
     isAdmin?: true
     postLoginHandled?: true
+    signUpFinished?: true
     email?: true
     lastName?: true
     firstName?: true
@@ -5688,6 +5692,7 @@ export namespace Prisma {
     image?: true
     isAdmin?: true
     postLoginHandled?: true
+    signUpFinished?: true
     email?: true
     lastName?: true
     firstName?: true
@@ -5705,6 +5710,7 @@ export namespace Prisma {
     image?: true
     isAdmin?: true
     postLoginHandled?: true
+    signUpFinished?: true
     email?: true
     lastName?: true
     firstName?: true
@@ -5809,6 +5815,7 @@ export namespace Prisma {
     image: string | null
     isAdmin: boolean
     postLoginHandled: boolean
+    signUpFinished: boolean
     email: string | null
     lastName: string | null
     firstName: string | null
@@ -5845,6 +5852,7 @@ export namespace Prisma {
     image?: boolean
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: boolean
     lastName?: boolean
     firstName?: boolean
@@ -5865,6 +5873,7 @@ export namespace Prisma {
     image?: boolean
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: boolean
     lastName?: boolean
     firstName?: boolean
@@ -5883,6 +5892,7 @@ export namespace Prisma {
     image?: boolean
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: boolean
     lastName?: boolean
     firstName?: boolean
@@ -5901,6 +5911,7 @@ export namespace Prisma {
     image?: boolean
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: boolean
     lastName?: boolean
     firstName?: boolean
@@ -5912,7 +5923,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "image" | "isAdmin" | "postLoginHandled" | "email" | "lastName" | "firstName" | "displayName" | "userBio" | "birthday" | "phoneNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
+  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "image" | "isAdmin" | "postLoginHandled" | "signUpFinished" | "email" | "lastName" | "firstName" | "displayName" | "userBio" | "birthday" | "phoneNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
   export type UserDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     repoAccounts?: boolean | UserData$repoAccountsArgs<ExtArgs>
@@ -5937,6 +5948,7 @@ export namespace Prisma {
       image: string | null
       isAdmin: boolean
       postLoginHandled: boolean
+      signUpFinished: boolean
       email: string | null
       lastName: string | null
       firstName: string | null
@@ -6376,6 +6388,7 @@ export namespace Prisma {
     readonly image: FieldRef<"UserData", 'String'>
     readonly isAdmin: FieldRef<"UserData", 'Boolean'>
     readonly postLoginHandled: FieldRef<"UserData", 'Boolean'>
+    readonly signUpFinished: FieldRef<"UserData", 'Boolean'>
     readonly email: FieldRef<"UserData", 'String'>
     readonly lastName: FieldRef<"UserData", 'String'>
     readonly firstName: FieldRef<"UserData", 'String'>
@@ -6839,9 +6852,8 @@ export namespace Prisma {
     providerId: string | null
     userDataId: string | null
     accessToken: string | null
-    refreshToken: string | null
     accessTokenExpiresAt: Date | null
-    refreshTokenExpiresAt: Date | null
+    refreshToken: string | null
     scope: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6853,9 +6865,8 @@ export namespace Prisma {
     providerId: string | null
     userDataId: string | null
     accessToken: string | null
-    refreshToken: string | null
     accessTokenExpiresAt: Date | null
-    refreshTokenExpiresAt: Date | null
+    refreshToken: string | null
     scope: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6867,9 +6878,8 @@ export namespace Prisma {
     providerId: number
     userDataId: number
     accessToken: number
-    refreshToken: number
     accessTokenExpiresAt: number
-    refreshTokenExpiresAt: number
+    refreshToken: number
     scope: number
     createdAt: number
     updatedAt: number
@@ -6883,9 +6893,8 @@ export namespace Prisma {
     providerId?: true
     userDataId?: true
     accessToken?: true
-    refreshToken?: true
     accessTokenExpiresAt?: true
-    refreshTokenExpiresAt?: true
+    refreshToken?: true
     scope?: true
     createdAt?: true
     updatedAt?: true
@@ -6897,9 +6906,8 @@ export namespace Prisma {
     providerId?: true
     userDataId?: true
     accessToken?: true
-    refreshToken?: true
     accessTokenExpiresAt?: true
-    refreshTokenExpiresAt?: true
+    refreshToken?: true
     scope?: true
     createdAt?: true
     updatedAt?: true
@@ -6911,9 +6919,8 @@ export namespace Prisma {
     providerId?: true
     userDataId?: true
     accessToken?: true
-    refreshToken?: true
     accessTokenExpiresAt?: true
-    refreshTokenExpiresAt?: true
+    refreshToken?: true
     scope?: true
     createdAt?: true
     updatedAt?: true
@@ -6998,9 +7005,8 @@ export namespace Prisma {
     providerId: string | null
     userDataId: string
     accessToken: string | null
-    refreshToken: string | null
     accessTokenExpiresAt: Date | null
-    refreshTokenExpiresAt: Date | null
+    refreshToken: string | null
     scope: string | null
     createdAt: Date
     updatedAt: Date
@@ -7029,9 +7035,8 @@ export namespace Prisma {
     providerId?: boolean
     userDataId?: boolean
     accessToken?: boolean
-    refreshToken?: boolean
     accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
+    refreshToken?: boolean
     scope?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7044,9 +7049,8 @@ export namespace Prisma {
     providerId?: boolean
     userDataId?: boolean
     accessToken?: boolean
-    refreshToken?: boolean
     accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
+    refreshToken?: boolean
     scope?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7059,9 +7063,8 @@ export namespace Prisma {
     providerId?: boolean
     userDataId?: boolean
     accessToken?: boolean
-    refreshToken?: boolean
     accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
+    refreshToken?: boolean
     scope?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7074,15 +7077,14 @@ export namespace Prisma {
     providerId?: boolean
     userDataId?: boolean
     accessToken?: boolean
-    refreshToken?: boolean
     accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
+    refreshToken?: boolean
     scope?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type RepoAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accountId" | "providerId" | "userDataId" | "accessToken" | "refreshToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "createdAt" | "updatedAt", ExtArgs["result"]["repoAccount"]>
+  export type RepoAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accountId" | "providerId" | "userDataId" | "accessToken" | "accessTokenExpiresAt" | "refreshToken" | "scope" | "createdAt" | "updatedAt", ExtArgs["result"]["repoAccount"]>
   export type RepoAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     userData?: boolean | UserDataDefaultArgs<ExtArgs>
   }
@@ -7104,9 +7106,8 @@ export namespace Prisma {
       providerId: string | null
       userDataId: string
       accessToken: string | null
-      refreshToken: string | null
       accessTokenExpiresAt: Date | null
-      refreshTokenExpiresAt: Date | null
+      refreshToken: string | null
       scope: string | null
       createdAt: Date
       updatedAt: Date
@@ -7539,9 +7540,8 @@ export namespace Prisma {
     readonly providerId: FieldRef<"RepoAccount", 'String'>
     readonly userDataId: FieldRef<"RepoAccount", 'String'>
     readonly accessToken: FieldRef<"RepoAccount", 'String'>
-    readonly refreshToken: FieldRef<"RepoAccount", 'String'>
     readonly accessTokenExpiresAt: FieldRef<"RepoAccount", 'DateTime'>
-    readonly refreshTokenExpiresAt: FieldRef<"RepoAccount", 'DateTime'>
+    readonly refreshToken: FieldRef<"RepoAccount", 'String'>
     readonly scope: FieldRef<"RepoAccount", 'String'>
     readonly createdAt: FieldRef<"RepoAccount", 'DateTime'>
     readonly updatedAt: FieldRef<"RepoAccount", 'DateTime'>
@@ -8037,6 +8037,7 @@ export namespace Prisma {
     image: 'image',
     isAdmin: 'isAdmin',
     postLoginHandled: 'postLoginHandled',
+    signUpFinished: 'signUpFinished',
     email: 'email',
     lastName: 'lastName',
     firstName: 'firstName',
@@ -8057,9 +8058,8 @@ export namespace Prisma {
     providerId: 'providerId',
     userDataId: 'userDataId',
     accessToken: 'accessToken',
-    refreshToken: 'refreshToken',
     accessTokenExpiresAt: 'accessTokenExpiresAt',
-    refreshTokenExpiresAt: 'refreshTokenExpiresAt',
+    refreshToken: 'refreshToken',
     scope: 'scope',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -8453,6 +8453,7 @@ export namespace Prisma {
     image?: StringNullableFilter<"UserData"> | string | null
     isAdmin?: BoolFilter<"UserData"> | boolean
     postLoginHandled?: BoolFilter<"UserData"> | boolean
+    signUpFinished?: BoolFilter<"UserData"> | boolean
     email?: StringNullableFilter<"UserData"> | string | null
     lastName?: StringNullableFilter<"UserData"> | string | null
     firstName?: StringNullableFilter<"UserData"> | string | null
@@ -8472,6 +8473,7 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     isAdmin?: SortOrder
     postLoginHandled?: SortOrder
+    signUpFinished?: SortOrder
     email?: SortOrderInput | SortOrder
     lastName?: SortOrderInput | SortOrder
     firstName?: SortOrderInput | SortOrder
@@ -8495,6 +8497,7 @@ export namespace Prisma {
     image?: StringNullableFilter<"UserData"> | string | null
     isAdmin?: BoolFilter<"UserData"> | boolean
     postLoginHandled?: BoolFilter<"UserData"> | boolean
+    signUpFinished?: BoolFilter<"UserData"> | boolean
     lastName?: StringNullableFilter<"UserData"> | string | null
     firstName?: StringNullableFilter<"UserData"> | string | null
     displayName?: StringNullableFilter<"UserData"> | string | null
@@ -8513,6 +8516,7 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     isAdmin?: SortOrder
     postLoginHandled?: SortOrder
+    signUpFinished?: SortOrder
     email?: SortOrderInput | SortOrder
     lastName?: SortOrderInput | SortOrder
     firstName?: SortOrderInput | SortOrder
@@ -8538,6 +8542,7 @@ export namespace Prisma {
     image?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     isAdmin?: BoolWithAggregatesFilter<"UserData"> | boolean
     postLoginHandled?: BoolWithAggregatesFilter<"UserData"> | boolean
+    signUpFinished?: BoolWithAggregatesFilter<"UserData"> | boolean
     email?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     lastName?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     firstName?: StringNullableWithAggregatesFilter<"UserData"> | string | null
@@ -8558,9 +8563,8 @@ export namespace Prisma {
     providerId?: StringNullableFilter<"RepoAccount"> | string | null
     userDataId?: StringFilter<"RepoAccount"> | string
     accessToken?: StringNullableFilter<"RepoAccount"> | string | null
-    refreshToken?: StringNullableFilter<"RepoAccount"> | string | null
     accessTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
+    refreshToken?: StringNullableFilter<"RepoAccount"> | string | null
     scope?: StringNullableFilter<"RepoAccount"> | string | null
     createdAt?: DateTimeFilter<"RepoAccount"> | Date | string
     updatedAt?: DateTimeFilter<"RepoAccount"> | Date | string
@@ -8573,9 +8577,8 @@ export namespace Prisma {
     providerId?: SortOrderInput | SortOrder
     userDataId?: SortOrder
     accessToken?: SortOrderInput | SortOrder
-    refreshToken?: SortOrderInput | SortOrder
     accessTokenExpiresAt?: SortOrderInput | SortOrder
-    refreshTokenExpiresAt?: SortOrderInput | SortOrder
+    refreshToken?: SortOrderInput | SortOrder
     scope?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8591,9 +8594,8 @@ export namespace Prisma {
     providerId?: StringNullableFilter<"RepoAccount"> | string | null
     userDataId?: StringFilter<"RepoAccount"> | string
     accessToken?: StringNullableFilter<"RepoAccount"> | string | null
-    refreshToken?: StringNullableFilter<"RepoAccount"> | string | null
     accessTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
+    refreshToken?: StringNullableFilter<"RepoAccount"> | string | null
     scope?: StringNullableFilter<"RepoAccount"> | string | null
     createdAt?: DateTimeFilter<"RepoAccount"> | Date | string
     updatedAt?: DateTimeFilter<"RepoAccount"> | Date | string
@@ -8606,9 +8608,8 @@ export namespace Prisma {
     providerId?: SortOrderInput | SortOrder
     userDataId?: SortOrder
     accessToken?: SortOrderInput | SortOrder
-    refreshToken?: SortOrderInput | SortOrder
     accessTokenExpiresAt?: SortOrderInput | SortOrder
-    refreshTokenExpiresAt?: SortOrderInput | SortOrder
+    refreshToken?: SortOrderInput | SortOrder
     scope?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8626,9 +8627,8 @@ export namespace Prisma {
     providerId?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
     userDataId?: StringWithAggregatesFilter<"RepoAccount"> | string
     accessToken?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
-    refreshToken?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
     accessTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"RepoAccount"> | Date | string | null
-    refreshTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"RepoAccount"> | Date | string | null
+    refreshToken?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
     scope?: StringNullableWithAggregatesFilter<"RepoAccount"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"RepoAccount"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"RepoAccount"> | Date | string
@@ -8965,6 +8965,7 @@ export namespace Prisma {
     image?: string | null
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: string | null
     lastName?: string | null
     firstName?: string | null
@@ -8984,6 +8985,7 @@ export namespace Prisma {
     image?: string | null
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: string | null
     lastName?: string | null
     firstName?: string | null
@@ -9001,6 +9003,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    signUpFinished?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9020,6 +9023,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    signUpFinished?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9038,6 +9042,7 @@ export namespace Prisma {
     image?: string | null
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: string | null
     lastName?: string | null
     firstName?: string | null
@@ -9054,6 +9059,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    signUpFinished?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9071,6 +9077,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    signUpFinished?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9087,9 +9094,8 @@ export namespace Prisma {
     accountId: string
     providerId?: string | null
     accessToken?: string | null
-    refreshToken?: string | null
     accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
+    refreshToken?: string | null
     scope?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9102,9 +9108,8 @@ export namespace Prisma {
     providerId?: string | null
     userDataId: string
     accessToken?: string | null
-    refreshToken?: string | null
     accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
+    refreshToken?: string | null
     scope?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9115,9 +9120,8 @@ export namespace Prisma {
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9130,9 +9134,8 @@ export namespace Prisma {
     providerId?: NullableStringFieldUpdateOperationsInput | string | null
     userDataId?: StringFieldUpdateOperationsInput | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9144,9 +9147,8 @@ export namespace Prisma {
     providerId?: string | null
     userDataId: string
     accessToken?: string | null
-    refreshToken?: string | null
     accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
+    refreshToken?: string | null
     scope?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9157,9 +9159,8 @@ export namespace Prisma {
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9171,9 +9172,8 @@ export namespace Prisma {
     providerId?: NullableStringFieldUpdateOperationsInput | string | null
     userDataId?: StringFieldUpdateOperationsInput | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9488,6 +9488,7 @@ export namespace Prisma {
     image?: SortOrder
     isAdmin?: SortOrder
     postLoginHandled?: SortOrder
+    signUpFinished?: SortOrder
     email?: SortOrder
     lastName?: SortOrder
     firstName?: SortOrder
@@ -9509,6 +9510,7 @@ export namespace Prisma {
     image?: SortOrder
     isAdmin?: SortOrder
     postLoginHandled?: SortOrder
+    signUpFinished?: SortOrder
     email?: SortOrder
     lastName?: SortOrder
     firstName?: SortOrder
@@ -9526,6 +9528,7 @@ export namespace Prisma {
     image?: SortOrder
     isAdmin?: SortOrder
     postLoginHandled?: SortOrder
+    signUpFinished?: SortOrder
     email?: SortOrder
     lastName?: SortOrder
     firstName?: SortOrder
@@ -9568,9 +9571,8 @@ export namespace Prisma {
     providerId?: SortOrder
     userDataId?: SortOrder
     accessToken?: SortOrder
-    refreshToken?: SortOrder
     accessTokenExpiresAt?: SortOrder
-    refreshTokenExpiresAt?: SortOrder
+    refreshToken?: SortOrder
     scope?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9582,9 +9584,8 @@ export namespace Prisma {
     providerId?: SortOrder
     userDataId?: SortOrder
     accessToken?: SortOrder
-    refreshToken?: SortOrder
     accessTokenExpiresAt?: SortOrder
-    refreshTokenExpiresAt?: SortOrder
+    refreshToken?: SortOrder
     scope?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9596,9 +9597,8 @@ export namespace Prisma {
     providerId?: SortOrder
     userDataId?: SortOrder
     accessToken?: SortOrder
-    refreshToken?: SortOrder
     accessTokenExpiresAt?: SortOrder
-    refreshTokenExpiresAt?: SortOrder
+    refreshToken?: SortOrder
     scope?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9913,6 +9913,7 @@ export namespace Prisma {
     image?: string | null
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: string | null
     lastName?: string | null
     firstName?: string | null
@@ -9930,6 +9931,7 @@ export namespace Prisma {
     image?: string | null
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: string | null
     lastName?: string | null
     firstName?: string | null
@@ -9963,6 +9965,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    signUpFinished?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9980,6 +9983,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    signUpFinished?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10022,9 +10026,8 @@ export namespace Prisma {
     accountId: string
     providerId?: string | null
     accessToken?: string | null
-    refreshToken?: string | null
     accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
+    refreshToken?: string | null
     scope?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10035,9 +10038,8 @@ export namespace Prisma {
     accountId: string
     providerId?: string | null
     accessToken?: string | null
-    refreshToken?: string | null
     accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
+    refreshToken?: string | null
     scope?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10109,9 +10111,8 @@ export namespace Prisma {
     providerId?: StringNullableFilter<"RepoAccount"> | string | null
     userDataId?: StringFilter<"RepoAccount"> | string
     accessToken?: StringNullableFilter<"RepoAccount"> | string | null
-    refreshToken?: StringNullableFilter<"RepoAccount"> | string | null
     accessTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
-    refreshTokenExpiresAt?: DateTimeNullableFilter<"RepoAccount"> | Date | string | null
+    refreshToken?: StringNullableFilter<"RepoAccount"> | string | null
     scope?: StringNullableFilter<"RepoAccount"> | string | null
     createdAt?: DateTimeFilter<"RepoAccount"> | Date | string
     updatedAt?: DateTimeFilter<"RepoAccount"> | Date | string
@@ -10122,6 +10123,7 @@ export namespace Prisma {
     image?: string | null
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: string | null
     lastName?: string | null
     firstName?: string | null
@@ -10140,6 +10142,7 @@ export namespace Prisma {
     image?: string | null
     isAdmin?: boolean
     postLoginHandled?: boolean
+    signUpFinished?: boolean
     email?: string | null
     lastName?: string | null
     firstName?: string | null
@@ -10172,6 +10175,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    signUpFinished?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10190,6 +10194,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     postLoginHandled?: BoolFieldUpdateOperationsInput | boolean
+    signUpFinished?: BoolFieldUpdateOperationsInput | boolean
     email?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10206,9 +10211,8 @@ export namespace Prisma {
     accountId: string
     providerId?: string | null
     accessToken?: string | null
-    refreshToken?: string | null
     accessTokenExpiresAt?: Date | string | null
-    refreshTokenExpiresAt?: Date | string | null
+    refreshToken?: string | null
     scope?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10219,9 +10223,8 @@ export namespace Prisma {
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10232,9 +10235,8 @@ export namespace Prisma {
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10245,9 +10247,8 @@ export namespace Prisma {
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: NullableStringFieldUpdateOperationsInput | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
