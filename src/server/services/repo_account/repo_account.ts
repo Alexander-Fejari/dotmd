@@ -7,7 +7,7 @@ export async function linkRepoAccount(req: Request) {
   const session = await requireSession(await headers());
 
   const { accessToken, repoProvider } = await req.json();
-  if (!accessToken || !repoProvider) {
+  if (!accessToken || !repoProvider || repoProvider !== "github" && repoProvider !== "gitlab") {
     return { error: `No GH/GL access token or no specified repo Provider`, status: 400 };
   }
 
