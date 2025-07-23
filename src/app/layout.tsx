@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import React from "react";
 import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import {UserSessionProvider} from "@/lib/provider/UserSessionProvider";
 
 // Configurer Outfit pour sans-serif
 const outfit = Outfit({
@@ -35,6 +36,7 @@ export default function RootLayout({
         <body
             className={`${outfit.variable} ${jetBrainsMono.variable} font-sans antialiased`}
         >
+        <UserSessionProvider/>
         {children}
         </body>
         </html>

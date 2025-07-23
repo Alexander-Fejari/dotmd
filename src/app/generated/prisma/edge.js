@@ -204,7 +204,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/atrois/Code/dotmd/v0/src/app/generated/prisma",
+      "value": "C:\\Users\\Alexander\\www\\dotmd\\src\\app\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -213,12 +213,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/atrois/Code/dotmd/v0/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\Alexander\\www\\dotmd\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -232,7 +232,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
