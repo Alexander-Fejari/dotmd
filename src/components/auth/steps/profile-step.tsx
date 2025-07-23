@@ -47,6 +47,7 @@ export function ProfileStep({ data, onUpdateAction, onPrevAction, isLoading, set
                 body: JSON.stringify({
                     displayName: values.lastName,
                     userBio: values.bio,
+                    signUpFinished: true,
                 }),
             })
 
