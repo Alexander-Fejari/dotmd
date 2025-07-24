@@ -5,7 +5,7 @@ export const authClient = createAuthClient({
   secret: process.env.BETTER_AUTH_SECRET,
 });
 
-export const { signIn, signOut, signUp, useSession, resetPassword } = authClient;
+export const { signOut, useSession } = authClient;
 
 const supportedProviders = [`github`, `gitlab`, `google`, `discord`] as const;
 type Provider = (typeof supportedProviders)[number];
