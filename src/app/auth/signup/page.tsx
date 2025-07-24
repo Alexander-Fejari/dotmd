@@ -48,7 +48,7 @@ export default function SignupPage() {
 
     // Récupérer l'étape depuis l'URL
     useEffect(() => {
-        const step = searchParams.get("step")
+        const step = searchParams.get("step");
         if (step) {
             const stepNumber = Number.parseInt(step)
             if (stepNumber >= 1 && stepNumber <= 4) {

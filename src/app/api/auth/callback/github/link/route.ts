@@ -8,6 +8,6 @@ export async function GET(req: NextRequest) {
 
   const res = await linkRepoAccount(req, code, `github`);
 
-  const redirectTo = `${process.env.BETTER_AUTH_URL}/auth/signup?step=3${res.success ? '' : `&error=${encodeURIComponent(res.error)}`}`;
+  const redirectTo = `${process.env.BETTER_AUTH_URL}/auth/signup?step=3${res.success ? '&githubLinked=true' : `&error=${encodeURIComponent(res.error)}`}`;
   return NextResponse.redirect(redirectTo);
 }
